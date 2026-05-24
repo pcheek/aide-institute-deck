@@ -4158,7 +4158,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
     display: flex; gap: 8px;
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   }
-  .deck-controls button {
+  .deck-controls button,
+  .deck-rail-toggle button {
     appearance: none;
     border: 0;
     background: rgba(27, 37, 65, 0.78);
@@ -4171,10 +4172,26 @@ section[data-deck-active].divider-slide .divider-slide__sub {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
-  .deck-controls button:hover { background: rgba(230, 0, 255, 0.92); }
-  .deck-controls button:focus { outline: none; }
-  .deck-controls button:focus-visible { outline: 2px solid #E600FF; outline-offset: 2px; }
-  .deck-controls svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .deck-controls button:hover,
+  .deck-rail-toggle button:hover { background: rgba(230, 0, 255, 0.92); }
+  .deck-controls button:focus,
+  .deck-rail-toggle button:focus { outline: none; }
+  .deck-controls button:focus-visible,
+  .deck-rail-toggle button:focus-visible { outline: 2px solid #E600FF; outline-offset: 2px; }
+  .deck-controls svg,
+  .deck-rail-toggle svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* Top-left thumbnail rail toggle. Glows fuchsia when the rail is open. */
+  .deck-rail-toggle {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 2147483600;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+  .deck-rail-toggle button[data-active] {
+    background: rgba(230, 0, 255, 0.92);
+  }
 
   .deck-outline-backdrop {
     position: fixed;
@@ -4279,6 +4296,12 @@ section[data-deck-active].divider-slide .divider-slide__sub {
   }
 </style>
 
+<div class="deck-rail-toggle" aria-label="Thumbnails toggle">
+  <button id="deck-rail-btn" type="button" title="Show/hide thumbnails (B)" aria-label="Toggle thumbnails">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>
+  </button>
+</div>
+
 <div class="deck-controls" aria-label="Deck controls">
   <button id="deck-fullscreen-btn" type="button" title="Fullscreen (F)" aria-label="Toggle fullscreen">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
@@ -4299,7 +4322,7 @@ section[data-deck-active].divider-slide .divider-slide__sub {
   <div class="deck-outline__list" id="deck-outline-list"></div>
   <div class="deck-outline__foot">
     <span>Click any slide to jump.</span>
-    <span class="deck-outline__kbd"><kbd>T</kbd> toggle &middot; <kbd>F</kbd> fullscreen &middot; <kbd>Esc</kbd> close</span>
+    <span class="deck-outline__kbd"><kbd>T</kbd> outline &middot; <kbd>B</kbd> thumbnails &middot; <kbd>F</kbd> fullscreen &middot; <kbd>Esc</kbd> close</span>
   </div>
 </div>
 
@@ -4310,11 +4333,18 @@ section[data-deck-active].divider-slide .divider-slide__sub {
    deck-stage's shadow rail, which is the documented way the stage
    handles slide changes (rail clicks dispatch its internal nav).
    ═══════════════════════════════════════════════════════════════════════ */
+// Pre-emptively persist the rail-hidden preference *before* deck-stage
+// initializes so it reads "hidden" on first paint and never flashes the
+// thumbnails. (The toggle button below sets it back to '1' temporarily
+// when the user opens the rail.)
+try { localStorage.setItem('deck-stage.railVisible', '0'); } catch (e) {}
+
 (function() {
   'use strict';
 
-  var stage, fsBtn, tocBtn, closeBtn, backdrop, outline, list;
+  var stage, fsBtn, tocBtn, closeBtn, backdrop, outline, list, railBtn;
   var sections = [];
+  var railOpen = false;
 
   function $(id) { return document.getElementById(id); }
 
@@ -4340,6 +4370,21 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       (document.exitFullscreen || document.webkitExitFullscreen || function(){}).call(document);
     }
   }
+
+  // Toggle the deck-stage thumbnail rail via its postMessage protocol.
+  // deck-stage listens for {type: '__deck_rail_visible', on: bool} on window
+  // (see deck-stage.js _onMessage) and animates the rail in/out + reflows
+  // the stage to fill the freed space.
+  function setRail(on) {
+    railOpen = !!on;
+    try { window.postMessage({ type: '__deck_rail_visible', on: railOpen }, '*'); } catch (e) {}
+    if (railBtn) {
+      if (railOpen) railBtn.setAttribute('data-active', '');
+      else railBtn.removeAttribute('data-active');
+      railBtn.title = (railOpen ? 'Hide' : 'Show') + ' thumbnails (B)';
+    }
+  }
+  function toggleRail() { setRail(!railOpen); }
 
   function buildList() {
     if (!list) return;
@@ -4415,11 +4460,18 @@ section[data-deck-active].divider-slide .divider-slide__sub {
     backdrop = $('deck-outline-backdrop');
     outline = $('deck-outline');
     list = $('deck-outline-list');
+    railBtn = $('deck-rail-btn');
 
     fsBtn && fsBtn.addEventListener('click', toggleFullscreen);
     tocBtn && tocBtn.addEventListener('click', toggleOutline);
     closeBtn && closeBtn.addEventListener('click', closeOutline);
     backdrop && backdrop.addEventListener('click', closeOutline);
+    railBtn && railBtn.addEventListener('click', toggleRail);
+
+    // Belt + suspenders: deck-stage already read localStorage and
+    // started hidden, but post the message once to lock in the closed
+    // state even if some other script flipped it before we got here.
+    setRail(false);
 
     // Keyboard shortcuts — listen on the window so they work whether or
     // not the deck-stage has focus. Skip when the user is typing in
@@ -4431,8 +4483,10 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       var k = e.key.toLowerCase();
       if (k === 'f') { e.preventDefault(); toggleFullscreen(); }
       else if (k === 't') { e.preventDefault(); toggleOutline(); }
+      else if (k === 'b') { e.preventDefault(); toggleRail(); }
       else if (k === 'escape') {
         if (outline.hasAttribute('data-open')) closeOutline();
+        else if (railOpen) setRail(false);
       }
     });
 
