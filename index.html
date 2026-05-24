@@ -2762,6 +2762,41 @@ section[data-deck-active].divider-slide .divider-slide__sub {
   animation: aide-fade-up 0.65s 0.55s var(--aide-ease) both;
 }
 
+/* ════════════════════════════════════════════════════════════════════
+   Sector matrix slides — full-bleed image, only the footer is visible.
+   The image fills the entire slide above the footer; no header, no
+   text — the image itself is the slide content.
+   ════════════════════════════════════════════════════════════════════ */
+.sector-matrix-slide--fullbleed {
+  background: var(--color-white);
+}
+/* Image area flexes to fill all space above the footer; no padding so
+   the matrix renders at the maximum possible size given the slide's
+   1920 × (1080 − footer) area. */
+.sector-matrix-slide--fullbleed .matrix-fullbleed {
+  flex: 1;
+  min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  background: var(--color-white);
+  overflow: hidden;
+}
+.sector-matrix-slide--fullbleed .matrix-fullbleed__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Footer pinned to the very bottom of the slide as a normal flex item. */
+.sector-matrix-slide--fullbleed .slide-footer {
+  margin-top: auto;
+}
+
+/* Entrance animation: gentle scale-in for the matrix */
+section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__image {
+  animation: aide-scale-in 0.6s 0.15s var(--aide-ease) both;
+}
+
 </style>
 <link rel="icon" type="image/png" href="assets/aide-favicon.png">
 <script src="slides/deck-stage.js"></script>
@@ -3277,7 +3312,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">64</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 1 · Pacesetter</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3315,6 +3349,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · INFORMATION TECHNOLOGY ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Information Technology"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Information_Technology.png" alt="AIDE Index Matrix — Information Technology, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Information Technology sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 02 · COMMUNICATION SERVICES ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Communication Services">
@@ -3331,7 +3367,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">49</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 2 · Front-runner</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3369,6 +3404,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · COMMUNICATION SERVICES ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Communication Services"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Communication_Services.png" alt="AIDE Index Matrix — Communication Services, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Communication Services sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 03 · FINANCIALS ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Financials">
@@ -3385,7 +3422,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">46</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 2 · Front-runner</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3423,6 +3459,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · FINANCIALS ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Financials"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Financials.png" alt="AIDE Index Matrix — Financials, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Financials sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 04 · HEALTH CARE ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Health Care">
@@ -3432,14 +3470,13 @@ section[data-deck-active].divider-slide .divider-slide__sub {
     </div>
     <div class="slide-body">
       <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-health-care" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Health Care · n = 59</div>
-        <div class="s-title">Devices ahead of pharma.</div>
+        <div class="s-title">Pharma sets the pace.</div>
         <div class="s-sub">Johnson &amp; Johnson tops the sector, followed by three medical-device and life-sciences names. <em>41% are AI Trailblazers</em> — but the long tail of providers and biotechs drags the median.</div></div></div>
       <div class="sector-left">
         <div class="score-card">
           <div class="score-card__num">43</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 2 · Front-runner</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3477,6 +3514,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · HEALTH CARE ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Health Care"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Health_Care.png" alt="AIDE Index Matrix — Health Care, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Health Care sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 05 · INDUSTRIALS ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Industrials">
@@ -3493,7 +3532,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">41</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 3 · Mid-pack</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3531,6 +3569,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · INDUSTRIALS ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Industrials"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Industrials.png" alt="AIDE Index Matrix — Industrials, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Industrials sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 06 · CONSUMER DISCRETIONARY ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Consumer Discretionary">
@@ -3547,7 +3587,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">39</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 3 · Mid-pack</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3585,6 +3624,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · CONSUMER DISCRETIONARY ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Consumer Discretionary"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Consumer_Discretionary.png" alt="AIDE Index Matrix — Consumer Discretionary, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Consumer Discretionary sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 07 · CONSUMER STAPLES ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Consumer Staples">
@@ -3601,7 +3642,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">36</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 3 · Mid-pack</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3639,6 +3679,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · CONSUMER STAPLES ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Consumer Staples"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Consumer_Staples.png" alt="AIDE Index Matrix — Consumer Staples, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Consumer Staples sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 08 · UTILITIES ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Utilities">
@@ -3655,7 +3697,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">29</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 4 · Laggard</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3693,6 +3734,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · UTILITIES ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Utilities"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Utilities.png" alt="AIDE Index Matrix — Utilities, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Utilities sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 09 · ENERGY ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Energy">
@@ -3709,7 +3752,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">26</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 4 · Laggard</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3747,6 +3789,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · ENERGY ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Energy"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Energy.png" alt="AIDE Index Matrix — Energy, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Energy sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 10 · REAL ESTATE ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Real Estate">
@@ -3763,7 +3807,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">25</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 4 · Laggard</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3801,6 +3844,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · REAL ESTATE ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Real Estate"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Real_Estate.png" alt="AIDE Index Matrix — Real Estate, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Real Estate sector view</div></div></section>
 
   <!-- ───────────────────── SECTOR 11 · MATERIALS ───────────────────── -->
   <section class="sector-slide" data-label="Sector · Materials">
@@ -3817,7 +3862,6 @@ section[data-deck-active].divider-slide .divider-slide__sub {
           <div class="score-card__num">22</div>
           <div class="score-card__meta">
             <div class="label">Sector median AIDE Index</div>
-            <div class="value">Tier 4 · Laggard</div>
           </div>
           <div class="score-card__rank">
             <div class="label">Rank · 11 sectors</div>
@@ -3855,6 +3899,8 @@ section[data-deck-active].divider-slide .divider-slide__sub {
       <div class="url">aideinstitute.com</div>
     </div>
   </section>
+  <!-- ───────────────────── SECTOR MATRIX · MATERIALS ───────────────────── -->
+  <section class="matrix-slide sector-matrix-slide sector-matrix-slide--fullbleed" data-label="Sector Matrix · Materials"><div class="matrix-fullbleed"><img class="matrix-fullbleed__image" src="assets/sector-matricies/AIDE_Matrix_Materials.png" alt="AIDE Index Matrix — Materials, S&amp;P 500 2026"></div><div class="slide-footer"><div class="tag">Tracking the AI that counts.</div><div class="url">aideinstitute.com</div><div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500 &middot; Materials sector view</div></div></section>
 
   <!-- ───────────────────── 19 · SERVICES & SOLUTIONS ───────────────────── -->
   <section class="services-slide" data-label="Services">

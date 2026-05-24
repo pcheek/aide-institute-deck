@@ -1431,3 +1431,38 @@ section[data-deck-active].divider-slide .divider-slide__title {
 section[data-deck-active].divider-slide .divider-slide__sub {
   animation: aide-fade-up 0.65s 0.55s var(--aide-ease) both;
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   Sector matrix slides — full-bleed image, only the footer is visible.
+   The image fills the entire slide above the footer; no header, no
+   text — the image itself is the slide content.
+   ════════════════════════════════════════════════════════════════════ */
+.sector-matrix-slide--fullbleed {
+  background: var(--color-white);
+}
+/* Image area flexes to fill all space above the footer; no padding so
+   the matrix renders at the maximum possible size given the slide's
+   1920 × (1080 − footer) area. */
+.sector-matrix-slide--fullbleed .matrix-fullbleed {
+  flex: 1;
+  min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding: 0;
+  background: var(--color-white);
+  overflow: hidden;
+}
+.sector-matrix-slide--fullbleed .matrix-fullbleed__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Footer pinned to the very bottom of the slide as a normal flex item. */
+.sector-matrix-slide--fullbleed .slide-footer {
+  margin-top: auto;
+}
+
+/* Entrance animation: gentle scale-in for the matrix */
+section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__image {
+  animation: aide-scale-in 0.6s 0.15s var(--aide-ease) both;
+}
