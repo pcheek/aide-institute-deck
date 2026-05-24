@@ -474,11 +474,11 @@
 }
 /* Quadrant background + accent — drawn from AIDE Matrix palette */
 .sector-slide .arch.stealth {
-  background: rgba(251, 191, 36, 0.16);
-  border-color: rgba(251, 191, 36, 0.42);
+  background: rgba(59, 130, 246, 0.10);
+  border-color: rgba(59, 130, 246, 0.32);
 }
-.sector-slide .arch.stealth .arch__pct  { color: var(--pillar-implementation-ink); }
-.sector-slide .arch.stealth .arch__name { color: var(--pillar-implementation-ink); }
+.sector-slide .arch.stealth .arch__pct  { color: var(--color-blue); }
+.sector-slide .arch.stealth .arch__name { color: var(--color-blue); }
 
 .sector-slide .arch.trailblazers {
   background: rgba(74, 222, 128, 0.18);
@@ -495,11 +495,11 @@
 .sector-slide .arch.emerging .arch__name { color: var(--status-down); }
 
 .sector-slide .arch.visionaries {
-  background: rgba(59, 130, 246, 0.10);
-  border-color: rgba(59, 130, 246, 0.32);
+  background: rgba(251, 191, 36, 0.16);
+  border-color: rgba(251, 191, 36, 0.42);
 }
-.sector-slide .arch.visionaries .arch__pct  { color: var(--color-blue); }
-.sector-slide .arch.visionaries .arch__name { color: var(--color-blue); }
+.sector-slide .arch.visionaries .arch__pct  { color: var(--pillar-implementation-ink); }
+.sector-slide .arch.visionaries .arch__name { color: var(--pillar-implementation-ink); }
 
 /* ────────────── Services / Solutions slide ────────────── */
 .services-slide .slide-body { gap: 32px; }
