@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude / harness
+.claude/
+
+# Vercel / build artifacts
+.vercel/
+
+# Archives
+*.zip
+
+# Python build helper
+__pycache__/
+*.pyc

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .fband { background: var(--color-light-gray); border-top: 1px solid var(--border-muted); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; border-radius: 0 0 8px 8px; }
+  .tag { font-size: 12px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-violet); }
+  .src { font-size: 11px; color: var(--fg-secondary); }
+  .url { font-size: 12px; font-weight: 700; color: var(--color-navy); letter-spacing: 0.5px; }
+  .frame { border: 1px solid var(--border-subtle); border-bottom: none; border-radius: 8px 8px 0 0; height: 64px; background: #fff; }
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 4px; margin-top: 8px; }
+  .anatomy__col { font-size: 10px; color: var(--fg-secondary); display: flex; flex-direction: column; gap: 2px; }
+  .anatomy__col b { color: var(--color-navy); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+</style></head>
+<body><div class="pv">
+  <div>
+    <div class="frame"></div>
+    <div class="fband">
+      <div class="tag">Tracking the AI that counts.</div>
+      <div class="src">Source: AIDE Index Q1 2026 · n = 500</div>
+      <div class="url">aideinstitute.com</div>
+    </div>
+  </div>
+  <div class="anatomy">
+    <div class="anatomy__col"><b>Tag</b><span>tagline, violet, uppercase</span></div>
+    <div class="anatomy__col"><b>Source</b><span>citation, mid-gray, sentence-case</span></div>
+    <div class="anatomy__col"><b>URL</b><span>navy, bold, lowercase</span></div>
+  </div>
+</div></body></html>

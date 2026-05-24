@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .r { display: grid; grid-template-columns: 24px 1fr 1fr; gap: 14px; align-items: center; padding: 10px 12px; background: var(--bg-subtle); border-radius: 8px; }
+  .r__sw { width: 24px; height: 24px; border-radius: 4px; border: 1px solid var(--border-subtle); }
+  .r__name { font-size: 13px; font-weight: 700; color: var(--color-navy); }
+  .r__resolve { font-family: var(--font-mono); font-size: 11px; color: var(--fg-secondary); }
+</style></head>
+<body><div class="pv">
+  <div class="rows">
+    <div class="r"><div class="r__sw" style="background:#FFFFFF"></div><div class="r__name">bg.surface</div><div class="r__resolve">core.white · #FFFFFF</div></div>
+    <div class="r"><div class="r__sw" style="background:#F8F9FB"></div><div class="r__name">bg.subtle</div><div class="r__resolve">core.lightGray · #F8F9FB</div></div>
+    <div class="r"><div class="r__sw" style="background:#1B2541"></div><div class="r__name">bg.inverse</div><div class="r__resolve">core.navy · #1B2541</div></div>
+    <div class="r"><div class="r__sw" style="background:#1A1A1A"></div><div class="r__name">fg.primary</div><div class="r__resolve">core.ink · #1A1A1A</div></div>
+    <div class="r"><div class="r__sw" style="background:#777777"></div><div class="r__name">fg.secondary</div><div class="r__resolve">core.midGray · #777777</div></div>
+    <div class="r"><div class="r__sw" style="background:#7C3AED"></div><div class="r__name">fg.link · accent.label</div><div class="r__resolve">core.violet · #7C3AED</div></div>
+    <div class="r"><div class="r__sw" style="background:#E600FF"></div><div class="r__name">accent.cta</div><div class="r__resolve">core.fuchsia · #E600FF</div></div>
+    <div class="r"><div class="r__sw" style="background:#EBEBEF"></div><div class="r__name">border.muted</div><div class="r__resolve">#EBEBEF · dense-layout dividers</div></div>
+  </div>
+</div></body></html>

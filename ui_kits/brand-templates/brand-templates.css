@@ -1,0 +1,542 @@
+/* AIDE Brand Templates — extracted from source/gallery.html
+   Component classes for the 19 reference layouts. Token values
+   come from ../../colors_and_type.css (which this file extends). */
+@import url("../../colors_and_type.css");
+
+/* ─── Shared card chrome ─── */
+.card {
+  background: var(--color-white);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.card.dark { background: var(--color-navy); }
+
+/* ─── Header band ─── */
+.h-band {
+  background: var(--color-navy);
+  padding: 28px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.h-band__logo { height: 36px; }
+.h-band__logo--inv { filter: brightness(0) invert(1); }
+.h-band__eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  display: flex; align-items: center; gap: 14px;
+}
+.h-band__eyebrow .dot {
+  width: 6px; height: 6px;
+  background: var(--color-fuchsia); border-radius: 50%;
+}
+.h-band--index .h-band__eyebrow .dot     { background: var(--sb-index); }
+.h-band--insights .h-band__eyebrow .dot  { background: var(--sb-insights); }
+.h-band--rankings .h-band__eyebrow .dot  { background: var(--sb-rankings); }
+.h-band--awards .h-band__eyebrow .dot    { background: var(--sb-awards); }
+.h-band--education .h-band__eyebrow .dot { background: var(--sb-education); }
+.h-band--talent .h-band__eyebrow .dot    { background: var(--sb-talent); }
+
+.h-band__cobrand { display: flex; align-items: center; gap: 18px; }
+.h-band__cobrand img.h-band__logo { height: 32px; }
+.h-band__cobrand-x {
+  width: 18px; height: 18px;
+  position: relative;
+  opacity: 0.55;
+}
+.h-band__cobrand-x::before, .h-band__cobrand-x::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  width: 18px; height: 1.5px; background: rgba(255,255,255,0.7);
+  transform-origin: center;
+}
+.h-band__cobrand-x::before { transform: translate(-50%, -50%) rotate(45deg); }
+.h-band__cobrand-x::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+.h-band__partner {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 22px; font-weight: 700; color: var(--color-white);
+  letter-spacing: 0.5px;
+}
+
+/* ─── Footer band ─── */
+.f-band {
+  background: var(--color-light-gray);
+  border-top: 1px solid var(--border-muted);
+  padding: 18px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.f-band__tag {
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.f-band__source {
+  font-size: 11px; color: var(--color-mid-gray); letter-spacing: 0.3px;
+}
+.f-band__url {
+  font-size: 12px; font-weight: 700; color: var(--color-navy); letter-spacing: 0.5px;
+}
+
+/* ─── Reusable primitives ─── */
+.eyebrow {
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.stat-accent { position: relative; padding-left: 24px; }
+.stat-accent::before {
+  content: ''; position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 4px; background: var(--color-fuchsia); border-radius: 2px;
+}
+
+/* ─── 01. Hero stat card 1200×628 ─── */
+.card--hero-stat { width: 1200px; height: 628px; }
+.card--hero-stat .card-body {
+  flex: 1; padding: 56px 56px 32px;
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 56px; align-items: center;
+}
+.hero-stat__label { margin-bottom: 12px; }
+.hero-stat__value {
+  font-size: 200px; font-weight: 900;
+  color: var(--color-fuchsia); line-height: 0.9;
+  letter-spacing: -6px; margin-bottom: 8px;
+}
+.hero-stat__unit { font-size: 18px; font-weight: 700; color: var(--color-mid-gray); }
+.hero-stat__statement {
+  font-size: 32px; font-weight: 900; color: var(--color-navy);
+  line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 20px;
+}
+.hero-stat__statement em { font-style: normal; color: var(--color-fuchsia); }
+.hero-stat__context { font-size: 16px; color: var(--color-mid-gray); line-height: 1.5; }
+
+/* ─── 02. Two-stat compare 1200×628 ─── */
+.card--compare { width: 1200px; height: 628px; }
+.card--compare .card-body {
+  flex: 1; padding: 64px 56px;
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  gap: 40px; align-items: center;
+}
+.compare-cell { text-align: center; }
+.compare-cell__label {
+  font-size: 14px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--color-violet);
+  margin-bottom: 16px;
+}
+.compare-cell__value {
+  font-size: 180px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -4px; margin-bottom: 12px;
+}
+.compare-cell__value--lead { color: var(--color-fuchsia); }
+.compare-cell__value--lag  { color: var(--color-navy); }
+.compare-cell__caption {
+  font-size: 16px; font-weight: 700; color: var(--color-navy); margin-bottom: 4px;
+}
+.compare-cell__sub { font-size: 13px; color: var(--color-mid-gray); }
+.compare-divider { width: 1px; height: 70%; background: var(--border-muted); }
+
+/* ─── 03. Four-pillar scorecard 1200×1200 ─── */
+.card--quad { width: 1200px; height: 1200px; }
+.card--quad .card-body {
+  flex: 1; padding: 56px;
+  display: flex; flex-direction: column; gap: 32px;
+}
+.quad-intro__heading {
+  font-size: 48px; font-weight: 900; color: var(--color-navy);
+  letter-spacing: -0.8px; line-height: 1.1;
+}
+.quad-intro__sub {
+  font-size: 18px; color: var(--color-mid-gray); line-height: 1.4; margin-top: 12px;
+}
+.quad-grid {
+  flex: 1; display: grid;
+  grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+  gap: 24px;
+}
+.quad-cell {
+  border-radius: 16px; padding: 40px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  background: var(--color-light-gray);
+}
+.quad-cell--literacy       { background: rgba(74,222,128,0.10); }
+.quad-cell--advocacy       { background: rgba(167,139,250,0.12); }
+.quad-cell--orientation    { background: rgba(217,70,239,0.10); }
+.quad-cell--implementation { background: rgba(251,191,36,0.12); }
+.quad-cell__top {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.quad-cell__pillar-name {
+  font-size: 14px; font-weight: 900; letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+.quad-cell--literacy       .quad-cell__pillar-name { color: var(--pillar-literacy-ink); }
+.quad-cell--advocacy       .quad-cell__pillar-name { color: var(--pillar-advocacy-ink); }
+.quad-cell--orientation    .quad-cell__pillar-name { color: var(--pillar-orientation-ink); }
+.quad-cell--implementation .quad-cell__pillar-name { color: var(--pillar-implementation-ink); }
+.quad-cell__verb {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  color: var(--color-mid-gray); text-transform: uppercase;
+}
+.quad-cell__value {
+  font-size: 144px; font-weight: 900; line-height: 0.9;
+  letter-spacing: -3px; color: var(--color-navy);
+}
+.quad-cell__delta {
+  font-size: 14px; font-weight: 700; color: var(--color-mid-gray); letter-spacing: 0.5px;
+}
+.quad-cell__delta .up   { color: var(--status-up); }
+.quad-cell__delta .down { color: var(--status-down); }
+
+/* ─── 04. Pull quote card 1200×628 ─── */
+.card--quote { width: 1200px; height: 628px; }
+.card--quote .card-body {
+  flex: 1; padding: 64px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.quote-mark {
+  position: absolute; top: 40px; left: 56px;
+  font-size: 160px; font-weight: 900;
+  color: var(--color-fuchsia); line-height: 0.8;
+  font-family: Georgia, serif; opacity: 0.6;
+}
+.quote-body {
+  font-size: 40px; font-weight: 900; line-height: 1.25;
+  color: var(--color-navy); letter-spacing: -0.5px;
+  margin-left: 80px; margin-bottom: 32px;
+}
+.quote-body em { font-style: normal; color: var(--color-fuchsia); }
+.quote-attribution { margin-left: 80px; display: flex; align-items: center; gap: 16px; }
+.quote-attribution__bar { width: 32px; height: 3px; background: var(--color-fuchsia); }
+.quote-attribution__text { font-size: 15px; font-weight: 700; color: var(--color-navy); letter-spacing: 0.3px; }
+.quote-attribution__role { font-size: 13px; color: var(--color-mid-gray); font-weight: 400; }
+
+/* ─── 06. Bar chart card 1200×628 ─── */
+.card--chart { width: 1200px; height: 628px; }
+.card--chart .card-body {
+  flex: 1; padding: 48px 56px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.chart-header__title { font-size: 26px; font-weight: 900; color: var(--color-navy); letter-spacing: -0.3px; }
+.chart-header__sub { font-size: 13px; color: var(--color-mid-gray); margin-top: 6px; }
+.chart-rows { flex: 1; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.chart-row {
+  display: grid; grid-template-columns: 180px 1fr 60px;
+  gap: 20px; align-items: center;
+}
+.chart-row__label { font-size: 12px; font-weight: 700; color: var(--color-navy); letter-spacing: 1.2px; text-transform: uppercase; }
+.chart-row__verb { font-size: 10px; color: var(--color-mid-gray); font-weight: 700; letter-spacing: 2px; display: block; margin-top: 2px; }
+.chart-row__bar-bg { height: 28px; background: var(--color-light-gray); border-radius: 4px; position: relative; overflow: hidden; }
+.chart-row__bar { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
+.chart-row__bar--literacy       { background: var(--pillar-literacy); }
+.chart-row__bar--advocacy       { background: var(--pillar-advocacy); }
+.chart-row__bar--orientation    { background: var(--pillar-orientation); }
+.chart-row__bar--implementation { background: var(--pillar-implementation); }
+.chart-row__value { font-size: 22px; font-weight: 900; color: var(--color-navy); text-align: right; }
+
+/* ─── 07. Ranking list 1200×1200 ─── */
+.card--ranking { width: 1200px; height: 1200px; }
+.card--ranking .card-body {
+  flex: 1; padding: 56px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.rank-header__eyebrow {
+  font-size: 13px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--color-violet); margin-bottom: 10px;
+}
+.rank-header__title { font-size: 56px; font-weight: 900; color: var(--color-navy); letter-spacing: -0.8px; line-height: 1.05; }
+.rank-header__sub { font-size: 18px; color: var(--color-mid-gray); margin-top: 12px; }
+.rank-list { flex: 1; display: flex; flex-direction: column; margin-top: 16px; }
+.rank-row {
+  display: grid; grid-template-columns: 80px 1fr auto 120px;
+  gap: 28px; align-items: center;
+  padding: 22px 0; border-bottom: 1px solid var(--border-muted);
+}
+.rank-row:last-child { border-bottom: none; }
+.rank-row__num { font-size: 56px; font-weight: 900; line-height: 1; color: var(--color-navy); font-feature-settings: "tnum"; }
+.rank-row--top .rank-row__num { color: var(--color-fuchsia); }
+.rank-row__name { font-size: 24px; font-weight: 700; color: var(--color-navy); }
+.rank-row__sector { font-size: 12px; color: var(--color-mid-gray); letter-spacing: 0.5px; margin-top: 2px; }
+.rank-row__bar-wrap { width: 240px; height: 10px; background: var(--color-light-gray); border-radius: 5px; overflow: hidden; }
+.rank-row__bar { height: 100%; background: linear-gradient(90deg, var(--color-fuchsia), var(--color-violet)); border-radius: 5px; }
+.rank-row__score { font-size: 36px; font-weight: 900; color: var(--color-navy); text-align: right; }
+
+/* ─── 08. Methodology pillar explainer 1200×1200 ─── */
+.card--methodology { width: 1200px; height: 1200px; }
+.card--methodology .card-body {
+  flex: 1; padding: 56px;
+  display: flex; flex-direction: column; gap: 32px;
+}
+.method-header__title { font-size: 56px; font-weight: 900; color: var(--color-navy); letter-spacing: -0.8px; }
+.method-header__sub { font-size: 18px; color: var(--color-mid-gray); margin-top: 12px; line-height: 1.4; }
+.method-bar { display: grid; grid-template-columns: repeat(4, 1fr); height: 180px; border-radius: 16px; overflow: hidden; }
+.method-bar__cell { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
+.method-bar__cell--literacy       { background: var(--pillar-literacy);       color: var(--color-navy); }
+.method-bar__cell--advocacy       { background: var(--pillar-advocacy);       color: var(--color-navy); }
+.method-bar__cell--orientation    { background: var(--pillar-orientation);    color: var(--color-white); }
+.method-bar__cell--implementation { background: var(--pillar-implementation); color: var(--color-navy); }
+.method-bar__name { font-size: 22px; font-weight: 900; letter-spacing: 2px; margin-bottom: 6px; }
+.method-bar__verb { font-size: 12px; font-weight: 700; letter-spacing: 3px; opacity: 0.85; }
+.method-explanations { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.method-card { background: var(--color-light-gray); border-radius: 16px; padding: 28px 32px; display: flex; flex-direction: column; gap: 8px; border-left: 4px solid; }
+.method-card--literacy       { border-left-color: var(--pillar-literacy); }
+.method-card--advocacy       { border-left-color: var(--pillar-advocacy); }
+.method-card--orientation    { border-left-color: var(--pillar-orientation); }
+.method-card--implementation { border-left-color: var(--pillar-implementation); }
+.method-card__pillar { font-size: 11px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; }
+.method-card--literacy       .method-card__pillar { color: var(--pillar-literacy-ink); }
+.method-card--advocacy       .method-card__pillar { color: var(--pillar-advocacy-ink); }
+.method-card--orientation    .method-card__pillar { color: var(--pillar-orientation-ink); }
+.method-card--implementation .method-card__pillar { color: var(--pillar-implementation-ink); }
+.method-card__title { font-size: 22px; font-weight: 900; color: var(--color-navy); margin-top: 4px; }
+.method-card__desc  { font-size: 14px; color: var(--color-ink); line-height: 1.5; }
+
+/* ─── 09–11. Sub-brand promos 1200×628 ─── */
+.card--subbrand { width: 1200px; height: 628px; }
+.card--subbrand .card-body {
+  flex: 1; padding: 56px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 56px; align-items: center;
+}
+.sb-left { display: flex; flex-direction: column; gap: 16px; }
+.sb-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+.sb-title { font-size: 64px; font-weight: 900; color: var(--color-navy); letter-spacing: -1px; line-height: 0.95; }
+.sb-title .accent { display: block; }
+.sb-body { font-size: 17px; color: var(--color-ink); line-height: 1.5; margin-top: 8px; }
+.sb-right { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.sb-visual {
+  width: 320px; height: 320px; border-radius: 24px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.sb-visual::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.25), transparent 60%);
+}
+.sb-visual__symbol {
+  font-family: Georgia, serif;
+  font-size: 200px; font-weight: 900;
+  color: var(--color-white); line-height: 0.85; z-index: 1;
+}
+.card--sb-index .sb-eyebrow         { color: var(--sb-index); }
+.card--sb-index .sb-title .accent   { color: var(--sb-index); }
+.card--sb-index .sb-visual          { background: linear-gradient(135deg, var(--sb-index), #b800cc); }
+.card--sb-rankings .sb-eyebrow      { color: var(--sb-rankings); }
+.card--sb-rankings .sb-title .accent { color: var(--sb-rankings); }
+.card--sb-rankings .sb-visual       { background: linear-gradient(135deg, var(--sb-rankings), #cc6200); }
+.card--sb-insights .sb-eyebrow      { color: #00b884; }
+.card--sb-insights .sb-title .accent { color: #00b884; }
+.card--sb-insights .sb-visual       { background: linear-gradient(135deg, var(--sb-insights), #2ee0a8); }
+.card--sb-insights .sb-visual__symbol { color: var(--color-navy); }
+.card--sb-awards .sb-eyebrow        { color: var(--sb-awards); }
+.card--sb-awards .sb-title .accent  { color: var(--sb-awards); }
+.card--sb-awards .sb-visual         { background: linear-gradient(135deg, var(--sb-awards), #5a1fcc); }
+.card--sb-education .sb-eyebrow     { color: var(--sb-education); }
+.card--sb-education .sb-title .accent { color: var(--sb-education); }
+.card--sb-education .sb-visual      { background: linear-gradient(135deg, var(--sb-education), #cc2a8f); }
+.card--sb-talent .sb-eyebrow        { color: #00a374; }
+.card--sb-talent .sb-title .accent  { color: #00a374; }
+.card--sb-talent .sb-visual         { background: linear-gradient(135deg, var(--sb-talent), #00b380); }
+.card--sb-talent .sb-visual__symbol { color: var(--color-navy); }
+
+/* ─── 12. LinkedIn banner 1584×396 ─── */
+.banner {
+  width: 1584px; height: 396px;
+  background: var(--color-navy);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; padding: 0 120px;
+}
+.banner::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 15% 80%, rgba(124,58,237,0.15) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(230,0,255,0.10) 0%, transparent 45%);
+  pointer-events: none;
+}
+.banner-inner { display: flex; align-items: center; gap: 56px; position: relative; z-index: 1; }
+.banner-amark { width: 80px; height: 80px; filter: brightness(0) invert(1); }
+.banner-divider { width: 1px; height: 100px; background: rgba(255,255,255,0.2); }
+.banner-text { color: var(--color-white); }
+.banner-text__eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--color-violet); margin-bottom: 8px; }
+.banner-text__title { font-size: 56px; font-weight: 900; letter-spacing: -1px; line-height: 1; margin-bottom: 14px; }
+.banner-text__tagline { font-size: 22px; font-style: italic; color: rgba(255,255,255,0.7); }
+.banner-cta { position: absolute; right: 120px; top: 50%; transform: translateY(-50%); z-index: 1; }
+.banner-cta__url { font-size: 18px; font-weight: 700; color: var(--color-white); letter-spacing: 0.5px; }
+.banner-cta__bar { width: 48px; height: 4px; background: var(--color-fuchsia); margin-top: 12px; margin-left: auto; }
+
+/* ─── 13. Email header 600×150 ─── */
+.email-header {
+  width: 600px; height: 150px;
+  background: var(--color-navy); position: relative; overflow: hidden;
+  display: flex; align-items: center; padding: 0 40px; gap: 20px;
+}
+.email-header__logo { height: 36px; filter: brightness(0) invert(1); }
+.email-header__divider { width: 1px; height: 50px; background: rgba(255,255,255,0.25); }
+.email-header__text { display: flex; flex-direction: column; }
+.email-header__title { font-size: 16px; font-weight: 700; color: var(--color-white); letter-spacing: 0.3px; }
+.email-header__tagline { font-size: 12px; font-style: italic; color: rgba(255,255,255,0.6); margin-top: 2px; }
+.email-header__bar { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); width: 24px; height: 3px; background: var(--color-fuchsia); }
+
+/* ─── 18. Report cover 1200×1500 ─── */
+.cover {
+  width: 1200px; height: 1500px;
+  background: var(--color-navy);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 64px 80px; color: var(--color-white);
+}
+.cover::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 18% 88%, rgba(124,58,237,0.22) 0%, transparent 45%),
+    radial-gradient(circle at 88% 18%, rgba(230,0,255,0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+.cover > * { position: relative; z-index: 1; }
+.cover-top { display: flex; align-items: center; justify-content: space-between; }
+.cover-logo { height: 44px; filter: brightness(0) invert(1); }
+.cover-volume { text-align: right; }
+.cover-volume__label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+.cover-volume__num { font-size: 14px; font-weight: 700; color: var(--color-white); margin-top: 4px; letter-spacing: 1px; }
+.cover-amark { width: 200px; height: 200px; filter: brightness(0) invert(1); margin-top: 120px; opacity: 0.95; }
+.cover-eyebrow { margin-top: 80px; font-size: 14px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--color-violet); }
+.cover-divider { width: 80px; height: 4px; background: var(--color-fuchsia); margin-top: 16px; }
+.cover-title { font-size: 120px; font-weight: 900; letter-spacing: -3px; line-height: 0.95; margin-top: 24px; }
+.cover-title .accent { color: var(--color-fuchsia); }
+.cover-sub { font-size: 26px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.4; margin-top: 32px; max-width: 900px; }
+.cover-meta { margin-top: auto; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: space-between; }
+.cover-meta__by { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.85); }
+.cover-meta__by .tagline { display: block; font-size: 11px; font-weight: 400; font-style: italic; letter-spacing: 0.5px; text-transform: none; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+/* ─── 05. Compact quote with author 1200×628 ─── */
+.card--quote-compact { width: 1200px; height: 628px; }
+.card--quote-compact .card-body {
+  flex: 1; padding: 56px 64px;
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 56px;
+  align-items: center;
+}
+.qc-quote { position: relative; padding-left: 28px; }
+.qc-quote::before {
+  content: ''; position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 4px; background: var(--color-fuchsia); border-radius: 2px;
+}
+.qc-quote__body {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 700;
+  color: var(--color-navy); line-height: 1.35;
+  margin-bottom: 20px;
+}
+.qc-quote__attr-name {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 700; color: var(--color-navy);
+}
+.qc-quote__attr-role {
+  font-family: var(--font-primary);
+  font-size: 12px; color: var(--color-mid-gray); margin-top: 2px;
+}
+.qc-avatar {
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-navy), var(--color-violet));
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 700;
+  letter-spacing: 1px;
+  overflow: hidden;
+}
+.qc-avatar__photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.qc-avatar::after {
+  content: ''; position: absolute;
+  bottom: -8px; right: -8px;
+  width: 48px; height: 48px;
+  background: var(--color-fuchsia);
+  border-radius: 50%;
+  border: 4px solid var(--color-white);
+  z-index: 1;
+}
+/* ─────────────────────────────────────────────────────────────────────
+   FONT BINDING — Space Grotesk for display, Inter for body
+   Layered at the END so it wins against the gallery's older
+   single-font assumptions without touching every selector.
+   Display weights are 700 (Space Grotesk Bold), body is 400/700 Inter.
+   ───────────────────────────────────────────────────────────────────── */
+.card, .banner, .email-header, .cover { font-family: var(--font-primary); }
+
+.hero-stat__value,
+.hero-stat__statement,
+.compare-cell__value,
+.quad-intro__heading,
+.quad-cell__value,
+.quote-body,
+.chart-header__title,
+.rank-header__title,
+.rank-row__num,
+.rank-row__score,
+.rank-row__name,
+.method-header__title,
+.method-card__title,
+.method-bar__name,
+.sb-title,
+.banner-text__title,
+.cover-title,
+.email-header__title,
+.compare-cell__caption {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Eyebrows / labels / captions stay in Inter explicitly. */
+.eyebrow,
+.hero-stat__unit,
+.compare-cell__label,
+.compare-cell__sub,
+.quad-cell__pillar-name,
+.quad-cell__verb,
+.quad-cell__delta,
+.chart-row__label,
+.chart-row__verb,
+.chart-row__value,
+.rank-header__eyebrow,
+.rank-row__sector,
+.method-bar__verb,
+.method-card__pillar,
+.method-card__desc,
+.sb-eyebrow,
+.sb-body,
+.banner-text__eyebrow,
+.banner-text__tagline,
+.banner-cta__url,
+.email-header__tagline,
+.cover-eyebrow,
+.cover-sub,
+.cover-volume__label,
+.cover-volume__num,
+.cover-meta__by,
+.cover-meta__url,
+.h-band__eyebrow,
+.f-band__tag,
+.f-band__source,
+.f-band__url,
+.quote-attribution__text,
+.quote-attribution__role,
+.hero-stat__context {
+  font-family: var(--font-primary);
+}

@@ -1,0 +1,1433 @@
+/* AIDE Institute · Partnership / Overview Deck — additional slide types
+   Layered on top of slides.css. Stays strict to the AIDE brand:
+   navy, fuchsia, violet only; Space Grotesk + Inter; no shadows;
+   sub-brand colors only inside sub-brand contexts. */
+
+/* ────────────── About slide ────────────── */
+.about-slide .slide-body { gap: 36px; }
+.about-slide .about-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  align-items: stretch;
+}
+.about-slide .about-headline { display: flex; flex-direction: column; gap: 28px; }
+.about-slide .about-headline .s-title { font-size: 88px; line-height: 0.98; letter-spacing: -2.5px; }
+.about-slide .about-headline .lede {
+  font-family: var(--font-primary);
+  font-size: 22px; line-height: 1.55; color: var(--color-ink); max-width: 720px;
+}
+.about-slide .about-headline .lede em {
+  font-style: normal; color: var(--color-fuchsia); font-weight: 700;
+}
+.about-slide .about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-content: end;
+  margin-top: auto;
+}
+.about-slide .stat-block {
+  border-left: 4px solid var(--color-fuchsia);
+  padding: 12px 0 12px 24px;
+}
+.about-slide .stat-block .num {
+  font-family: var(--font-display);
+  font-size: 64px; font-weight: 700; color: var(--color-navy);
+  line-height: 1; letter-spacing: -1.5px;
+}
+.about-slide .stat-block .label {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--color-mid-gray); margin-top: 12px;
+}
+.about-slide .about-mission {
+  background: var(--color-navy); color: var(--color-white);
+  border-radius: 18px; padding: 56px 56px 56px 56px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+  min-height: 100%;
+}
+.about-slide .about-mission::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 16% 88%, rgba(124,58,237,0.30) 0%, transparent 55%),
+    radial-gradient(circle at 92% 12%, rgba(230,0,255,0.20) 0%, transparent 55%);
+  pointer-events: none;
+}
+.about-slide .about-mission > * { position: relative; z-index: 1; }
+.about-slide .about-mission .s-eyebrow { color: rgba(255,255,255,0.7); }
+.about-slide .about-mission .mission-title {
+  font-family: var(--font-display);
+  font-size: 56px; font-weight: 700; line-height: 1.1;
+  letter-spacing: -1px; margin-top: 18px; max-width: 540px;
+}
+.about-slide .about-mission .mission-title .accent { color: var(--color-fuchsia); }
+.about-slide .about-mission .mission-bar { width: 80px; height: 6px; background: var(--color-fuchsia); margin-top: 40px; }
+.about-slide .about-mission .mission-body {
+  font-family: var(--font-primary); font-size: 24px; line-height: 1.55;
+  color: rgba(255,255,255,0.88); margin-top: 28px;
+}
+
+/* ────────────── Problem slide ────────────── */
+.problem-slide .slide-body { gap: 40px; }
+.problem-slide .s-title { font-size: 84px; }
+.problem-slide .problem-grid {
+  flex: 1;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.problem-slide .problem-card {
+  background: var(--color-light-gray);
+  border-radius: 16px;
+  padding: 40px;
+  border-top: 4px solid var(--color-fuchsia);
+  display: flex; flex-direction: column; gap: 16px;
+}
+.problem-slide .problem-card__num {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  color: var(--color-fuchsia); letter-spacing: 4px;
+}
+.problem-slide .problem-card__title {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 700;
+  color: var(--color-navy); line-height: 1.15; letter-spacing: -0.4px;
+}
+.problem-slide .problem-card__body {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.6; color: var(--color-ink);
+}
+.problem-slide .pull {
+  background: var(--color-navy); color: var(--color-white);
+  border-radius: 14px; padding: 28px 36px;
+  display: flex; align-items: center; gap: 28px;
+}
+.problem-slide .pull .num {
+  font-family: var(--font-display);
+  font-size: 84px; font-weight: 700; color: var(--color-fuchsia);
+  line-height: 1; letter-spacing: -2px;
+}
+.problem-slide .pull .copy {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 700;
+  line-height: 1.25; color: var(--color-white);
+}
+
+/* ────────────── Solution slide (compare table) ────────────── */
+.solution-slide .slide-body { gap: 32px; }
+.solution-slide .compare {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-muted);
+}
+.solution-slide .compare__col { display: flex; flex-direction: column; }
+.solution-slide .compare__head {
+  padding: 28px 40px;
+  font-family: var(--font-primary);
+  font-size: 16px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.solution-slide .compare__head.trad {
+  background: var(--color-light-gray);
+  color: var(--color-mid-gray);
+}
+.solution-slide .compare__head.aide {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+.solution-slide .compare__head .label {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700;
+  text-transform: none; letter-spacing: -0.3px;
+  margin-top: 8px; display: block; color: var(--color-navy);
+}
+.solution-slide .compare__head.aide .label { color: var(--color-white); }
+.solution-slide .compare__head.aide .label .accent { color: var(--color-fuchsia); }
+.solution-slide .compare__row {
+  padding: 22px 40px;
+  font-family: var(--font-primary);
+  font-size: 19px; line-height: 1.45;
+  border-top: 1px solid var(--border-muted);
+}
+.solution-slide .compare__col.trad .compare__row { color: var(--color-mid-gray); }
+.solution-slide .compare__col.aide {
+  background: rgba(230,0,255,0.04);
+}
+.solution-slide .compare__col.aide .compare__row {
+  color: var(--color-navy);
+  font-weight: 700;
+  border-top: 1px solid rgba(230,0,255,0.18);
+}
+.solution-slide .solution-footnote {
+  background: var(--color-light-gray);
+  border-left: 4px solid var(--color-violet);
+  padding: 20px 28px;
+  font-family: var(--font-primary);
+  font-size: 17px; line-height: 1.5; color: var(--color-navy);
+}
+.solution-slide .solution-footnote em { font-style: normal; color: var(--color-fuchsia); font-weight: 700; }
+
+/* ────────────── Data sources slide ────────────── */
+.data-slide .slide-body { gap: 32px; }
+.data-slide .data-headline {
+  display: block;
+}
+.data-slide .data-headline .s-title { font-size: 60px; }
+/* Dimension header — Leadership colspan 2 / Company colspan 2.
+   Uses the same 4-col grid as .pillar-grid so the spans line up exactly. */
+.data-slide .data-dimension-header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  flex-shrink: 0;
+}
+.data-slide .data-dimension-header > div {
+  grid-column: span 2;
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-radius: 10px;
+  padding: 16px 24px;
+  font-family: var(--font-primary);
+  font-size: 22px; font-weight: 700;
+  letter-spacing: 3.5px; text-transform: uppercase;
+  text-align: center;
+}
+.data-slide .data-dimension-header .dim-tag {
+  display: inline-block;
+  margin-left: 14px;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.6);
+}
+
+.data-slide .pillar-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.data-slide .pillar-col {
+  background: var(--color-light-gray);
+  border-radius: 14px;
+  padding: 32px 28px;
+  display: flex; flex-direction: column; gap: 16px;
+  border-top: 5px solid;
+}
+.data-slide .pillar-col.lit { border-top-color: var(--pillar-literacy); }
+.data-slide .pillar-col.adv { border-top-color: var(--pillar-advocacy); }
+.data-slide .pillar-col.ori { border-top-color: var(--pillar-orientation); }
+.data-slide .pillar-col.imp { border-top-color: var(--pillar-implementation); }
+.data-slide .pillar-col__name {
+  font-family: var(--font-primary);
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.data-slide .pillar-col.lit .pillar-col__name { color: var(--pillar-literacy-ink); }
+.data-slide .pillar-col.adv .pillar-col__name { color: var(--pillar-advocacy-ink); }
+.data-slide .pillar-col.ori .pillar-col__name { color: var(--pillar-orientation-ink); }
+.data-slide .pillar-col.imp .pillar-col__name { color: var(--pillar-implementation-ink); }
+.data-slide .pillar-col__verb {
+  font-family: var(--font-display);
+  font-size: 34px; font-weight: 700; color: var(--color-navy);
+  letter-spacing: -0.5px; line-height: 1;
+}
+.data-slide .pillar-col__desc {
+  font-family: var(--font-primary);
+  font-size: 17px; line-height: 1.55; color: var(--color-ink);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.data-slide .pillar-col__sources {
+  display: flex; flex-direction: column; gap: 10px; margin-top: 8px;
+}
+.data-slide .pillar-col__sources .src {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-primary);
+  font-size: 18px; font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.25;
+}
+.data-slide .pillar-col__sources .src__icon {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.data-slide .pillar-col__sources .src__icon svg {
+  width: 18px; height: 18px;
+  display: block;
+}
+/* Per-pillar icon tinting */
+.data-slide .pillar-col.lit .src__icon { color: var(--pillar-literacy-ink);       background: rgba(74, 222, 128, 0.18); }
+.data-slide .pillar-col.adv .src__icon { color: var(--pillar-advocacy-ink);       background: rgba(167, 139, 250, 0.18); }
+.data-slide .pillar-col.ori .src__icon { color: var(--pillar-orientation-ink);    background: rgba(217, 70, 239, 0.14); }
+.data-slide .pillar-col.imp .src__icon { color: var(--pillar-implementation-ink); background: rgba(251, 191, 36, 0.20); }
+.data-slide .pillar-col.lit .src__label { color: var(--pillar-literacy-ink); }
+.data-slide .pillar-col.adv .src__label { color: var(--pillar-advocacy-ink); }
+.data-slide .pillar-col.ori .src__label { color: var(--pillar-orientation-ink); }
+.data-slide .pillar-col.imp .src__label { color: var(--pillar-implementation-ink); }
+
+/* ────────────── Sector overview slide ────────────── */
+.sector-overview-slide .slide-body { gap: 32px; }
+.sector-overview-slide .s-title { font-size: 56px; }
+.sector-overview-slide .stack-rows { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+.sector-overview-slide .stack-row {
+  display: grid; grid-template-columns: 280px 1fr 90px;
+  gap: 28px; align-items: center;
+}
+.sector-overview-slide .stack-row__label {
+  font-family: var(--font-primary);
+  font-size: 18px; font-weight: 700; color: var(--color-navy);
+  letter-spacing: 0.3px;
+}
+.sector-overview-slide .stack-row__bar { height: 32px; border-radius: 5px; overflow: hidden; display: flex; background: var(--color-light-gray); }
+.sector-overview-slide .stack-row__seg { height: 100%; }
+.sector-overview-slide .literacy       { background: var(--pillar-literacy); }
+.sector-overview-slide .advocacy       { background: var(--pillar-advocacy); }
+.sector-overview-slide .orientation    { background: var(--pillar-orientation); }
+.sector-overview-slide .implementation { background: var(--pillar-implementation); }
+/* Cohort-norm Leadership + Company stacking (matches Sector Matrix view) */
+.sector-overview-slide .leadership { background: var(--pillar-advocacy); }
+.sector-overview-slide .company    { background: var(--pillar-implementation); }
+.sector-overview-slide .stack-row__total {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700; color: var(--color-navy);
+  text-align: right; font-feature-settings: "tnum";
+}
+.sector-overview-slide .stack-legend { display: flex; gap: 28px; justify-content: flex-end; padding-top: 8px; }
+.sector-overview-slide .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.sector-overview-slide .legend-item .dot { width: 12px; height: 12px; border-radius: 50%; }
+
+/* ────────────── Sector slide (one per S&P sector) ────────────── */
+.sector-slide .slide-header .eyebrow { color: var(--color-violet); }
+.sector-slide .slide-body {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 32px 56px;
+  padding: 24px 96px 56px;
+}
+.sector-slide .sector-head { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; }
+.sector-slide .sector-head .s-eyebrow { color: var(--color-violet); }
+.sector-slide .sector-head .s-title { font-size: 80px; line-height: 1; letter-spacing: -2px; }
+.sector-slide .sector-head .s-sub { font-size: 22px; max-width: 1200px; }
+.sector-slide .sector-head .s-sub em { font-style: normal; color: var(--color-fuchsia); font-weight: 700; }
+
+.sector-slide .sector-left { display: flex; flex-direction: column; gap: 22px; min-height: 0; }
+.sector-slide .score-card {
+  background: var(--color-navy); color: var(--color-white);
+  border-radius: 16px; padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 28px; align-items: center;
+}
+.sector-slide .score-card__num {
+  font-family: var(--font-display);
+  font-size: 96px; font-weight: 700; color: var(--color-fuchsia);
+  line-height: 1; letter-spacing: -3px; font-feature-settings: "tnum";
+}
+.sector-slide .score-card__meta { display: flex; flex-direction: column; gap: 6px; }
+.sector-slide .score-card__meta .label {
+  font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+}
+.sector-slide .score-card__meta .value {
+  font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--color-white);
+}
+.sector-slide .score-card__rank {
+  display: flex; flex-direction: column; gap: 6px;
+  align-items: flex-end;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 28px;
+}
+.sector-slide .score-card__rank .label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+}
+.sector-slide .score-card__rank .value {
+  font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--color-white);
+  line-height: 1;
+}
+
+.sector-slide .pillar-bars {
+  display: flex; flex-direction: column; gap: 14px;
+  padding: 15px;
+  background: var(--color-white);
+  border: 1px solid var(--border-muted);
+  border-radius: 12px;
+}
+.sector-slide .pillar-bar-row {
+  display: grid;
+  grid-template-columns: 175px 1fr 50px;
+  gap: 18px; align-items: center;
+}
+.sector-slide .pillar-bar-row__label {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--color-navy);
+}
+.sector-slide .pillar-bar-row__verb {
+  display: block; font-size: 10px; letter-spacing: 2.5px;
+  color: var(--color-mid-gray); margin-top: 3px;
+}
+.sector-slide .pillar-bar-row__bg {
+  height: 24px; background: var(--color-light-gray);
+  border-radius: 4px; position: relative; overflow: hidden;
+}
+.sector-slide .pillar-bar-row__bar {
+  position: absolute; inset: 0 auto 0 0; border-radius: 4px;
+}
+.sector-slide .pillar-bar-row__bar.lit { background: var(--pillar-literacy); }
+.sector-slide .pillar-bar-row__bar.adv { background: var(--pillar-advocacy); }
+.sector-slide .pillar-bar-row__bar.ori { background: var(--pillar-orientation); }
+.sector-slide .pillar-bar-row__bar.imp { background: var(--pillar-implementation); }
+.sector-slide .pillar-bar-row__val {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; color: var(--color-navy);
+  text-align: right; font-feature-settings: "tnum";
+}
+
+.sector-slide .takeaway {
+  background: var(--color-light-gray);
+  border-left: 5px solid var(--color-fuchsia);
+  border-radius: 4px;
+  padding: 20px 24px;
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  line-height: 1.25; letter-spacing: -0.3px;
+  color: var(--color-navy);
+  margin-top: auto;
+}
+
+.sector-slide .sector-right { display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.sector-slide .panel-label {
+  font-family: var(--font-primary);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.sector-slide .leaders { display: flex; flex-direction: column; gap: 0; }
+.sector-slide .leader {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 20px; align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-muted);
+}
+.sector-slide .leader:last-child { border-bottom: none; }
+.sector-slide .leader__num {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 700; color: var(--color-fuchsia);
+  line-height: 1; font-feature-settings: "tnum";
+}
+.sector-slide .leader__name {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700; color: var(--color-navy);
+  letter-spacing: -0.2px;
+}
+.sector-slide .leader__sub {
+  font-family: var(--font-primary); font-size: 13px;
+  color: var(--color-mid-gray); margin-top: 2px; letter-spacing: 0.3px;
+}
+.sector-slide .leader__score {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700; color: var(--color-navy);
+  font-feature-settings: "tnum";
+}
+
+/* Mirrors the AIDE Matrix quadrants — see §5.1 / Sector Matrix tab.
+   Top-left  = Stealth Adopters (low Leadership · high Company)  — amber
+   Top-right = AI Trailblazers   (high Leadership · high Company) — green
+   Bottom-l  = Emerging Adopters (low Leadership · low Company)   — red
+   Bottom-r  = AI Visionaries    (high Leadership · low Company)  — blue */
+.sector-slide .archetypes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+.sector-slide .arch {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  position: relative;
+}
+.sector-slide .arch__pct {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700;
+  line-height: 1; letter-spacing: -0.5px;
+}
+.sector-slide .arch__name {
+  font-family: var(--font-primary);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+}
+/* Quadrant background + accent — drawn from AIDE Matrix palette */
+.sector-slide .arch.stealth {
+  background: rgba(251, 191, 36, 0.16);
+  border-color: rgba(251, 191, 36, 0.42);
+}
+.sector-slide .arch.stealth .arch__pct  { color: var(--pillar-implementation-ink); }
+.sector-slide .arch.stealth .arch__name { color: var(--pillar-implementation-ink); }
+
+.sector-slide .arch.trailblazers {
+  background: rgba(74, 222, 128, 0.18);
+  border-color: rgba(74, 222, 128, 0.45);
+}
+.sector-slide .arch.trailblazers .arch__pct  { color: var(--pillar-literacy-ink); }
+.sector-slide .arch.trailblazers .arch__name { color: var(--pillar-literacy-ink); }
+
+.sector-slide .arch.emerging {
+  background: rgba(200, 32, 60, 0.10);
+  border-color: rgba(200, 32, 60, 0.28);
+}
+.sector-slide .arch.emerging .arch__pct  { color: var(--status-down); }
+.sector-slide .arch.emerging .arch__name { color: var(--status-down); }
+
+.sector-slide .arch.visionaries {
+  background: rgba(59, 130, 246, 0.10);
+  border-color: rgba(59, 130, 246, 0.32);
+}
+.sector-slide .arch.visionaries .arch__pct  { color: var(--color-blue); }
+.sector-slide .arch.visionaries .arch__name { color: var(--color-blue); }
+
+/* ────────────── Services / Solutions slide ────────────── */
+.services-slide .slide-body { gap: 32px; }
+.services-slide .s-title { font-size: 60px; }
+.services-slide .services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+}
+.services-slide .service-card {
+  background: var(--color-light-gray);
+  border-radius: 16px;
+  padding: 36px 36px 32px;
+  display: flex; flex-direction: column; gap: 18px;
+  border-top: 6px solid var(--color-fuchsia);
+  min-height: 0;
+}
+.services-slide .service-card__num {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 700;
+  letter-spacing: 4px; color: var(--color-fuchsia);
+}
+.services-slide .service-card__for {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.services-slide .service-card__name {
+  font-family: var(--font-display);
+  font-size: 38px; font-weight: 700; color: var(--color-navy);
+  letter-spacing: -0.5px; line-height: 1.05;
+}
+.services-slide .service-card__desc {
+  font-family: var(--font-primary);
+  font-size: 18px; line-height: 1.55; color: var(--color-ink);
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.services-slide .service-card__bullets {
+  display: flex; flex-direction: column; gap: 12px;
+  margin: 0; padding: 0; list-style: none;
+}
+.services-slide .service-card__bullets li {
+  font-family: var(--font-primary);
+  font-size: 17px; line-height: 1.45; color: var(--color-navy);
+  font-weight: 700;
+  padding-left: 20px; position: relative;
+}
+.services-slide .service-card__bullets li::before {
+  content: '';
+  position: absolute; left: 0; top: 10px;
+  width: 10px; height: 2px; background: var(--color-fuchsia);
+}
+.services-slide .service-card__foot {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--color-mid-gray);
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-muted);
+}
+
+/* ────────────── Team slide ────────────── */
+.team-slide .slide-body { gap: 36px; }
+.team-slide .s-title { font-size: 60px; }
+.team-slide .team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 36px; flex: 1; align-content: center;
+}
+.team-slide .person {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.team-slide .person__photo-wrap {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px; overflow: hidden;
+  background: var(--color-navy);
+  position: relative;
+}
+.team-slide .person__photo-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.team-slide .person__bar { width: 64px; height: 5px; background: var(--color-fuchsia); }
+.team-slide .person__name {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 700; color: var(--color-navy);
+  letter-spacing: -0.5px; line-height: 1.05;
+  margin-top: 18px;
+}
+.team-slide .person__role {
+  font-family: var(--font-primary);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.team-slide .person__bio {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.55; color: var(--color-ink);
+}
+
+/* ────────────── Contact slide ────────────── */
+.contact-slide {
+  background: var(--color-navy); color: var(--color-white);
+  position: relative;
+}
+.contact-slide::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 14% 86%, rgba(124,58,237,0.26) 0%, transparent 50%),
+    radial-gradient(circle at 88% 16%, rgba(230,0,255,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.contact-slide > * { position: relative; z-index: 1; }
+.contact-slide .slide-header .eyebrow { color: rgba(255,255,255,0.55); }
+.contact-slide .slide-body {
+  justify-content: center; gap: 48px;
+  padding: 32px 120px 56px;
+}
+.contact-slide .contact-lockup-wrap {
+  display: flex; justify-content: center;
+}
+.contact-slide .contact-lockup {
+  display: block;
+  height: 160px; width: auto; max-width: 90%;
+  filter: brightness(0) invert(1);
+}
+.contact-slide .contact-title-wrap {
+  display: flex; flex-direction: column; gap: 28px;
+  padding: 56px 0;
+  text-align: center;
+  align-items: center;
+}
+.contact-slide .s-eyebrow { color: rgba(255,255,255,0.7); }
+.contact-slide .contact-title {
+  font-family: var(--font-display);
+  font-size: 132px; font-weight: 700; line-height: 0.95;
+  letter-spacing: -3.5px; color: var(--color-white);
+  max-width: 1400px;
+}
+.contact-slide .contact-title .accent { color: var(--color-fuchsia); }
+.contact-slide .contact-bar { width: 120px; height: 6px; background: var(--color-fuchsia); }
+.contact-slide .contact-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+  margin-top: 8px;
+}
+.contact-slide .contact-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 14px;
+  padding: 32px 36px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.contact-slide .contact-card .label {
+  font-family: var(--font-primary);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+.contact-slide .contact-card .value {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700;
+  color: var(--color-white); letter-spacing: -0.3px;
+}
+/* Same two-section pattern as standard slide footers:
+   left = slogan + url stacked, then source/note, then slide number. */
+.contact-slide .contact-foot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-rows: auto auto;
+  column-gap: 28px;
+  row-gap: 2px;
+  align-items: center;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin-top: 8px;
+  text-align: left;
+}
+.contact-slide .contact-foot .tag {
+  grid-column: 1; grid-row: 1;
+  align-self: end;
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+  font-style: normal;
+}
+.contact-slide .contact-foot .url {
+  grid-column: 1; grid-row: 2;
+  align-self: start;
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  color: var(--color-white); letter-spacing: 0.5px;
+}
+.contact-slide .contact-foot .note {
+  grid-column: 2; grid-row: 1 / span 2;
+  align-self: center;
+  text-align: right;
+  font-family: var(--font-primary);
+  font-size: 12px; color: rgba(255,255,255,0.55);
+  max-width: 520px; line-height: 1.5;
+  padding-right: 4px;
+}
+.contact-slide .contact-foot .slide-num {
+  grid-column: 3; grid-row: 1 / span 2;
+  align-self: center;
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  color: var(--color-white); letter-spacing: 0.5px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(255,255,255,0.16);
+  font-feature-settings: "tnum";
+}
+
+/* ────────────── Methodology CTA ────────────── */
+.method-cta {
+  margin-top: 20px;
+  padding: 18px 28px;
+  background: var(--color-light-gray);
+  border-left: 4px solid var(--color-fuchsia);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-size: 18px;
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.method-cta .arrow {
+  color: var(--color-fuchsia);
+  font-weight: 900;
+  font-size: 22px;
+}
+.method-cta strong {
+  font-weight: 700;
+  color: var(--color-fuchsia);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Evidence Base — "wow" slide (slide 06)
+   One giant number (518,779) anchors the slide; four supporting stats
+   along the bottom. Drawn from AIDE 2026 Data Coverage Report.
+   ════════════════════════════════════════════════════════════════════ */
+.evidence-slide .slide-body { gap: 36px; }
+.evidence-slide .evidence-headline { display: flex; flex-direction: column; gap: 14px; }
+.evidence-slide .evidence-headline .s-title { font-size: 76px; }
+
+.evidence-slide .evidence-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+  border-top: 1px solid var(--border-muted);
+  border-bottom: 1px solid var(--border-muted);
+  padding: 36px 0;
+  flex: 1;
+  min-height: 0;
+}
+.evidence-slide .evidence-hero__left {
+  border-left: 6px solid var(--color-fuchsia);
+  padding-left: 28px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 0;
+}
+.evidence-slide .evidence-hero__label {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.evidence-slide .evidence-hero__num {
+  font-family: var(--font-display);
+  font-size: 196px; font-weight: 700;
+  color: var(--color-fuchsia);
+  line-height: 0.9;
+  letter-spacing: -6px;
+  font-feature-settings: "tnum";
+}
+.evidence-slide .evidence-hero__right {
+  font-family: var(--font-display);
+  font-size: 32px; font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.evidence-slide .evidence-hero__right strong {
+  color: var(--color-fuchsia);
+  font-weight: 700;
+}
+.evidence-slide .evidence-hero__sub {
+  font-family: var(--font-primary);
+  font-size: 16px; font-weight: 400;
+  color: var(--color-mid-gray);
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.evidence-slide .evidence-supporting {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+.evidence-slide .ev-stat {
+  border-left: 4px solid var(--color-violet);
+  padding-left: 18px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.evidence-slide .ev-stat__label {
+  font-family: var(--font-primary);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+}
+.evidence-slide .ev-stat__num {
+  font-family: var(--font-display);
+  font-size: 60px; font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1; letter-spacing: -1.5px;
+  font-feature-settings: "tnum";
+}
+.evidence-slide .ev-stat__sub {
+  font-family: var(--font-primary);
+  font-size: 14px; color: var(--color-mid-gray);
+  margin-top: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Data Coverage — detail slide (slide 07)
+   Six channel groups in a 3×2 grid; grand totals strip beneath.
+   ════════════════════════════════════════════════════════════════════ */
+.coverage-slide .slide-body { gap: 28px; }
+.coverage-slide .coverage-headline { display: flex; flex-direction: column; gap: 12px; }
+.coverage-slide .coverage-headline .s-title { font-size: 52px; }
+
+.coverage-slide .coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+}
+.coverage-slide .cov-group {
+  background: var(--color-light-gray);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex; flex-direction: column;
+  border-top: 4px solid var(--color-fuchsia);
+  min-height: 0;
+}
+.coverage-slide .cov-group__head {
+  font-family: var(--font-primary);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-violet);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-muted);
+  margin-bottom: 4px;
+}
+.coverage-slide .cov-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-muted);
+}
+.coverage-slide .cov-row:last-child { border-bottom: none; }
+.coverage-slide .cov-row__label {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.3;
+}
+.coverage-slide .cov-row__label span {
+  display: block;
+  font-size: 11px; font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--color-mid-gray);
+  margin-top: 2px;
+}
+.coverage-slide .cov-row__num {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 700;
+  color: var(--color-navy);
+  letter-spacing: -0.3px;
+  font-feature-settings: "tnum";
+  white-space: nowrap;
+}
+.coverage-slide .cov-row--sub .cov-row__label {
+  font-weight: 400; font-size: 12px;
+  color: var(--color-mid-gray);
+  letter-spacing: 0.3px;
+}
+.coverage-slide .cov-row--sub .cov-row__num {
+  font-size: 14px; font-weight: 700;
+  color: var(--color-fuchsia);
+  letter-spacing: 0.5px;
+}
+
+.coverage-slide .coverage-totals {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  background: var(--color-navy);
+  border-radius: 12px;
+  padding: 20px 32px;
+}
+.coverage-slide .cov-total {
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 0 24px;
+  border-left: 1px solid rgba(255,255,255,0.12);
+}
+.coverage-slide .cov-total:first-child { border-left: none; padding-left: 0; }
+.coverage-slide .cov-total__num {
+  font-family: var(--font-display);
+  font-size: 44px; font-weight: 700;
+  color: var(--color-fuchsia);
+  line-height: 1; letter-spacing: -1px;
+  font-feature-settings: "tnum";
+}
+.coverage-slide .cov-total__label {
+  font-family: var(--font-primary);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   SLIDE ANIMATIONS
+   Subtle, on-brand motion — fade + small upward translate, with stagger.
+   Triggered only on the active slide via [data-deck-active] so static
+   thumbnail clones (which strip that attribute) remain still.
+   ════════════════════════════════════════════════════════════════════ */
+@keyframes aide-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aide-fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes aide-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes aide-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes aide-grow-x {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* easing custom property */
+:root {
+  --aide-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ── Universal active-slide entrance ── */
+section[data-deck-active] .slide-header {
+  animation: aide-fade-down 0.5s var(--aide-ease) both;
+}
+section[data-deck-active] .slide-footer {
+  animation: aide-fade-in 0.55s 0.55s var(--aide-ease) both;
+}
+section[data-deck-active] > .slide-body > div > .s-eyebrow,
+section[data-deck-active] > .slide-body > .s-eyebrow {
+  animation: aide-fade-up 0.55s 0.1s var(--aide-ease) both;
+}
+section[data-deck-active] > .slide-body > div > .s-title,
+section[data-deck-active] > .slide-body > .s-title,
+section[data-deck-active] .sector-head .s-title {
+  animation: aide-fade-up 0.65s 0.2s var(--aide-ease) both;
+}
+section[data-deck-active] > .slide-body > div > .s-sub,
+section[data-deck-active] > .slide-body > .s-sub,
+section[data-deck-active] .sector-head .s-sub {
+  animation: aide-fade-up 0.6s 0.32s var(--aide-ease) both;
+}
+
+/* ── Title slide ── */
+section[data-deck-active].title-slide .title-slide__top {
+  animation: aide-fade-down 0.5s 0.05s var(--aide-ease) both;
+}
+section[data-deck-active].title-slide .title-slide__lockup {
+  animation: aide-scale-in 0.85s 0.2s var(--aide-ease) both;
+}
+section[data-deck-active].title-slide .title-slide__divider {
+  transform-origin: left center;
+  animation: aide-grow-x 0.6s 0.45s var(--aide-ease) both;
+}
+section[data-deck-active].title-slide .title-slide__sub {
+  animation: aide-fade-up 0.7s 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].title-slide .title-slide__bottom {
+  animation: aide-fade-up 0.55s 0.75s var(--aide-ease) both;
+}
+
+/* ── About slide ── */
+section[data-deck-active].about-slide .about-headline > * {
+  animation: aide-fade-up 0.6s var(--aide-ease) both;
+}
+section[data-deck-active].about-slide .about-headline .s-eyebrow { animation-delay: 0.15s; }
+section[data-deck-active].about-slide .about-headline .s-title   { animation-delay: 0.25s; }
+section[data-deck-active].about-slide .about-headline .lede      { animation-delay: 0.4s; }
+section[data-deck-active].about-slide .stat-block {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].about-slide .stat-block:nth-child(1) { animation-delay: 0.6s; }
+section[data-deck-active].about-slide .stat-block:nth-child(2) { animation-delay: 0.7s; }
+section[data-deck-active].about-slide .stat-block:nth-child(3) { animation-delay: 0.8s; }
+section[data-deck-active].about-slide .stat-block:nth-child(4) { animation-delay: 0.9s; }
+section[data-deck-active].about-slide .about-mission {
+  animation: aide-fade-up 0.75s 0.3s var(--aide-ease) both;
+}
+
+/* ── Problem slide ── */
+section[data-deck-active].problem-slide .problem-card {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].problem-slide .problem-card:nth-child(1) { animation-delay: 0.45s; }
+section[data-deck-active].problem-slide .problem-card:nth-child(2) { animation-delay: 0.55s; }
+section[data-deck-active].problem-slide .problem-card:nth-child(3) { animation-delay: 0.65s; }
+section[data-deck-active].problem-slide .pull {
+  animation: aide-fade-up 0.6s 0.85s var(--aide-ease) both;
+}
+
+/* ── Solution slide ── */
+section[data-deck-active].solution-slide .compare__col.trad {
+  animation: aide-fade-up 0.6s 0.35s var(--aide-ease) both;
+}
+section[data-deck-active].solution-slide .compare__col.aide {
+  animation: aide-fade-up 0.7s 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].solution-slide .solution-footnote {
+  animation: aide-fade-up 0.55s 0.8s var(--aide-ease) both;
+}
+
+/* ── Methodology slide ── */
+section[data-deck-active].method-slide .dimension-header > div:nth-child(1) {
+  animation: aide-fade-up 0.55s 0.3s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .dimension-header > div:nth-child(2) {
+  animation: aide-fade-up 0.55s 0.4s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .pillar-bar > div {
+  animation: aide-scale-in 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .pillar-bar > div:nth-child(1) { animation-delay: 0.45s; }
+section[data-deck-active].method-slide .pillar-bar > div:nth-child(2) { animation-delay: 0.55s; }
+section[data-deck-active].method-slide .pillar-bar > div:nth-child(3) { animation-delay: 0.65s; }
+section[data-deck-active].method-slide .pillar-bar > div:nth-child(4) { animation-delay: 0.75s; }
+section[data-deck-active].method-slide .method-card {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .method-card:nth-child(1) { animation-delay: 0.7s; }
+section[data-deck-active].method-slide .method-card:nth-child(2) { animation-delay: 0.8s; }
+section[data-deck-active].method-slide .method-card:nth-child(3) { animation-delay: 0.9s; }
+section[data-deck-active].method-slide .method-card:nth-child(4) { animation-delay: 1.0s; }
+section[data-deck-active].method-slide .method-cta {
+  animation: aide-fade-up 0.5s 1.15s var(--aide-ease) both;
+}
+
+/* ── Evidence Base slide (wow) ── */
+section[data-deck-active].evidence-slide .evidence-hero {
+  animation: aide-fade-up 0.7s 0.3s var(--aide-ease) both;
+}
+section[data-deck-active].evidence-slide .evidence-hero__num {
+  animation: aide-scale-in 0.85s 0.45s var(--aide-ease) both;
+  transform-origin: left center;
+}
+section[data-deck-active].evidence-slide .ev-stat {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].evidence-slide .ev-stat:nth-child(1) { animation-delay: 0.85s; }
+section[data-deck-active].evidence-slide .ev-stat:nth-child(2) { animation-delay: 0.95s; }
+section[data-deck-active].evidence-slide .ev-stat:nth-child(3) { animation-delay: 1.05s; }
+section[data-deck-active].evidence-slide .ev-stat:nth-child(4) { animation-delay: 1.15s; }
+
+/* ── Data Coverage detail slide ── */
+section[data-deck-active].coverage-slide .cov-group {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].coverage-slide .cov-group:nth-child(1) { animation-delay: 0.35s; }
+section[data-deck-active].coverage-slide .cov-group:nth-child(2) { animation-delay: 0.43s; }
+section[data-deck-active].coverage-slide .cov-group:nth-child(3) { animation-delay: 0.51s; }
+section[data-deck-active].coverage-slide .cov-group:nth-child(4) { animation-delay: 0.59s; }
+section[data-deck-active].coverage-slide .cov-group:nth-child(5) { animation-delay: 0.67s; }
+section[data-deck-active].coverage-slide .cov-group:nth-child(6) { animation-delay: 0.75s; }
+section[data-deck-active].coverage-slide .coverage-totals {
+  animation: aide-fade-up 0.6s 0.95s var(--aide-ease) both;
+}
+section[data-deck-active].coverage-slide .cov-total__num {
+  animation: aide-fade-in 0.55s 1.15s var(--aide-ease) both;
+}
+
+/* ── Data sources slide ── */
+section[data-deck-active].data-slide .data-dimension-header > div:nth-child(1) {
+  animation: aide-fade-up 0.55s 0.3s var(--aide-ease) both;
+}
+section[data-deck-active].data-slide .data-dimension-header > div:nth-child(2) {
+  animation: aide-fade-up 0.55s 0.4s var(--aide-ease) both;
+}
+section[data-deck-active].data-slide .pillar-col {
+  animation: aide-fade-up 0.6s var(--aide-ease) both;
+}
+section[data-deck-active].data-slide .pillar-col:nth-child(1) { animation-delay: 0.5s; }
+section[data-deck-active].data-slide .pillar-col:nth-child(2) { animation-delay: 0.6s; }
+section[data-deck-active].data-slide .pillar-col:nth-child(3) { animation-delay: 0.7s; }
+section[data-deck-active].data-slide .pillar-col:nth-child(4) { animation-delay: 0.8s; }
+
+/* ── Sector overview slide ── */
+section[data-deck-active].sector-overview-slide .stack-row {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(1)  { animation-delay: 0.40s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(2)  { animation-delay: 0.46s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(3)  { animation-delay: 0.52s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(4)  { animation-delay: 0.58s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(5)  { animation-delay: 0.64s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(6)  { animation-delay: 0.70s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(7)  { animation-delay: 0.76s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(8)  { animation-delay: 0.82s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(9)  { animation-delay: 0.88s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(10) { animation-delay: 0.94s; }
+section[data-deck-active].sector-overview-slide .stack-row:nth-child(11) { animation-delay: 1.00s; }
+section[data-deck-active].sector-overview-slide .stack-row__seg {
+  transform-origin: left center;
+  animation: aide-grow-x 0.55s var(--aide-ease) both;
+  animation-delay: inherit;
+}
+
+/* ── Sector slides ── */
+section[data-deck-active].sector-slide .score-card {
+  animation: aide-fade-up 0.65s 0.35s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .pillar-bars {
+  animation: aide-fade-up 0.6s 0.4s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .pillar-bar-row__bar {
+  transform-origin: left center;
+  animation: aide-grow-x 0.85s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .pillar-bar-row:nth-child(1) .pillar-bar-row__bar { animation-delay: 0.55s; }
+section[data-deck-active].sector-slide .pillar-bar-row:nth-child(2) .pillar-bar-row__bar { animation-delay: 0.65s; }
+section[data-deck-active].sector-slide .pillar-bar-row:nth-child(3) .pillar-bar-row__bar { animation-delay: 0.75s; }
+section[data-deck-active].sector-slide .pillar-bar-row:nth-child(4) .pillar-bar-row__bar { animation-delay: 0.85s; }
+section[data-deck-active].sector-slide .takeaway {
+  animation: aide-fade-up 0.55s 0.95s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .leader {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .leader:nth-child(1) { animation-delay: 0.55s; }
+section[data-deck-active].sector-slide .leader:nth-child(2) { animation-delay: 0.62s; }
+section[data-deck-active].sector-slide .leader:nth-child(3) { animation-delay: 0.69s; }
+section[data-deck-active].sector-slide .leader:nth-child(4) { animation-delay: 0.76s; }
+section[data-deck-active].sector-slide .arch {
+  animation: aide-scale-in 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].sector-slide .arch:nth-child(1) { animation-delay: 0.90s; }
+section[data-deck-active].sector-slide .arch:nth-child(2) { animation-delay: 0.97s; }
+section[data-deck-active].sector-slide .arch:nth-child(3) { animation-delay: 1.04s; }
+section[data-deck-active].sector-slide .arch:nth-child(4) { animation-delay: 1.11s; }
+
+/* ── Services slide ── */
+section[data-deck-active].services-slide .service-card {
+  animation: aide-fade-up 0.6s var(--aide-ease) both;
+}
+section[data-deck-active].services-slide .service-card:nth-child(1) { animation-delay: 0.35s; }
+section[data-deck-active].services-slide .service-card:nth-child(2) { animation-delay: 0.5s; }
+section[data-deck-active].services-slide .service-card:nth-child(3) { animation-delay: 0.65s; }
+
+/* ── Team slide ── */
+section[data-deck-active].team-slide .person {
+  animation: aide-fade-up 0.6s var(--aide-ease) both;
+}
+section[data-deck-active].team-slide .person:nth-child(1) { animation-delay: 0.35s; }
+section[data-deck-active].team-slide .person:nth-child(2) { animation-delay: 0.5s; }
+section[data-deck-active].team-slide .person:nth-child(3) { animation-delay: 0.65s; }
+
+/* ── Contact slide ── */
+section[data-deck-active].contact-slide .contact-lockup {
+  animation: aide-scale-in 0.75s 0.15s var(--aide-ease) both;
+}
+section[data-deck-active].contact-slide .contact-title {
+  animation: aide-fade-up 0.7s 0.35s var(--aide-ease) both;
+}
+section[data-deck-active].contact-slide .contact-bar {
+  transform-origin: center center;
+  animation: aide-grow-x 0.55s 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].contact-slide .contact-card {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].contact-slide .contact-card:nth-child(1) { animation-delay: 0.6s; }
+section[data-deck-active].contact-slide .contact-card:nth-child(2) { animation-delay: 0.72s; }
+section[data-deck-active].contact-slide .contact-card:nth-child(3) { animation-delay: 0.84s; }
+section[data-deck-active].contact-slide .contact-foot {
+  animation: aide-fade-in 0.55s 1.0s var(--aide-ease) both;
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  section[data-deck-active] *,
+  section[data-deck-active] {
+    animation: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Sector icons — Lucide glyphs paired with each GICS sector.
+   Used on the Sectors Overview row labels and in each sector slide's
+   header eyebrow. Color inherits from currentColor.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Sector overview rows: icon + sector name */
+.sector-overview-slide .stack-row__label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+/* Base sector-icon sizing + fallback color. The per-sector .sec-* color
+   classes (below) override `color`, so they need to be lower-specificity
+   than this so the cascade resolves cleanly. */
+.sector-icon {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  color: var(--color-violet);
+}
+.sector-overview-slide .stack-row__label .sector-name { display: inline-block; }
+
+/* Sector-specific slide headers: icon + sector name inside the eyebrow */
+.sector-slide .slide-header .eyebrow-sector {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.sector-slide .slide-header .eyebrow-icon {
+  /* offset the eyebrow flex parent's 18px gap so the icon hugs the name */
+  margin-left: -8px;
+}
+
+/* Sector-specific icon colors — applied via .sec-{slug} class added to
+   each <svg.sector-icon> alongside its base styling. Overrides the
+   default violet so each sector is identifiable at a glance on both
+   the Sectors Overview (slide 9) and each sector-specific slide header. */
+.sector-icon.sec-it             { color: #2C7BE5; }
+.sector-icon.sec-health-care    { color: #00A073; }
+.sector-icon.sec-financials     { color: #0B1E36; }
+.sector-icon.sec-cons-disc      { color: #6730D2; }
+.sector-icon.sec-comm-services  { color: #DC00F5; }
+.sector-icon.sec-industrials    { color: #475569; }
+.sector-icon.sec-cons-staples   { color: #F59E0B; }
+.sector-icon.sec-energy         { color: #EA580C; }
+.sector-icon.sec-utilities      { color: #14B8A6; }
+.sector-icon.sec-real-estate    { color: #84CC16; }
+.sector-icon.sec-materials      { color: #B45309; }
+
+/* ════════════════════════════════════════════════════════════════════
+   Sector slide — large right-aligned sector mark in the sector-head.
+   Inherits the sec-{slug} color from the same .sec-* color cascade
+   used by the smaller eyebrow icon.
+   ════════════════════════════════════════════════════════════════════ */
+.sector-slide .sector-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: 40px;
+}
+.sector-slide .sector-head__text {
+  display: flex; flex-direction: column; gap: 14px;
+  min-width: 0;
+}
+.sector-slide .sector-head__mark {
+  display: flex; align-items: center; justify-content: center;
+  width: 140px; height: 140px;
+  border-radius: 22px;
+  background: rgba(0, 0, 0, 0.04);
+}
+.sector-slide .sector-mark {
+  width: 78px; height: 78px;
+  display: block;
+}
+/* Per-sector soft tint backgrounds for the mark + matching svg color */
+.sector-slide .sector-mark.sec-it             ~ * , .sector-slide .sector-head__mark:has(.sec-it)             { background: rgba(44, 123, 229, 0.10); }
+.sector-slide .sector-head__mark:has(.sec-health-care)    { background: rgba(0, 160, 115, 0.12); }
+.sector-slide .sector-head__mark:has(.sec-financials)     { background: rgba(11, 30, 54, 0.08); }
+.sector-slide .sector-head__mark:has(.sec-cons-disc)      { background: rgba(103, 48, 210, 0.10); }
+.sector-slide .sector-head__mark:has(.sec-comm-services)  { background: rgba(220, 0, 245, 0.10); }
+.sector-slide .sector-head__mark:has(.sec-industrials)    { background: rgba(71, 85, 105, 0.10); }
+.sector-slide .sector-head__mark:has(.sec-cons-staples)   { background: rgba(245, 158, 11, 0.14); }
+.sector-slide .sector-head__mark:has(.sec-energy)         { background: rgba(234, 88, 12, 0.12); }
+.sector-slide .sector-head__mark:has(.sec-utilities)      { background: rgba(20, 184, 166, 0.12); }
+.sector-slide .sector-head__mark:has(.sec-real-estate)    { background: rgba(132, 204, 22, 0.16); }
+.sector-slide .sector-head__mark:has(.sec-materials)      { background: rgba(180, 83, 9, 0.12); }
+/* sector-mark inherits its color from the sec-* class added in the HTML
+   (e.g. .sector-mark.sec-it { color: #2C7BE5 } — that rule lives in the
+   shared `.sector-icon.sec-*` block above and also applies here because
+   we share the same naming convention). To make it apply, also include: */
+.sector-slide .sector-mark.sec-it             { color: #2C7BE5; }
+.sector-slide .sector-mark.sec-health-care    { color: #00A073; }
+.sector-slide .sector-mark.sec-financials     { color: #0B1E36; }
+.sector-slide .sector-mark.sec-cons-disc      { color: #6730D2; }
+.sector-slide .sector-mark.sec-comm-services  { color: #DC00F5; }
+.sector-slide .sector-mark.sec-industrials    { color: #475569; }
+.sector-slide .sector-mark.sec-cons-staples   { color: #F59E0B; }
+.sector-slide .sector-mark.sec-energy         { color: #EA580C; }
+.sector-slide .sector-mark.sec-utilities      { color: #14B8A6; }
+.sector-slide .sector-mark.sec-real-estate    { color: #84CC16; }
+.sector-slide .sector-mark.sec-materials      { color: #B45309; }
+
+/* ════════════════════════════════════════════════════════════════════
+   AIDE Matrix slide — text on the left, full-bleed matrix image on the
+   right. The image extends to the very top-right corner of the slide
+   (above where the header would sit) with no border / no padding on
+   the slide-edge sides.
+   ════════════════════════════════════════════════════════════════════ */
+.matrix-slide { position: relative; }
+/* Left column (35%) holds the header + body text; right column (65%)
+   is the full-bleed matrix image. */
+.matrix-slide .slide-header,
+.matrix-slide .slide-body {
+  max-width: 35%;
+  position: relative;
+  z-index: 1;
+}
+/* Vertically center the headline in the left column. */
+.matrix-slide .slide-body {
+  gap: 24px;
+  padding-bottom: 32px;
+  justify-content: center;
+}
+.matrix-slide .matrix-headline { display: flex; flex-direction: column; gap: 8px; }
+.matrix-slide .matrix-headline .s-title { font-size: 60px; }
+
+/* Right-pane full-bleed image — 65% wide, extends to the top and
+   right edges of the slide; bottom stops above the footer. */
+.matrix-slide .matrix-bleed {
+  position: absolute;
+  top: 0; right: 0;
+  width: 65%;
+  height: calc(100% - 100px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 64px 140px;
+  background: var(--color-white);
+  border-left: 1px solid var(--border-muted);
+  z-index: 0;
+}
+.matrix-slide .matrix-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto; height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Entrance animation */
+section[data-deck-active].matrix-slide .matrix-bleed {
+  animation: aide-scale-in 0.7s 0.3s var(--aide-ease) both;
+}
+
+/* Entrance animation for the new sector mark on each sector slide */
+section[data-deck-active].sector-slide .sector-head__mark {
+  animation: aide-scale-in 0.7s 0.45s var(--aide-ease) both;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   Section divider / transition slide — "The Results"
+   Dark navy backdrop with subtle radial gradients (same brand pattern
+   used on the title and contact slides), centered headline.
+   ════════════════════════════════════════════════════════════════════ */
+.divider-slide { padding: 0; position: relative; justify-content: space-between; }
+.divider-slide::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 16% 86%, rgba(124,58,237,0.26) 0%, transparent 50%),
+    radial-gradient(circle at 86% 16%, rgba(230,0,255,0.18) 0%, transparent 55%);
+  pointer-events: none;
+}
+.divider-slide > * { position: relative; z-index: 1; }
+.divider-slide .divider-slide__center {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 36px;
+  padding: 96px 120px;
+  max-width: 1500px;
+}
+.divider-slide .s-eyebrow {
+  color: rgba(255,255,255,0.7);
+  font-size: 28px;
+}
+.divider-slide__bar {
+  width: 140px; height: 6px;
+  background: var(--color-fuchsia);
+}
+.divider-slide .divider-slide__title {
+  font-family: var(--font-display);
+  font-size: 220px; font-weight: 700;
+  line-height: 0.92; letter-spacing: -5px;
+  color: var(--color-white);
+}
+.divider-slide .divider-slide__title .accent { color: var(--color-fuchsia); }
+.divider-slide .divider-slide__sub {
+  font-family: var(--font-primary);
+  font-size: 32px; line-height: 1.35;
+  color: rgba(255,255,255,0.78);
+  max-width: 1200px;
+}
+
+/* Entrance choreography */
+section[data-deck-active].divider-slide .s-eyebrow {
+  animation: aide-fade-up 0.55s 0.15s var(--aide-ease) both;
+}
+section[data-deck-active].divider-slide .divider-slide__bar {
+  transform-origin: left center;
+  animation: aide-grow-x 0.6s 0.3s var(--aide-ease) both;
+}
+section[data-deck-active].divider-slide .divider-slide__title {
+  animation: aide-fade-up 0.75s 0.35s var(--aide-ease) both;
+}
+section[data-deck-active].divider-slide .divider-slide__sub {
+  animation: aide-fade-up 0.65s 0.55s var(--aide-ease) both;
+}

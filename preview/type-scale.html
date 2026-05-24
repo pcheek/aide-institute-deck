@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .ladder { display: flex; flex-direction: column; gap: 14px; }
+  .lr { display: grid; grid-template-columns: 1fr 150px; gap: 16px; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--border-muted); }
+  .lr:last-child { border-bottom: none; }
+  .lr__sample { color: var(--color-navy); }
+  .lr__sample--display { font-family: var(--font-display); font-weight: 700; }
+  .lr__sample--body    { font-family: var(--font-primary); }
+  .lr__meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-secondary); text-align: right; }
+  .lr__meta b { color: var(--color-navy); display: block; font-weight: 700; font-family: var(--font-primary); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+</style></head>
+<body><div class="pv">
+  <div class="ladder">
+    <div class="lr">
+      <div class="lr__sample lr__sample--display" style="font-size:36px;line-height:1.05;letter-spacing:-0.5px">Display</div>
+      <div class="lr__meta"><b>Space Grotesk</b>36 / 700 / -0.5</div>
+    </div>
+    <div class="lr">
+      <div class="lr__sample lr__sample--display" style="font-size:28px;line-height:1.2;letter-spacing:-0.3px">Heading</div>
+      <div class="lr__meta"><b>Space Grotesk</b>28 / 700 / -0.3</div>
+    </div>
+    <div class="lr">
+      <div class="lr__sample lr__sample--display" style="font-size:18px;line-height:1.4">Subheading</div>
+      <div class="lr__meta"><b>Space Grotesk</b>18 / 700</div>
+    </div>
+    <div class="lr">
+      <div class="lr__sample lr__sample--body" style="font-size:15px;font-weight:400;line-height:1.6">Body — paragraphs, descriptions, in-card prose.</div>
+      <div class="lr__meta"><b>Inter</b>15 / 400</div>
+    </div>
+    <div class="lr">
+      <div class="lr__sample lr__sample--body" style="font-size:12px;font-weight:400;line-height:1.5;color:var(--fg-secondary)">Caption — sources, metadata, sub-text.</div>
+      <div class="lr__meta"><b>Inter</b>12 / 400</div>
+    </div>
+    <div class="lr">
+      <div class="lr__sample lr__sample--body" style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent-label)">Label · Eyebrow</div>
+      <div class="lr__meta"><b>Inter</b>12 / 700 / 2.0</div>
+    </div>
+  </div>
+</div></body></html>

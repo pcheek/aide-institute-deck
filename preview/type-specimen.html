@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: end; }
+  .display { font-family: var(--font-display); font-size: 96px; font-weight: 700; line-height: 0.95; letter-spacing: -3px; color: var(--color-navy); }
+  .display .dot { color: var(--color-fuchsia); }
+  .body-block { font-family: var(--font-primary); font-size: 14px; line-height: 1.55; color: var(--color-ink); }
+  .body-block strong { font-weight: 700; color: var(--color-navy); }
+  .row { display: flex; gap: 28px; align-items: flex-end; padding-top: 18px; border-top: 1px solid var(--border-muted); }
+  .sample { display: flex; flex-direction: column; gap: 4px; }
+  .sample__big { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--color-navy); letter-spacing: -0.3px; }
+  .sample__big--inter { font-family: var(--font-primary); font-weight: 700; }
+  .sample__big--inter-reg { font-family: var(--font-primary); font-weight: 400; }
+  .meta { font-family: var(--font-mono); font-size: 10px; color: var(--fg-secondary); }
+</style></head>
+<body><div class="pv">
+  <div class="grid">
+    <div class="display">Aa1<span class="dot">.</span></div>
+    <div class="body-block">
+      <strong>Space Grotesk Bold</strong> sets every display, heading, stat and hero number — matching the chunky geometric "AIDE" wordmark.<br><br>
+      <strong>Inter</strong> covers body copy, eyebrows, captions, footer source lines and the "Institute" subline.
+    </div>
+  </div>
+  <div class="row">
+    <div class="sample"><div class="sample__big">Display</div><div class="meta">Space Grotesk 700</div></div>
+    <div class="sample"><div class="sample__big sample__big--inter">Bold body</div><div class="meta">Inter 700</div></div>
+    <div class="sample"><div class="sample__big sample__big--inter-reg">Regular</div><div class="meta">Inter 400</div></div>
+  </div>
+</div></body></html>

@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIDE Institute — Brand Guidelines</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Camera Plain Variable', ui-sans-serif, system-ui, sans-serif;
+    background: #ffffff;
+    color: #1A1A1A;
+    line-height: 1.6;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: #1B2541;
+    padding: 100px 60px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 15% 80%, rgba(124,58,237,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 85% 20%, rgba(59,130,246,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .cover-logo {
+    margin-bottom: 40px;
+    position: relative;
+  }
+  .cover-logo img {
+    width: 96px;
+    height: 96px;
+    filter: brightness(0) invert(1);
+  }
+  .cover h1 {
+    color: #ffffff;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .cover .sub {
+    color: #7C3AED;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .cover .divider {
+    width: 48px; height: 3px;
+    background: #E600FF;
+    border-radius: 2px;
+    margin: 32px auto;
+  }
+  .cover .strapline {
+    color: rgba(255,255,255,0.55);
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+  .cover .version {
+    color: rgba(255,255,255,0.25);
+    font-size: 12px;
+    margin-top: 48px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Page body ── */
+  .page-body {
+    padding: 0 48px 80px;
+  }
+
+  /* ── Table of Contents ── */
+  .toc {
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 32px 40px;
+    margin: 48px 0;
+  }
+  .toc h2 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7C3AED;
+    margin: 0 0 20px 0;
+  }
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+    padding: 0;
+    columns: 2;
+    column-gap: 32px;
+  }
+  .toc li {
+    counter-increment: toc;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #1A1A1A;
+  }
+  .toc li::before {
+    content: "0" counter(toc);
+    color: #7C3AED;
+    font-weight: 700;
+    font-size: 12px;
+    margin-right: 10px;
+    letter-spacing: 0.5px;
+  }
+  .toc a {
+    color: #1A1A1A;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .toc a:hover {
+    border-bottom-color: #7C3AED;
+  }
+
+  /* ── Sections ── */
+  .section {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 3px solid #E600FF;
+  }
+  h2.section-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #1B2541;
+    letter-spacing: -0.3px;
+    margin: 0 0 6px 0;
+  }
+  h2.section-title .num {
+    color: #7C3AED;
+    font-size: 12px;
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .section-intro {
+    color: #777777;
+    font-size: 15px;
+    margin-bottom: 32px;
+    max-width: 680px;
+  }
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1B2541;
+    margin-top: 40px;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1B2541;
+    margin-top: 24px;
+    margin-bottom: 8px;
+  }
+  p {
+    font-size: 15px;
+    color: #1A1A1A;
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+  li {
+    font-size: 15px;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+  }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 28px 0;
+    font-size: 14px;
+  }
+  th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #777777;
+    padding: 12px 14px;
+    border-bottom: 2px solid #1B2541;
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #F8F9FB;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+  tr:hover td {
+    background: #F8F9FB;
+  }
+
+  /* ── Color swatches ── */
+  .swatch {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    vertical-align: middle;
+    margin-right: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .swatch-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 16px 0 28px 0;
+  }
+  .swatch-card {
+    width: 100px;
+    text-align: center;
+  }
+  .swatch-card .swatch-lg {
+    width: 100%;
+    height: 72px;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: 8px;
+  }
+  .swatch-card .swatch-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1B2541;
+    line-height: 1.3;
+  }
+  .swatch-card .swatch-hex {
+    font-size: 11px;
+    color: #777777;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-top: 2px;
+  }
+
+  /* ── Logo display ── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 16px 0 28px 0;
+  }
+  .logo-card {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 32px 20px 20px;
+    text-align: center;
+    background: #F8F9FB;
+  }
+  .logo-card.dark {
+    background: #1B2541;
+    border-color: transparent;
+  }
+  .logo-card img {
+    max-width: 100%;
+    max-height: 80px;
+    margin-bottom: 16px;
+  }
+  .logo-card .caption {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B2541;
+    margin-bottom: 4px;
+  }
+  .logo-card .caption-sub {
+    font-size: 11px;
+    color: #777777;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    word-break: break-all;
+  }
+  .logo-card.dark .caption {
+    color: #ffffff;
+  }
+  .logo-card.dark .caption-sub {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── Sub-brand logo display ── */
+  .subbrand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 28px 0;
+  }
+  .subbrand-card {
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 24px 16px 16px;
+    text-align: center;
+  }
+  .subbrand-card img {
+    max-width: 100%;
+    max-height: 48px;
+    margin-bottom: 12px;
+  }
+  .subbrand-card .sb-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B2541;
+  }
+  .subbrand-card .sb-color {
+    font-size: 11px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-top: 4px;
+  }
+
+  /* ── Asset previews ── */
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 16px 0 28px 0;
+  }
+  .preview-card {
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #F8F9FB;
+  }
+  .preview-card img {
+    width: 100%;
+    display: block;
+  }
+  .preview-card .preview-info {
+    padding: 12px 16px;
+  }
+  .preview-card .preview-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B2541;
+  }
+  .preview-card .preview-dims {
+    font-size: 11px;
+    color: #777777;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .preview-full {
+    margin: 16px 0 28px 0;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #F8F9FB;
+  }
+  .preview-full img {
+    width: 100%;
+    display: block;
+  }
+  .preview-full .preview-info {
+    padding: 12px 16px;
+  }
+  .preview-full .preview-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1B2541;
+  }
+  .preview-full .preview-dims {
+    font-size: 11px;
+    color: #777777;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  /* ── Do / Don't ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 16px 0 28px 0;
+  }
+  .rule-card {
+    border-radius: 12px;
+    padding: 24px;
+    background: #F8F9FB;
+  }
+  .rule-card.do {
+    border-left: 4px solid #4ADE80;
+  }
+  .rule-card.dont {
+    border-left: 4px solid #E600FF;
+  }
+  .rule-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 0 0 12px 0;
+  }
+  .rule-card.do h4 { color: #4ADE80; }
+  .rule-card.dont h4 { color: #E600FF; }
+  .rule-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .rule-card li {
+    font-size: 13px;
+    color: #1A1A1A;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .rule-card.do li::before { content: '\2713'; position: absolute; left: 0; color: #4ADE80; font-weight: 700; }
+  .rule-card.dont li::before { content: '\2717'; position: absolute; left: 0; color: #E600FF; font-weight: 700; }
+
+  /* ── Clear space demo ── */
+  .clearspace-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 48px;
+    margin: 16px 0 28px 0;
+    position: relative;
+  }
+  .clearspace-inner {
+    position: relative;
+    display: inline-block;
+  }
+  .clearspace-inner img {
+    width: 200px;
+    display: block;
+  }
+  .clearspace-border {
+    position: absolute;
+    top: -24px; left: -24px; right: -24px; bottom: -24px;
+    border: 2px dashed #7C3AED;
+    border-radius: 4px;
+  }
+  .clearspace-label {
+    position: absolute;
+    font-size: 10px;
+    font-weight: 700;
+    color: #7C3AED;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .clearspace-label.top { top: -20px; left: 50%; transform: translateX(-50%); }
+  .clearspace-label.side { top: 50%; right: -60px; transform: translateY(-50%) rotate(90deg); }
+
+  /* ── Background pairing ── */
+  .bg-pair-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 28px 0;
+  }
+  .bg-pair {
+    border-radius: 12px;
+    padding: 32px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .bg-pair img {
+    max-height: 48px;
+    margin-bottom: 12px;
+  }
+  .bg-pair .bg-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .bg-pair .bg-verdict {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 8px;
+  }
+
+  /* ── Type specimens ── */
+  .type-specimen {
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 32px;
+    margin: 16px 0 12px 0;
+  }
+  .type-specimen .spec-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7C3AED;
+    margin-bottom: 8px;
+  }
+  .type-specimen .spec-meta {
+    font-size: 11px;
+    color: #777777;
+    margin-top: 6px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .type-scale-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 28px 0;
+  }
+  .type-scale-card {
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 20px 24px;
+  }
+  .type-scale-card .ts-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #7C3AED;
+    margin-bottom: 4px;
+  }
+  .type-scale-card .ts-meta {
+    font-size: 11px;
+    color: #777777;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-top: 4px;
+  }
+
+  /* ── Voice keywords ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0 28px 0;
+  }
+  .voice-card {
+    background: #F8F9FB;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border-top: 3px solid #7C3AED;
+  }
+  .voice-card .vc-word {
+    font-size: 16px;
+    font-weight: 900;
+    color: #1B2541;
+    margin-bottom: 6px;
+  }
+  .voice-card .vc-desc {
+    font-size: 12px;
+    color: #777777;
+    line-height: 1.5;
+  }
+
+  /* ── Color usage examples ── */
+  .usage-example {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin: 8px 0;
+    padding: 12px 16px;
+    background: #F8F9FB;
+    border-radius: 8px;
+  }
+  .usage-example .ue-bar {
+    height: 8px;
+    border-radius: 4px;
+  }
+  .usage-example .ue-text {
+    font-size: 13px;
+    color: #777777;
+  }
+
+  /* ── Misc ── */
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    background: #F8F9FB;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #7C3AED;
+  }
+  .note {
+    background: #F8F9FB;
+    border-left: 3px solid #7C3AED;
+    padding: 16px 24px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    font-size: 14px;
+    color: #777777;
+    line-height: 1.6;
+  }
+  .note strong {
+    color: #1B2541;
+  }
+  .callout {
+    background: #1B2541;
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin: 24px 0;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .callout strong {
+    color: #ffffff;
+  }
+  .callout code {
+    background: rgba(255,255,255,0.1);
+    color: #E600FF;
+  }
+  .pillar-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    margin: 16px 0 28px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 80px;
+  }
+  .pillar-bar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #1B2541;
+  }
+  .pillar-bar-item .pb-name {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .pillar-bar-item .pb-verb {
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 2px;
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COVER
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">
+    <img src="icons/favicon.png" alt="AIDE geometric A mark" />
+  </div>
+  <h1>Brand Guidelines</h1>
+  <div class="sub">AI-Driven Enterprise Institute</div>
+  <div class="divider"></div>
+  <div class="strapline">"Tracking the AI that counts."</div>
+  <div class="version">Version 2.0 &mdash; March 2026</div>
+</div>
+
+<div class="page-body">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TABLE OF CONTENTS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#brand-overview">Brand Overview</a></li>
+    <li><a href="#logo-usage">Logo Usage</a></li>
+    <li><a href="#color-palette">Color Palette</a></li>
+    <li><a href="#typography">Typography</a></li>
+    <li><a href="#sub-brands">Sub-Brands</a></li>
+    <li><a href="#social-media">Social Media Specs</a></li>
+    <li><a href="#email-assets">Email Assets</a></li>
+    <li><a href="#asset-generation">Asset Generation</a></li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     01. BRAND OVERVIEW
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="brand-overview">
+  <h2 class="section-title"><span class="num">Section 01</span>Brand Overview</h2>
+  <p class="section-intro">Everything you need to understand what AIDE is, who it speaks to, and how it sounds.</p>
+
+  <h3>What We Are</h3>
+  <p>
+    The AI-Driven Enterprise Institute (AIDE) is the definitive benchmarking and research body tracking how the world's largest companies adopt AI at the enterprise level. Through the AIDE Index &mdash; a proprietary scoring methodology across four pillars &mdash; alongside the AIDE Rankings, co-branded sector reports, and six specialized sub-brands, AIDE provides decision-grade intelligence on corporate AI maturity for boards, C-suites, investors, and consultancies.
+  </p>
+
+  <h3>Tagline</h3>
+  <div class="callout">
+    <strong style="font-size: 20px; letter-spacing: -0.3px;">"Tracking the AI that counts."</strong><br><br>
+    This tagline anchors every piece of AIDE communication. It signals our focus on enterprise AI adoption that drives real business outcomes &mdash; not hype, not research prototypes, not consumer apps. Use it consistently across all channels.
+  </div>
+
+  <h3>Brand Voice</h3>
+  <p>AIDE's voice is built around four qualities. Every piece of content &mdash; from social posts to PDF reports &mdash; should reflect these:</p>
+  <div class="voice-grid">
+    <div class="voice-card">
+      <div class="vc-word">Authoritative</div>
+      <div class="vc-desc">Data-first, benchmark-driven. We let the numbers lead.</div>
+    </div>
+    <div class="voice-card">
+      <div class="vc-word">Clear</div>
+      <div class="vc-desc">Precise language, no jargon. Accessible to board-level audiences.</div>
+    </div>
+    <div class="voice-card">
+      <div class="vc-word">Measured</div>
+      <div class="vc-desc">Confident without hyperbole. We don't predict &mdash; we measure.</div>
+    </div>
+    <div class="voice-card">
+      <div class="vc-word">Forward-looking</div>
+      <div class="vc-desc">Tracking where enterprise AI is going, not just where it's been.</div>
+    </div>
+  </div>
+
+  <h3>Audience</h3>
+  <p>Our primary audiences are:</p>
+  <ul style="padding-left: 20px; margin-bottom: 20px;">
+    <li><strong>Board directors and C-suite executives</strong> evaluating their company's AI readiness</li>
+    <li><strong>Management consultancies</strong> (Big Four, boutique strategy firms) using AIDE data in client engagements</li>
+    <li><strong>Institutional investors</strong> factoring AI maturity into portfolio decisions</li>
+    <li><strong>Enterprise AI leaders</strong> benchmarking against peers</li>
+  </ul>
+  <p>All brand communication should feel like a briefing for a senior executive: substantive, concise, visually clean, and backed by data.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     02. LOGO USAGE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="logo-usage">
+  <h2 class="section-title"><span class="num">Section 02</span>Logo Usage</h2>
+  <p class="section-intro">The AIDE identity is built around a geometric "A" lettermark with an embedded star/compass cutout. Three master logo assets cover all contexts.</p>
+
+  <h3>Master Logos</h3>
+  <div class="logo-grid">
+    <div class="logo-card">
+      <img src="logos/png/aide-logo-horizontal.png" alt="Horizontal logo" />
+      <div class="caption">Horizontal Logo</div>
+      <div class="caption-sub">logos/png/aide-logo-horizontal.png</div>
+    </div>
+    <div class="logo-card dark">
+      <img src="logos/png/aide-logo-white.png" alt="White logo" />
+      <div class="caption">White Logo</div>
+      <div class="caption-sub">logos/png/aide-logo-white.png</div>
+    </div>
+    <div class="logo-card">
+      <img src="icons/favicon.png" alt="Favicon / A mark" style="max-height: 64px;" />
+      <div class="caption">Standalone A Mark</div>
+      <div class="caption-sub">icons/favicon.png</div>
+    </div>
+  </div>
+
+  <h3>When to Use Each Version</h3>
+  <table>
+    <thead><tr><th>Version</th><th>Context</th><th>Background</th></tr></thead>
+    <tbody>
+      <tr><td>Horizontal</td><td>Website headers, documents, slide decks, co-branded reports</td><td>White or Light Gray (#F8F9FB)</td></tr>
+      <tr><td>White</td><td>Social banners, dark hero sections, OG images, email headers</td><td>Dark Navy (#1B2541) only</td></tr>
+      <tr><td>A Mark</td><td>Favicons, app icons, social profile pics, small-format uses</td><td>Any solid brand color</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Clear Space</h3>
+  <p>Always maintain a minimum clear space around the logo equal to the height of the geometric "A" mark. No other elements, text, or graphics should enter this zone.</p>
+  <div class="clearspace-demo">
+    <div class="clearspace-inner">
+      <div class="clearspace-border"></div>
+      <span class="clearspace-label top">1&times; A height</span>
+      <span class="clearspace-label side">1&times; A height</span>
+      <img src="logos/png/aide-logo-horizontal.png" alt="Clear space demo" />
+    </div>
+  </div>
+
+  <h3>Minimum Size</h3>
+  <table>
+    <thead><tr><th>Version</th><th>Print Minimum</th><th>Digital Minimum</th></tr></thead>
+    <tbody>
+      <tr><td>Horizontal logo</td><td>30mm wide</td><td>120px wide</td></tr>
+      <tr><td>A Mark only</td><td>8mm</td><td>24px</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Background Pairing</h3>
+  <div class="bg-pair-row">
+    <div class="bg-pair" style="background: #1B2541;">
+      <img src="icons/favicon.png" alt="" style="filter: brightness(0) invert(1);" />
+      <div class="bg-label" style="color: rgba(255,255,255,0.6);">Dark Navy</div>
+      <div class="bg-verdict" style="color: #4ADE80;">Preferred</div>
+    </div>
+    <div class="bg-pair" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.06);">
+      <img src="icons/favicon.png" alt="" />
+      <div class="bg-label" style="color: #777777;">White</div>
+      <div class="bg-verdict" style="color: #4ADE80;">Preferred</div>
+    </div>
+    <div class="bg-pair" style="background: #F8F9FB; border: 1px solid rgba(0,0,0,0.06);">
+      <img src="icons/favicon.png" alt="" />
+      <div class="bg-label" style="color: #777777;">Light Gray</div>
+      <div class="bg-verdict" style="color: #4ADE80;">Acceptable</div>
+    </div>
+  </div>
+
+  <h3>Usage Rules</h3>
+  <div class="rules-grid">
+    <div class="rule-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Use the horizontal logo as the primary logo on light backgrounds</li>
+        <li>Use the white logo on Dark Navy (#1B2541) backgrounds</li>
+        <li>Use the standalone A mark for favicons, app icons, and small-format contexts</li>
+        <li>Maintain clear space equal to the "A" mark height on all sides</li>
+        <li>Use provided PNG files at their original proportions</li>
+      </ul>
+    </div>
+    <div class="rule-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Distort, rotate, skew, or stretch the logo</li>
+        <li>Recolor the logo &mdash; use only the provided versions</li>
+        <li>Place the logo on busy, patterned, or photographic backgrounds</li>
+        <li>Add drop shadows, outlines, glows, or effects</li>
+        <li>Rearrange logo elements or change the wordmark typeface</li>
+        <li>Recreate the logo from scratch &mdash; always use the master files</li>
+        <li>Use the logo smaller than minimum size</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     03. COLOR PALETTE
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="color-palette">
+  <h2 class="section-title"><span class="num">Section 03</span>Color Palette</h2>
+  <p class="section-intro">The AIDE palette is organized into three tiers: core brand colors used everywhere, sub-brand accents used in product-specific contexts, and methodology pillar colors used exclusively in index scoring content.</p>
+
+  <h3>Core Colors</h3>
+  <div class="swatch-row">
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#1B2541;"></div>
+      <div class="swatch-name">Dark Navy</div>
+      <div class="swatch-hex">#1B2541</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#3B82F6;"></div>
+      <div class="swatch-name">Blue</div>
+      <div class="swatch-hex">#3B82F6</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#7C3AED;"></div>
+      <div class="swatch-name">Institute Violet</div>
+      <div class="swatch-hex">#7C3AED</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#E600FF;"></div>
+      <div class="swatch-name">Fuchsia</div>
+      <div class="swatch-hex">#E600FF</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#FFFFFF; border: 1px solid #ddd;"></div>
+      <div class="swatch-name">White</div>
+      <div class="swatch-hex">#FFFFFF</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#1A1A1A;"></div>
+      <div class="swatch-name">Dark Gray</div>
+      <div class="swatch-hex">#1A1A1A</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#777777;"></div>
+      <div class="swatch-name">Mid Gray</div>
+      <div class="swatch-hex">#777777</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#F8F9FB; border: 1px solid #ddd;"></div>
+      <div class="swatch-name">Light Gray</div>
+      <div class="swatch-hex">#F8F9FB</div>
+    </div>
+  </div>
+
+  <h4>Color Roles &amp; Usage</h4>
+  <table>
+    <thead><tr><th></th><th>Name</th><th>Hex</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><span class="swatch" style="background:#1B2541;"></span></td><td><strong>Dark Navy</strong></td><td><code>#1B2541</code></td><td>Primary backgrounds, wordmark, headers, footers</td></tr>
+      <tr><td><span class="swatch" style="background:#3B82F6;"></span></td><td><strong>Blue</strong></td><td><code>#3B82F6</code></td><td>Logo "Institute" text, light accent on dark backgrounds</td></tr>
+      <tr><td><span class="swatch" style="background:#7C3AED;"></span></td><td><strong>Institute Violet</strong></td><td><code>#7C3AED</code></td><td>Section labels, dividers, URLs, structural accent elements</td></tr>
+      <tr><td><span class="swatch" style="background:#E600FF;"></span></td><td><strong>Fuchsia</strong></td><td><code>#E600FF</code></td><td>CTA buttons, data highlights, accent bars, hero statistics</td></tr>
+      <tr><td><span class="swatch" style="background:#FFFFFF; border-color:#ddd;"></span></td><td><strong>White</strong></td><td><code>#FFFFFF</code></td><td>Page backgrounds, text on dark backgrounds</td></tr>
+      <tr><td><span class="swatch" style="background:#1A1A1A;"></span></td><td><strong>Dark Gray</strong></td><td><code>#1A1A1A</code></td><td>Body text on light backgrounds, primary reading text</td></tr>
+      <tr><td><span class="swatch" style="background:#777777;"></span></td><td><strong>Mid Gray</strong></td><td><code>#777777</code></td><td>Secondary text, captions, metadata, source lines</td></tr>
+      <tr><td><span class="swatch" style="background:#F8F9FB; border-color:#ddd;"></span></td><td><strong>Light Gray</strong></td><td><code>#F8F9FB</code></td><td>Card fills, subtle backgrounds, table alternating rows</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Sub-Brand Accent Colors</h3>
+  <p>Each sub-brand has a dedicated accent color. These are used <strong>only</strong> in sub-brand-specific contexts &mdash; the product name in a lockup, a section header in a sub-brand report, or a sub-brand-specific social asset.</p>
+  <div class="swatch-row">
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#E600FF;"></div>
+      <div class="swatch-name">Index</div>
+      <div class="swatch-hex">#E600FF</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#5CFFC8;"></div>
+      <div class="swatch-name">Insights</div>
+      <div class="swatch-hex">#5CFFC8</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#FF7A00;"></div>
+      <div class="swatch-name">Rankings</div>
+      <div class="swatch-hex">#FF7A00</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#7B2FFF;"></div>
+      <div class="swatch-name">Awards</div>
+      <div class="swatch-hex">#7B2FFF</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#FF47C2;"></div>
+      <div class="swatch-name">Education</div>
+      <div class="swatch-hex">#FF47C2</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch-lg" style="background:#00E5A0;"></div>
+      <div class="swatch-name">Talent</div>
+      <div class="swatch-hex">#00E5A0</div>
+    </div>
+  </div>
+
+  <h3>Methodology Pillar Colors</h3>
+  <p>These four colors map to the AIDE Index's scoring dimensions. They appear in index reports, methodology diagrams, scoring charts, and benchmark visualizations &mdash; and <strong>nowhere else</strong>.</p>
+
+  <div class="pillar-bar">
+    <div class="pillar-bar-item" style="background: #4ADE80;">
+      <div class="pb-name">Literacy</div>
+      <div class="pb-verb">KNOW</div>
+    </div>
+    <div class="pillar-bar-item" style="background: #A78BFA;">
+      <div class="pb-name">Advocacy</div>
+      <div class="pb-verb">SAY</div>
+    </div>
+    <div class="pillar-bar-item" style="background: #D946EF; color: #ffffff;">
+      <div class="pb-name">Orientation</div>
+      <div class="pb-verb">PRIORITIZE</div>
+    </div>
+    <div class="pillar-bar-item" style="background: #FBBF24;">
+      <div class="pb-name">Implementation</div>
+      <div class="pb-verb">BUILD</div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Pillar</th><th>Verb</th><th>Hex</th><th>Measures</th></tr></thead>
+    <tbody>
+      <tr><td><span class="swatch" style="background:#4ADE80;"></span> <strong>Literacy</strong></td><td>KNOW</td><td><code>#4ADE80</code></td><td>% of executives who are AI-literate</td></tr>
+      <tr><td><span class="swatch" style="background:#A78BFA;"></span> <strong>Advocacy</strong></td><td>SAY</td><td><code>#A78BFA</code></td><td>AI-related LinkedIn activity by executives</td></tr>
+      <tr><td><span class="swatch" style="background:#D946EF;"></span> <strong>Orientation</strong></td><td>PRIORITIZE</td><td><code>#D946EF</code></td><td>Strategic AI commitment across 6 channels</td></tr>
+      <tr><td><span class="swatch" style="background:#FBBF24;"></span> <strong>Implementation</strong></td><td>BUILD</td><td><code>#FBBF24</code></td><td>Tangible AI deployment across 6 channels</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Critical rule:</strong> Sub-brand colors and pillar colors are two completely separate systems. Never use a pillar color (e.g., Literacy green) as a sub-brand accent, and never use a sub-brand color (e.g., Rankings orange) in methodology charts. Mixing them destroys the semantic meaning of each system.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     04. TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="typography">
+  <h2 class="section-title"><span class="num">Section 04</span>Typography</h2>
+  <p class="section-intro">AIDE uses a single typeface family across all materials. Consistency in type is as important as consistency in color.</p>
+
+  <h3>Typeface</h3>
+  <p><strong>Primary:</strong> Camera Plain Variable</p>
+  <p><strong>Fallback stack:</strong> <code>ui-sans-serif, system-ui, sans-serif</code></p>
+
+  <div class="note">
+    No other typefaces should be used in any AIDE materials. Camera Plain Variable is the same typeface used on the live aideinstitute.com site. If unavailable in a specific environment, the fallback stack ensures visual consistency.
+  </div>
+
+  <h3>Type Scale</h3>
+  <div class="type-specimen">
+    <div class="spec-label">Display &mdash; Weight 900 (Black)</div>
+    <div style="font-size: 36px; font-weight: 900; color: #1B2541; letter-spacing: -0.5px;">AI-Driven Enterprise Institute</div>
+    <div class="spec-meta">36&ndash;48px &bull; Hero headings, cover titles, report titles</div>
+  </div>
+  <div class="type-specimen">
+    <div class="spec-label">Heading &mdash; Weight 900 (Black)</div>
+    <div style="font-size: 24px; font-weight: 900; color: #1B2541; letter-spacing: -0.3px;">Tracking the AI that counts.</div>
+    <div class="spec-meta">22&ndash;28px &bull; Section headings, card titles</div>
+  </div>
+  <div class="type-specimen">
+    <div class="spec-label">Subheading &mdash; Weight 700 (Bold)</div>
+    <div style="font-size: 17px; font-weight: 700; color: #1B2541;">Core Color Palette &amp; Usage Guidelines</div>
+    <div class="spec-meta">16&ndash;18px &bull; Sub-section titles, table headers, labels</div>
+  </div>
+  <div class="type-specimen">
+    <div class="spec-label">Body &mdash; Weight 400 (Regular)</div>
+    <div style="font-size: 15px; font-weight: 400; color: #1A1A1A; line-height: 1.7;">The AIDE Index measures enterprise AI maturity across four pillars: Literacy, Advocacy, Orientation, and Implementation. Each pillar captures a distinct dimension of how companies adopt and deploy artificial intelligence at scale.</div>
+    <div class="spec-meta">14&ndash;16px &bull; Paragraphs, descriptions, reports &bull; Line height: 1.6&ndash;1.7</div>
+  </div>
+  <div class="type-specimen">
+    <div class="spec-label">Caption / Metadata &mdash; Weight 400 (Regular)</div>
+    <div style="font-size: 12px; font-weight: 400; color: #777777;">Source: AIDE Index Q1 2026 &bull; aideinstitute.com/rankings</div>
+    <div class="spec-meta">11&ndash;13px &bull; Source lines, captions, footnotes &bull; Mid Gray (#777777)</div>
+  </div>
+
+  <h3>Weight Reference</h3>
+  <table>
+    <thead><tr><th>Weight</th><th>Value</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td><strong style="font-weight: 900;">Black</strong></td><td>900</td><td>Display headings, hero stats, section titles</td></tr>
+      <tr><td><strong style="font-weight: 700;">Bold</strong></td><td>700</td><td>Subheadings, table headers, emphasis, labels</td></tr>
+      <tr><td><span style="font-weight: 400;">Regular</span></td><td>400</td><td>Body text, descriptions, captions</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     05. SUB-BRANDS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="sub-brands">
+  <h2 class="section-title"><span class="num">Section 05</span>Sub-Brands</h2>
+  <p class="section-intro">AIDE operates through six specialized sub-brands, each targeting a distinct function within the enterprise AI ecosystem. All share the navy geometric "AIDE" wordmark and add a uniquely colored product name.</p>
+
+  <div class="subbrand-grid">
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-index-logo.png" alt="AIDE Index" />
+      <div class="sb-name">AIDE Index</div>
+      <div class="sb-color" style="color: #E600FF;">Magenta #E600FF</div>
+    </div>
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-insights-logo.png" alt="AIDE Insights" />
+      <div class="sb-name">AIDE Insights</div>
+      <div class="sb-color" style="color: #5CFFC8;">Mint #5CFFC8</div>
+    </div>
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-rankings-logo.png" alt="AIDE Rankings" />
+      <div class="sb-name">AIDE Rankings</div>
+      <div class="sb-color" style="color: #FF7A00;">Orange #FF7A00</div>
+    </div>
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-awards-logo.png" alt="AIDE Awards" />
+      <div class="sb-name">AIDE Awards</div>
+      <div class="sb-color" style="color: #7B2FFF;">Purple #7B2FFF</div>
+    </div>
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-education-logo.png" alt="AIDE Education" />
+      <div class="sb-name">AIDE Education</div>
+      <div class="sb-color" style="color: #FF47C2;">Pink #FF47C2</div>
+    </div>
+    <div class="subbrand-card">
+      <img src="logos/png/sub-brands/aide-talent-logo.png" alt="AIDE Talent" />
+      <div class="sb-name">AIDE Talent</div>
+      <div class="sb-color" style="color: #00E5A0;">Teal #00E5A0</div>
+    </div>
+  </div>
+
+  <h3>Sub-Brand Reference</h3>
+  <table>
+    <thead><tr><th>Sub-Brand</th><th>Accent</th><th>Hex</th><th>Descriptor</th><th>Logo File</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>AIDE Index</strong></td>
+        <td><span class="swatch" style="background:#E600FF; width:20px; height:20px;"></span> Magenta</td>
+        <td><code>#E600FF</code></td>
+        <td>Research &mdash; "Tracking the AI that counts."</td>
+        <td><code>logos/png/sub-brands/aide-index-logo.png</code></td>
+      </tr>
+      <tr>
+        <td><strong>AIDE Insights</strong></td>
+        <td><span class="swatch" style="background:#5CFFC8; width:20px; height:20px;"></span> Mint</td>
+        <td><code>#5CFFC8</code></td>
+        <td>Decision-grade AI analysis and publishing</td>
+        <td><code>logos/png/sub-brands/aide-insights-logo.png</code></td>
+      </tr>
+      <tr>
+        <td><strong>AIDE Rankings</strong></td>
+        <td><span class="swatch" style="background:#FF7A00; width:20px; height:20px;"></span> Orange</td>
+        <td><code>#FF7A00</code></td>
+        <td>Recognising the leaders of the AI-driven enterprise era</td>
+        <td><code>logos/png/sub-brands/aide-rankings-logo.png</code></td>
+      </tr>
+      <tr>
+        <td><strong>AIDE Awards</strong></td>
+        <td><span class="swatch" style="background:#7B2FFF; width:20px; height:20px;"></span> Purple</td>
+        <td><code>#7B2FFF</code></td>
+        <td>Celebrating excellence in AI-driven enterprise</td>
+        <td><code>logos/png/sub-brands/aide-awards-logo.png</code></td>
+      </tr>
+      <tr>
+        <td><strong>AIDE Education</strong></td>
+        <td><span class="swatch" style="background:#FF47C2; width:20px; height:20px;"></span> Pink</td>
+        <td><code>#FF47C2</code></td>
+        <td>Board-level AI education from top academic institutions</td>
+        <td><code>logos/png/sub-brands/aide-education-logo.png</code></td>
+      </tr>
+      <tr>
+        <td><strong>AIDE Talent</strong></td>
+        <td><span class="swatch" style="background:#00E5A0; width:20px; height:20px;"></span> Teal</td>
+        <td><code>#00E5A0</code></td>
+        <td>Recruiting board-ready AI leadership</td>
+        <td><code>logos/png/sub-brands/aide-talent-logo.png</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     06. SOCIAL MEDIA SPECS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="social-media">
+  <h2 class="section-title"><span class="num">Section 06</span>Social Media Specs</h2>
+  <p class="section-intro">All social assets are generated programmatically from the geometric A mark. Below are previews and specifications for each platform.</p>
+
+  <h3>LinkedIn</h3>
+
+  <h4>Profile &amp; Banner</h4>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="social/linkedin/linkedin-profile-400x400.png" alt="LinkedIn profile" />
+      <div class="preview-info">
+        <div class="preview-name">Profile Picture</div>
+        <div class="preview-dims">400 &times; 400 &bull; linkedin-profile-400x400.png</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <img src="social/linkedin/linkedin-banner-1584x396.png" alt="LinkedIn banner" />
+      <div class="preview-info">
+        <div class="preview-name">Banner</div>
+        <div class="preview-dims">1584 &times; 396 &bull; linkedin-banner-1584x396.png</div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Post Templates</h4>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="social/linkedin/linkedin-post-data-1200x1200.png" alt="LinkedIn data card" />
+      <div class="preview-info">
+        <div class="preview-name">Data Card</div>
+        <div class="preview-dims">1200 &times; 1200 &bull; linkedin-post-data-1200x1200.png</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <img src="social/linkedin/linkedin-post-quote-1200x628.png" alt="LinkedIn quote card" />
+      <div class="preview-info">
+        <div class="preview-name">Quote Card</div>
+        <div class="preview-dims">1200 &times; 628 &bull; linkedin-post-quote-1200x628.png</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>X (Twitter)</h3>
+
+  <h4>Profile &amp; Header</h4>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="social/x/x-profile-400x400.png" alt="X profile" />
+      <div class="preview-info">
+        <div class="preview-name">Profile Picture</div>
+        <div class="preview-dims">400 &times; 400 &bull; x-profile-400x400.png</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <img src="social/x/x-header-1500x500.png" alt="X header" />
+      <div class="preview-info">
+        <div class="preview-name">Header</div>
+        <div class="preview-dims">1500 &times; 500 &bull; x-header-1500x500.png</div>
+      </div>
+    </div>
+  </div>
+
+  <h4>Post Templates</h4>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="social/x/x-post-card-1200x675.png" alt="X data card" />
+      <div class="preview-info">
+        <div class="preview-name">Data Card</div>
+        <div class="preview-dims">1200 &times; 675 &bull; x-post-card-1200x675.png</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <img src="social/x/x-post-quote-1200x675.png" alt="X quote card" />
+      <div class="preview-info">
+        <div class="preview-name">Quote Card</div>
+        <div class="preview-dims">1200 &times; 675 &bull; x-post-quote-1200x675.png</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Open Graph</h3>
+  <div class="preview-full">
+    <img src="social/og-share-1200x630.png" alt="OG share image" />
+    <div class="preview-info">
+      <div class="preview-name">OG Share Image</div>
+      <div class="preview-dims">1200 &times; 630 &bull; og-share-1200x630.png</div>
+    </div>
+  </div>
+
+  <h3>Full Asset Reference</h3>
+  <table>
+    <thead><tr><th>Platform</th><th>Asset</th><th>Dimensions</th><th>File</th></tr></thead>
+    <tbody>
+      <tr><td>LinkedIn</td><td>Profile picture</td><td>400 &times; 400</td><td><code>social/linkedin/linkedin-profile-400x400.png</code></td></tr>
+      <tr><td>LinkedIn</td><td>Banner</td><td>1584 &times; 396</td><td><code>social/linkedin/linkedin-banner-1584x396.png</code></td></tr>
+      <tr><td>LinkedIn</td><td>Post &mdash; data card</td><td>1200 &times; 1200</td><td><code>social/linkedin/linkedin-post-data-1200x1200.png</code></td></tr>
+      <tr><td>LinkedIn</td><td>Post &mdash; quote card</td><td>1200 &times; 628</td><td><code>social/linkedin/linkedin-post-quote-1200x628.png</code></td></tr>
+      <tr><td>X</td><td>Profile picture</td><td>400 &times; 400</td><td><code>social/x/x-profile-400x400.png</code></td></tr>
+      <tr><td>X</td><td>Header</td><td>1500 &times; 500</td><td><code>social/x/x-header-1500x500.png</code></td></tr>
+      <tr><td>X</td><td>Post &mdash; data card</td><td>1200 &times; 675</td><td><code>social/x/x-post-card-1200x675.png</code></td></tr>
+      <tr><td>X</td><td>Post &mdash; quote card</td><td>1200 &times; 675</td><td><code>social/x/x-post-quote-1200x675.png</code></td></tr>
+      <tr><td>All</td><td>OG share image</td><td>1200 &times; 630</td><td><code>social/og-share-1200x630.png</code></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     07. EMAIL ASSETS
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="email-assets">
+  <h2 class="section-title"><span class="num">Section 07</span>Email Assets</h2>
+  <p class="section-intro">Branded assets for newsletters and email signatures.</p>
+
+  <div class="preview-grid">
+    <div class="preview-card">
+      <img src="email/email-header-600x150.png" alt="Email header" />
+      <div class="preview-info">
+        <div class="preview-name">Newsletter Header</div>
+        <div class="preview-dims">600 &times; 150 &bull; email-header-600x150.png</div>
+      </div>
+    </div>
+    <div class="preview-card">
+      <img src="email/email-signature-400x100.png" alt="Email signature" />
+      <div class="preview-info">
+        <div class="preview-name">Email Signature</div>
+        <div class="preview-dims">400 &times; 100 &bull; email-signature-400x100.png</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Asset</th><th>Dimensions</th><th>File Path</th></tr></thead>
+    <tbody>
+      <tr><td>Newsletter header</td><td>600 &times; 150</td><td><code>email/email-header-600x150.png</code></td></tr>
+      <tr><td>Email signature</td><td>400 &times; 100</td><td><code>email/email-signature-400x100.png</code></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     08. ASSET GENERATION
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="section" id="asset-generation">
+  <h2 class="section-title"><span class="num">Section 08</span>Asset Generation</h2>
+  <p class="section-intro">All social, email, and OG assets are generated programmatically from the geometric A mark using a single Python script.</p>
+
+  <div class="callout">
+    <strong>Quick start:</strong><br>
+    <code>cd ~/aide/branding &amp;&amp; python3 generate_assets.py</code><br><br>
+    This regenerates all 11 assets in place. Logo files in <code>logos/png/</code> and <code>icons/</code> are never touched.
+  </div>
+
+  <table>
+    <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Script</strong></td><td><code>~/aide/branding/generate_assets.py</code></td></tr>
+      <tr><td><strong>Dependency</strong></td><td>Pillow (PIL) &mdash; <code>pip install Pillow</code></td></tr>
+      <tr><td><strong>Source mark</strong></td><td><code>icons/favicon.png</code> (geometric "A" lettermark)</td></tr>
+      <tr><td><strong>Output directories</strong></td><td><code>social/linkedin/</code>, <code>social/x/</code>, <code>social/</code> (OG), <code>email/</code></td></tr>
+      <tr><td><strong>Total assets</strong></td><td>11 (4 LinkedIn + 4 X + 1 OG + 2 email)</td></tr>
+      <tr><td><strong>Idempotent</strong></td><td>Yes &mdash; safe to re-run at any time; overwrites existing files</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>For designers:</strong> The script handles template layouts only. To create a final social post with real data, open the generated template in your editor and replace the placeholder text (e.g., "[STAT]", "[ Quote text goes here ]") with actual content. The templates ensure correct dimensions, brand colors, and logo placement.
+  </div>
+</div>
+
+</div><!-- /page-body -->
+</body>
+</html>

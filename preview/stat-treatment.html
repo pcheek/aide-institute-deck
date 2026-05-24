@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; align-items: center; }
+  .stat { position: relative; padding-left: 22px; }
+  .stat::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:4px; background:var(--color-fuchsia); border-radius:2px; }
+  .stat__eb { font-family: var(--font-primary); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--color-violet); margin-bottom: 6px; }
+  .stat__num { font-family: var(--font-display); font-size: 100px; font-weight: 700; color: var(--color-fuchsia); line-height: 0.9; letter-spacing: -3px; }
+  .stat__unit { font-family: var(--font-primary); font-size: 12px; font-weight: 700; color: var(--fg-secondary); margin-top: 4px; }
+  .claim { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-navy); line-height: 1.25; letter-spacing: -0.3px; }
+  .ctx { font-family: var(--font-primary); font-size: 12px; color: var(--fg-secondary); margin-top: 10px; line-height: 1.5; }
+</style></head>
+<body><div class="pv">
+  <div class="grid">
+    <div class="stat">
+      <div class="stat__eb">Key Finding</div>
+      <div class="stat__num">37%</div>
+      <div class="stat__unit">of Fortune 500 C-suite</div>
+    </div>
+    <div>
+      <div class="claim">Only 1 in 3 top executives demonstrate measurable AI literacy.</div>
+      <div class="ctx">One fuchsia cluster — the number plus its accent bar — does the work. Body copy stays in navy.</div>
+    </div>
+  </div>
+</div></body></html>

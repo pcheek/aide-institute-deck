@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .band { background: var(--color-navy); padding: 22px 28px; display: flex; justify-content: space-between; align-items: center; border-radius: 8px; }
+  .band img { height: 28px; width: auto; display: block; }
+  .eb { color: rgba(255,255,255,0.55); font-family: var(--font-primary); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; display: flex; align-items: center; gap: 14px; }
+  .dot { width: 6px; height: 6px; background: var(--color-fuchsia); border-radius: 50%; }
+  .anatomy { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; padding: 0 4px; }
+  .anatomy__col { font-size: 10.5px; color: var(--fg-secondary); display: flex; flex-direction: column; gap: 2px; }
+  .anatomy__col b { color: var(--color-navy); font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .anatomy__col .mono { font-family: var(--font-mono); font-size: 10px; }
+</style></head>
+<body><div class="pv">
+  <div class="band">
+    <img src="../assets/aide-logo-mono-white.png" alt="AIDE Institute">
+    <div class="eb">
+      <span>Section</span><span class="dot"></span><span>Context</span>
+    </div>
+  </div>
+  <div class="anatomy">
+    <div class="anatomy__col"><b>Logo</b><span>mono-white horizontal · 28–36px</span><span class="mono">aide-logo-mono-white.png</span></div>
+    <div class="anatomy__col"><b>Section</b><span>e.g. AIDE Index, Methodology, Sector Report</span><span class="mono">Inter 12 / 700 / +3px</span></div>
+    <div class="anatomy__col"><b>Context</b><span>quarter, partner, or scope</span><span class="mono">e.g. "Q1 2026"</span></div>
+  </div>
+</div></body></html>

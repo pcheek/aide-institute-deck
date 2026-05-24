@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="_preview.css">
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cell { padding: 22px; border-radius: 12px; display: flex; flex-direction: column; gap: 8px; min-height: 140px; justify-content: space-between; }
+  .ok { background: var(--bg-subtle); border: 1px solid var(--border-subtle); }
+  .ok__title { font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--pillar-literacy-ink); }
+  .no { background: var(--bg-subtle); border: 1px solid var(--border-subtle); }
+  .no__title { font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--color-fuchsia); }
+  .body { font-size: 13px; color: var(--color-navy); font-weight: 700; line-height: 1.4; }
+  .meta { font-size: 11px; color: var(--fg-secondary); }
+  .badge { font-family: var(--font-mono); font-size: 11px; color: var(--color-navy); background: #fff; padding: 4px 8px; border-radius: 4px; align-self: flex-start; border: 1px solid var(--border-subtle); }
+</style></head>
+<body><div class="pv">
+  <div class="grid">
+    <div class="cell ok">
+      <div class="ok__title">✓ Do</div>
+      <div class="body">Borders + color contrast convey elevation. Light card on white = subtle border. Dark card = inverse fill.</div>
+      <div class="badge">border-subtle · rgba(0,0,0,0.06)</div>
+    </div>
+    <div class="cell no">
+      <div class="no__title">✗ Don't</div>
+      <div class="body">No box-shadows. No glows. No drop shadows on the logo. No "elevated" floating cards.</div>
+      <div class="badge">box-shadow: none</div>
+    </div>
+  </div>
+  <div class="pv-meta">The brand has no shadow tokens — by design.</div>
+</div></body></html>

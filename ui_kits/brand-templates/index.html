@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AIDE Brand Templates — UI Kit</title>
+<link rel="stylesheet" href="brand-templates.css">
+<style>
+  body {
+    background: #0E1322;
+    margin: 0;
+    padding: 60px 40px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    font-family: var(--font-primary);
+    color: var(--color-white);
+  }
+  .kit-head {
+    width: 100%;
+    max-width: 980px;
+    margin-bottom: 12px;
+  }
+  .kit-head h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+    margin: 0 0 6px;
+    color: var(--color-white);
+  }
+  .kit-head p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 720px;
+  }
+  .specimen {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .specimen__label {
+    font-family: var(--font-primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .specimen__label .dim {
+    color: rgba(255,255,255,0.25);
+    margin-left: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+  /* Each card is rendered at its design dimensions then scaled
+     down with transform: scale() so the page fits in a normal
+     viewport. The outer .scale-wrap wraps the card and reserves
+     the post-scale height so layout flows correctly. */
+  .scale-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.55);
+  }
+  .scale-wrap > * {
+    transform-origin: top left;
+  }
+  /* Pre-computed scales per card size. */
+  .s-1200x628  { width: 720px;  height: 376.66px; }
+  .s-1200x628  > * { transform: scale(0.6); }
+  .s-1200x1200 { width: 720px;  height: 720px; }
+  .s-1200x1200 > * { transform: scale(0.6); }
+  .s-1200x1500 { width: 720px;  height: 900px; }
+  .s-1200x1500 > * { transform: scale(0.6); }
+  .s-1584x396  { width: 950.4px; height: 237.6px; }
+  .s-1584x396  > * { transform: scale(0.6); }
+  .s-600x150   { width: 600px;  height: 150px; }
+  .s-600x150   > * { transform: scale(1); }
+</style>
+</head>
+<body>
+
+<div class="kit-head">
+  <h1>AIDE Brand Templates · UI Kit</h1>
+  <p>Pixel-perfect recreations of the 19-component reference gallery. Real logos, real sub-brand lockups, real Inter + Space Grotesk web fonts. Each card has its own JSX component you can compose, parameterize, and snapshot to PNG/PDF.</p>
+</div>
+
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="Primitives.jsx"></script>
+<script type="text/babel" src="HeroStatCard.jsx"></script>
+<script type="text/babel" src="CompareCard.jsx"></script>
+<script type="text/babel" src="QuadScorecard.jsx"></script>
+<script type="text/babel" src="PullQuoteCard.jsx"></script>
+<script type="text/babel" src="CompactQuoteCard.jsx"></script>
+<script type="text/babel" src="BarChartCard.jsx"></script>
+<script type="text/babel" src="RankingCard.jsx"></script>
+<script type="text/babel" src="MethodologyCard.jsx"></script>
+<script type="text/babel" src="SubBrandPromo.jsx"></script>
+<script type="text/babel" src="LinkedInBanner.jsx"></script>
+<script type="text/babel" src="EmailHeader.jsx"></script>
+<script type="text/babel" src="ReportCover.jsx"></script>
+
+<script type="text/babel">
+function Spec({ label, dim, scaleClass, children }) {
+  return (
+    <div className="specimen">
+      <div className="specimen__label">{label}<span className="dim">{dim}</span></div>
+      <div className={"scale-wrap " + scaleClass}>{children}</div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <Spec label="01 · Hero Stat Card" dim="1200 × 628" scaleClass="s-1200x628">
+        <HeroStatCard
+          statement="Only"
+          emphasis="1 in 3"
+          statementAfter="top executives demonstrate measurable AI literacy."
+          context="Measured across earnings calls, LinkedIn activity, and public statements from 500 Fortune-listed companies, Jan–Mar 2026."
+          source="Source: AIDE Index Q1 2026 · n = 500 companies"
+        />
+      </Spec>
+
+      <Spec label="02 · Two-Stat Compare" dim="1200 × 628" scaleClass="s-1200x628">
+        <CompareCard />
+      </Spec>
+
+      <Spec label="03 · Four-Pillar Scorecard" dim="1200 × 1200" scaleClass="s-1200x1200">
+        <QuadScorecard />
+      </Spec>
+
+      <Spec label="04 · Pull Quote" dim="1200 × 628" scaleClass="s-1200x628">
+        <PullQuoteCard
+          before="AI literacy at the top is the single best predictor of"
+          emphasis="enterprise AI ROI"
+          after="— better than headcount, budget, or tooling."
+          name="Dr. Paul Cheek"
+          role="Co-Founder, AIDE Institute"
+        />
+      </Spec>
+
+      <Spec label="05 · Compact Quote · Felipe" dim="1200 × 628" scaleClass="s-1200x628">
+        <CompactQuoteCard photo="felipe" />
+      </Spec>
+
+      <Spec label="05 · Compact Quote · Kate" dim="1200 × 628" scaleClass="s-1200x628">
+        <CompactQuoteCard
+          photo="kate"
+          body="The hardest part isn't generating insight. It's getting that insight in front of the people whose decisions actually move the number."
+          name="Kate Reed"
+          role="Co-Founder & Head of Insights, AIDE Institute"
+        />
+      </Spec>
+
+      <Spec label="05 · Compact Quote · Paul" dim="1200 × 628" scaleClass="s-1200x628">
+        <CompactQuoteCard
+          photo="paul"
+          body="AI literacy at the top is the single best predictor of enterprise AI ROI — better than headcount, budget, or tooling."
+          name="Dr. Paul Cheek"
+          role="Co-Founder, AIDE Institute"
+        />
+      </Spec>
+
+      <Spec label="06 · Bar Chart" dim="1200 × 628" scaleClass="s-1200x628">
+        <BarChartCard />
+      </Spec>
+
+      <Spec label="07 · Ranking List" dim="1200 × 1200" scaleClass="s-1200x1200">
+        <RankingCard />
+      </Spec>
+
+      <Spec label="08 · Methodology Explainer" dim="1200 × 1200" scaleClass="s-1200x1200">
+        <MethodologyCard />
+      </Spec>
+
+      <Spec label="09 · Sub-Brand · Index" dim="1200 × 628" scaleClass="s-1200x628">
+        <SubBrandPromo
+          subbrand="index"
+          titleTop="The benchmark "
+          titleAccent={<>for AI-driven<br/>enterprise.</>}
+          body="A proprietary scoring methodology across four pillars, tracking AI maturity in 500 of the world's largest companies. Updated quarterly."
+          source="Q1 2026 results now live"
+          url="aideinstitute.com/index"
+        />
+      </Spec>
+
+      <Spec label="10 · Sub-Brand · Rankings" dim="1200 × 628" scaleClass="s-1200x628">
+        <SubBrandPromo
+          subbrand="rankings"
+          titleTop="Recognizing "
+          titleAccent={<>the leaders<br/>of the era.</>}
+          body="The annual ranking of the 50 most AI-mature enterprises, scored on the full AIDE Index methodology and published every spring."
+          source="2026 rankings drop April 8"
+          url="aideinstitute.com/rankings"
+        />
+      </Spec>
+
+      <Spec label="11 · Sub-Brand · Insights" dim="1200 × 628" scaleClass="s-1200x628">
+        <SubBrandPromo
+          subbrand="insights"
+          titleTop="Decision-grade "
+          titleAccent={<>AI analysis<br/>for the board.</>}
+          body="Quarterly briefs, sector deep-dives, and methodology notes — written for executives who need to act on AI, not read about it."
+          source="Subscribe to the brief"
+          url="aideinstitute.com/insights"
+        />
+      </Spec>
+
+      <Spec label="12 · LinkedIn / X Banner" dim="1584 × 396" scaleClass="s-1584x396">
+        <LinkedInBanner />
+      </Spec>
+
+      <Spec label="13 · Newsletter Email Header" dim="600 × 150" scaleClass="s-600x150">
+        <EmailHeader />
+      </Spec>
+
+      <Spec label="18 · Report Cover" dim="1200 × 1500" scaleClass="s-1200x1500">
+        <ReportCover />
+      </Spec>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+
+</body>
+</html>
