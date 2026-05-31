@@ -1412,23 +1412,23 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 .problem-slide .problem-card {
   background: var(--color-light-gray);
   border-radius: 16px;
-  padding: 40px;
+  padding: 40px 38px;
   border-top: 4px solid var(--color-fuchsia);
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column; gap: 18px;
 }
 .problem-slide .problem-card__num {
   font-family: var(--font-display);
-  font-size: 18px; font-weight: 700;
+  font-size: 20px; font-weight: 700;
   color: var(--color-fuchsia); letter-spacing: 4px;
 }
 .problem-slide .problem-card__title {
   font-family: var(--font-display);
-  font-size: 30px; font-weight: 700;
+  font-size: 34px; font-weight: 700;
   color: var(--color-navy); line-height: 1.15; letter-spacing: -0.4px;
 }
 .problem-slide .problem-card__body {
   font-family: var(--font-primary);
-  font-size: 16px; line-height: 1.6; color: var(--color-ink);
+  font-size: 20px; line-height: 1.55; color: var(--color-ink);
 }
 .problem-slide .pull {
   background: var(--color-navy); color: var(--color-white);
@@ -1470,6 +1470,17 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 .solution-slide .compare__head.aide {
   background: var(--color-navy);
   color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+/* Fuchsia accent bar across the top of the AIDE header — anchors the
+   right column as the visual focal point. */
+.solution-slide .compare__head.aide::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--color-fuchsia);
 }
 .solution-slide .compare__head .label {
   font-family: var(--font-display);
@@ -1486,13 +1497,29 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
   border-top: 1px solid var(--border-muted);
 }
 .solution-slide .compare__col.trad .compare__row { color: var(--color-mid-gray); }
+/* AIDE column: stronger fuchsia tint, brighter row dividers, and a
+   subtle fuchsia accent on the inner left edge so the column reads as
+   the active / preferred option at a glance. */
 .solution-slide .compare__col.aide {
-  background: rgba(230,0,255,0.04);
+  background: rgba(230, 0, 255, 0.10);
+  box-shadow: inset 3px 0 0 0 var(--color-fuchsia);
 }
 .solution-slide .compare__col.aide .compare__row {
   color: var(--color-navy);
   font-weight: 700;
-  border-top: 1px solid rgba(230,0,255,0.18);
+  border-top: 1px solid rgba(230, 0, 255, 0.32);
+}
+/* First-letter / leading accent on each AIDE row — small fuchsia pip
+   that pulls the eye across the column. */
+.solution-slide .compare__col.aide .compare__row::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--color-fuchsia);
+  border-radius: 50%;
+  margin-right: 14px;
+  vertical-align: middle;
+  transform: translateY(-2px);
 }
 .solution-slide .solution-footnote {
   background: var(--color-light-gray);
@@ -1640,14 +1667,24 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 .sector-slide .slide-body {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 32px 56px;
-  padding: 24px 96px 56px;
+  grid-template-rows: auto 1fr auto;  /* head | columns | takeaway */
+  gap: 24px 56px;
+  padding: 20px 96px 32px;
 }
-.sector-slide .sector-head { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; }
-.sector-slide .sector-head .s-eyebrow { color: var(--color-violet); }
-.sector-slide .sector-head .s-title { font-size: 80px; line-height: 1; letter-spacing: -2px; }
-.sector-slide .sector-head .s-sub { font-size: 22px; max-width: 1200px; }
+.sector-slide .sector-head { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+.sector-slide .sector-head .s-eyebrow { color: var(--color-violet); padding-bottom: 6px; }
+.sector-slide .sector-head .s-title { font-size: 60px; line-height: 1; letter-spacing: -1.5px; }
+/* s-sub now lives at the top of .sector-left (left column). Constrain
+   to the column's width and use the lighter paragraph style. */
+.sector-slide .sector-left .s-sub {
+  font-family: var(--font-primary);
+  font-size: 17px; line-height: 1.5;
+  color: var(--color-ink);
+  max-width: none;
+}
+.sector-slide .sector-left .s-sub em {
+  font-style: normal; color: var(--color-fuchsia); font-weight: 700;
+}
 .sector-slide .sector-head .s-sub em { font-style: normal; color: var(--color-fuchsia); font-weight: 700; }
 
 .sector-slide .sector-left { display: flex; flex-direction: column; gap: 22px; min-height: 0; }
@@ -1726,50 +1763,51 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 }
 
 .sector-slide .takeaway {
+  grid-column: 1 / -1;            /* span both columns at the bottom */
   background: var(--color-light-gray);
   border-left: 5px solid var(--color-fuchsia);
-  border-radius: 4px;
-  padding: 20px 24px;
-  font-family: var(--font-display);
-  font-size: 22px; font-weight: 700;
-  line-height: 1.25; letter-spacing: -0.3px;
+  border-radius: 8px;
+  padding: 16px 22px;
+  font-family: var(--font-primary);
+  font-size: 16px; font-weight: 400;
+  line-height: 1.5; letter-spacing: 0;
   color: var(--color-navy);
-  margin-top: auto;
 }
 
-.sector-slide .sector-right { display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.sector-slide .sector-right { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
 .sector-slide .panel-label {
   font-family: var(--font-primary);
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
   color: var(--color-violet);
 }
 .sector-slide .leaders { display: flex; flex-direction: column; gap: 0; }
 .sector-slide .leader {
   display: grid;
-  grid-template-columns: 56px 1fr auto;
-  gap: 20px; align-items: center;
-  padding: 16px 0;
+  grid-template-columns: 46px 1fr auto;
+  gap: 18px; align-items: center;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border-muted);
 }
 .sector-slide .leader:last-child { border-bottom: none; }
 .sector-slide .leader__num {
   font-family: var(--font-display);
-  font-size: 36px; font-weight: 700; color: var(--color-fuchsia);
+  font-size: 30px; font-weight: 700; color: var(--color-fuchsia);
   line-height: 1; font-feature-settings: "tnum";
 }
 .sector-slide .leader__name {
   font-family: var(--font-display);
-  font-size: 22px; font-weight: 700; color: var(--color-navy);
+  font-size: 19px; font-weight: 700; color: var(--color-navy);
   letter-spacing: -0.2px;
+  line-height: 1.1;
 }
 .sector-slide .leader__sub {
-  font-family: var(--font-primary); font-size: 13px;
+  font-family: var(--font-primary); font-size: 12px;
   color: var(--color-mid-gray); margin-top: 2px; letter-spacing: 0.3px;
 }
 .sector-slide .leader__score {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 700; color: var(--color-navy);
+  font-size: 24px; font-weight: 700; color: var(--color-navy);
   font-feature-settings: "tnum";
 }
 
@@ -1782,25 +1820,25 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 2px;
 }
 .sector-slide .arch {
   border: 1px solid;
-  border-radius: 10px;
-  padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 6px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
   position: relative;
 }
 .sector-slide .arch__pct {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 700;
+  font-size: 24px; font-weight: 700;
   line-height: 1; letter-spacing: -0.5px;
 }
 .sector-slide .arch__name {
   font-family: var(--font-primary);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.8px; text-transform: uppercase;
 }
 /* Quadrant background + accent — drawn from AIDE Matrix palette */
 .sector-slide .arch.stealth {
@@ -1950,32 +1988,43 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 .contact-slide > * { position: relative; z-index: 1; }
 .contact-slide .slide-header .eyebrow { color: rgba(255,255,255,0.55); }
 .contact-slide .slide-body {
-  justify-content: center; gap: 48px;
-  padding: 32px 120px 56px;
+  justify-content: center; gap: 32px;
+  padding: 24px 120px 40px;
 }
 .contact-slide .contact-lockup-wrap {
   display: flex; justify-content: center;
 }
 .contact-slide .contact-lockup {
   display: block;
-  height: 160px; width: auto; max-width: 90%;
+  height: 108px; width: auto; max-width: 90%;
   filter: brightness(0) invert(1);
 }
 .contact-slide .contact-title-wrap {
-  display: flex; flex-direction: column; gap: 28px;
-  padding: 56px 0;
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 24px 0 8px;
   text-align: center;
   align-items: center;
 }
 .contact-slide .s-eyebrow { color: rgba(255,255,255,0.7); }
 .contact-slide .contact-title {
   font-family: var(--font-display);
-  font-size: 132px; font-weight: 700; line-height: 0.95;
-  letter-spacing: -3.5px; color: var(--color-white);
+  font-size: 108px; font-weight: 700; line-height: 0.95;
+  letter-spacing: -3px; color: var(--color-white);
   max-width: 1400px;
 }
 .contact-slide .contact-title .accent { color: var(--color-fuchsia); }
 .contact-slide .contact-bar { width: 120px; height: 6px; background: var(--color-fuchsia); }
+.contact-slide .contact-lede {
+  margin-top: 6px;
+  max-width: 1100px;
+  font-family: var(--font-primary);
+  font-size: 22px; font-weight: 400; line-height: 1.45;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+.contact-slide .contact-lede strong {
+  color: var(--color-white); font-weight: 700;
+}
 .contact-slide .contact-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
   margin-top: 8px;
@@ -1985,7 +2034,11 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: 14px;
   padding: 32px 36px;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.contact-slide .contact-card.cta {
+  background: linear-gradient(140deg, rgba(230,0,255,0.20) 0%, rgba(124,58,237,0.18) 100%);
+  border-color: rgba(230,0,255,0.55);
 }
 .contact-slide .contact-card .label {
   font-family: var(--font-primary);
@@ -1993,10 +2046,20 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
   letter-spacing: 3px; text-transform: uppercase;
   color: rgba(255,255,255,0.65);
 }
+.contact-slide .contact-card.cta .label {
+  color: var(--color-fuchsia);
+}
 .contact-slide .contact-card .value {
   font-family: var(--font-display);
   font-size: 28px; font-weight: 700;
   color: var(--color-white); letter-spacing: -0.3px;
+  line-height: 1.15;
+}
+.contact-slide .contact-card .sub {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 400; line-height: 1.45;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1px;
 }
 /* Same two-section pattern as standard slide footers:
    left = slogan + url stacked, then source/note, then slide number. */
@@ -2048,26 +2111,34 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
   font-feature-settings: "tnum";
 }
 
-/* ────────────── Methodology CTA ────────────── */
-.method-cta {
-  margin-top: 20px;
-  padding: 18px 28px;
+/* ────────────── Methodology CTA — compact pill in the top-right of
+   the slide-header. The methodology slide-header swaps its eyebrow for
+   this CTA so the link sits in the very corner of the slide. ────────── */
+.method-slide .slide-header .method-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
   background: var(--color-light-gray);
   border-left: 4px solid var(--color-fuchsia);
   border-radius: 8px;
   font-family: var(--font-primary);
-  font-size: 18px;
+  font-size: 14px; font-weight: 700;
   color: var(--color-navy);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition: background 140ms ease, transform 140ms ease;
 }
-.method-cta .arrow {
+.method-slide .slide-header .method-cta:hover {
+  background: rgba(230, 0, 255, 0.10);
+}
+.method-slide .slide-header .method-cta .arrow {
   color: var(--color-fuchsia);
   font-weight: 900;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1;
 }
-.method-cta strong {
+.method-slide .slide-header .method-cta strong {
   font-weight: 700;
   color: var(--color-fuchsia);
 }
@@ -2080,6 +2151,43 @@ section.dark .s-sub { color: rgba(255,255,255,0.7); }
 .evidence-slide .slide-body { gap: 36px; }
 .evidence-slide .evidence-headline { display: flex; flex-direction: column; gap: 14px; }
 .evidence-slide .evidence-headline .s-title { font-size: 76px; }
+/* Temporal scope + roadmap: surfaced upfront so the reader knows the
+   dataset window (2025) and the publishing cadence (quarterly through
+   2026 and beyond). */
+.evidence-slide .evidence-scope {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  padding: 12px 18px;
+  background: rgba(124, 58, 237, 0.08);
+  border-left: 4px solid var(--color-violet);
+  border-radius: 8px;
+  align-self: flex-start;
+  max-width: 1280px;
+}
+.evidence-slide .evidence-scope__badge {
+  font-family: var(--font-primary);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-violet);
+  padding: 6px 12px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.evidence-slide .evidence-scope__text {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.45;
+  color: var(--color-navy);
+}
+.evidence-slide .evidence-scope__text strong {
+  font-weight: 700;
+  color: var(--color-fuchsia);
+}
+section[data-deck-active].evidence-slide .evidence-scope {
+  animation: aide-fade-up 0.55s 0.4s var(--aide-ease) both;
+}
 
 .evidence-slide .evidence-hero {
   display: grid;
@@ -2605,20 +2713,20 @@ section[data-deck-active].contact-slide .contact-foot {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
-  gap: 40px;
+  gap: 28px;
 }
 .sector-slide .sector-head__text {
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 10px;
   min-width: 0;
 }
 .sector-slide .sector-head__mark {
   display: flex; align-items: center; justify-content: center;
-  width: 140px; height: 140px;
-  border-radius: 22px;
+  width: 104px; height: 104px;
+  border-radius: 18px;
   background: rgba(0, 0, 0, 0.04);
 }
 .sector-slide .sector-mark {
-  width: 78px; height: 78px;
+  width: 58px; height: 58px;
   display: block;
 }
 /* Per-sector soft tint backgrounds for the mark + matching svg color */
@@ -2670,8 +2778,93 @@ section[data-deck-active].contact-slide .contact-foot {
   padding-bottom: 32px;
   justify-content: center;
 }
-.matrix-slide .matrix-headline { display: flex; flex-direction: column; gap: 8px; }
-.matrix-slide .matrix-headline .s-title { font-size: 60px; }
+.matrix-slide .matrix-headline { display: flex; flex-direction: column; gap: 10px; }
+.matrix-slide .matrix-headline .s-title { font-size: 48px; }
+
+/* Plain-language intro replacing the academic "n=X / cohort-normalized" framing. */
+.matrix-slide .matrix-intro {
+  font-family: var(--font-primary);
+  font-size: 15px; line-height: 1.5;
+  color: var(--color-mid-gray);
+  margin-top: 4px;
+  max-width: 520px;
+}
+
+/* Plain-language takeaways — 4 short bullets with a fuchsia tick. */
+.matrix-slide .matrix-takeaways {
+  list-style: none; margin: 12px 0 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: 560px;
+}
+.matrix-slide .matrix-takeaways li {
+  font-family: var(--font-primary);
+  font-size: 14px; line-height: 1.45;
+  color: var(--color-navy);
+  padding-left: 18px;
+  position: relative;
+}
+.matrix-slide .matrix-takeaways li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 8px; height: 2px;
+  background: var(--color-fuchsia);
+}
+.matrix-slide .matrix-takeaways li strong {
+  font-weight: 700;
+  color: var(--color-fuchsia);
+}
+.matrix-slide .matrix-takeaways li em { font-style: italic; color: var(--color-fuchsia); font-weight: 700; }
+
+/* Archetype legend — 4 compact rows naming each quadrant in plain language. */
+.matrix-slide .matrix-archetypes {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--color-light-gray);
+  border-radius: 8px;
+  display: flex; flex-direction: column; gap: 6px;
+  max-width: 560px;
+}
+.matrix-slide .matrix-arch {
+  display: flex; align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-primary);
+  font-size: 12px; line-height: 1.4;
+  color: var(--color-navy);
+}
+.matrix-slide .matrix-arch .dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transform: translateY(1px);
+}
+.matrix-slide .matrix-arch strong {
+  font-weight: 700;
+  font-size: 13px;
+}
+.matrix-slide .matrix-arch--trailblazers .dot { background: var(--pillar-literacy);       }
+.matrix-slide .matrix-arch--trailblazers strong { color: var(--pillar-literacy-ink); }
+.matrix-slide .matrix-arch--stealth .dot      { background: var(--color-blue);            }
+.matrix-slide .matrix-arch--stealth strong    { color: var(--color-blue); }
+.matrix-slide .matrix-arch--visionaries .dot  { background: var(--pillar-implementation); }
+.matrix-slide .matrix-arch--visionaries strong { color: var(--pillar-implementation-ink); }
+.matrix-slide .matrix-arch--emerging .dot     { background: var(--status-down);           }
+.matrix-slide .matrix-arch--emerging strong   { color: var(--status-down); }
+
+/* Staggered entrance for the new content */
+section[data-deck-active].matrix-slide .matrix-intro {
+  animation: aide-fade-up 0.55s 0.45s var(--aide-ease) both;
+}
+section[data-deck-active].matrix-slide .matrix-takeaways li {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(1) { animation-delay: 0.65s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(2) { animation-delay: 0.75s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(3) { animation-delay: 0.85s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(4) { animation-delay: 0.95s; }
+section[data-deck-active].matrix-slide .matrix-archetypes {
+  animation: aide-fade-up 0.55s 1.10s var(--aide-ease) both;
+}
 
 /* Right-pane full-bleed image — 65% wide, extends to the top and
    right edges of the slide; bottom stops above the footer. */
@@ -2735,16 +2928,89 @@ section[data-deck-active].sector-slide .sector-head__mark {
 }
 .divider-slide .divider-slide__title {
   font-family: var(--font-display);
-  font-size: 220px; font-weight: 700;
-  line-height: 0.92; letter-spacing: -5px;
+  font-size: 156px; font-weight: 700;
+  line-height: 0.92; letter-spacing: -4px;
   color: var(--color-white);
 }
 .divider-slide .divider-slide__title .accent { color: var(--color-fuchsia); }
 .divider-slide .divider-slide__sub {
   font-family: var(--font-primary);
-  font-size: 32px; line-height: 1.35;
+  font-size: 24px; line-height: 1.35;
   color: rgba(255,255,255,0.78);
   max-width: 1200px;
+}
+
+/* Observations list — 3 short S&P 500–wide takeaways that orient the
+   viewer before sector-by-sector slides begin. */
+.divider-slide .divider-slide__obs {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+  max-width: 1300px;
+  margin-top: 18px;
+}
+.divider-slide .divider-slide__obs li {
+  font-family: var(--font-primary);
+  font-size: 22px; line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+  padding-left: 22px;
+  position: relative;
+}
+.divider-slide .divider-slide__obs li::before {
+  content: '';
+  position: absolute; left: 0; top: 12px;
+  width: 10px; height: 2px;
+  background: var(--color-fuchsia);
+}
+.divider-slide .divider-slide__obs li strong {
+  font-weight: 700; color: var(--color-white);
+}
+
+/* Methodology note — explains the within-sector ranking choice and why
+   apples-to-apples cross-sector comparisons would distort the picture. */
+.divider-slide .divider-slide__method {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  max-width: 1300px;
+  padding: 14px 20px;
+  background: rgba(124, 58, 237, 0.18);
+  border-left: 4px solid var(--color-violet);
+  border-radius: 6px;
+  margin-top: 18px;
+}
+.divider-slide .divider-slide__method strong { color: var(--color-white); font-weight: 700; }
+.divider-slide .divider-slide__method-callout {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+}
+.divider-slide .divider-slide__method-callout strong { color: var(--color-fuchsia); }
+.divider-slide .divider-slide__method-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-violet);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* Tighten the center column's vertical gap now that there's more content */
+.divider-slide .divider-slide__center { gap: 22px; padding: 64px 96px; }
+
+/* Staggered entrance for the new elements */
+section[data-deck-active].divider-slide .divider-slide__obs li {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(1) { animation-delay: 0.7s; }
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(2) { animation-delay: 0.8s; }
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(3) { animation-delay: 0.9s; }
+section[data-deck-active].divider-slide .divider-slide__method {
+  animation: aide-fade-up 0.55s 1.05s var(--aide-ease) both;
 }
 
 /* Entrance choreography */
@@ -2797,6 +3063,71 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
   animation: aide-scale-in 0.6s 0.15s var(--aide-ease) both;
 }
 
+/* ════════════════════════════════════════════════════════════════════
+   Methodology slide — integrated data-sources row
+   Sits below the method-grid, mirrors the 4-column pillar structure,
+   and shows the 8 small icon + label items for each pillar so the
+   whole methodology + sources view lives on one slide.
+   ════════════════════════════════════════════════════════════════════ */
+.method-slide .method-sources {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.method-slide .method-sources__col {
+  background: var(--color-light-gray);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.method-slide .method-sources__head {
+  font-family: var(--font-primary);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-mid-gray);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.method-slide .method-sources__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+.method-slide .method-sources .src {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 12px; font-weight: 700;
+  line-height: 1.15;
+}
+.method-slide .method-sources .src__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.method-slide .method-sources .src__icon svg {
+  width: 12px; height: 12px;
+  display: block;
+}
+/* Per-pillar tint + label color, matching the pillar bar above */
+.method-slide .method-sources__col.lit .src__icon { color: var(--pillar-literacy-ink);       background: rgba(74, 222, 128, 0.18); }
+.method-slide .method-sources__col.adv .src__icon { color: var(--pillar-advocacy-ink);       background: rgba(167, 139, 250, 0.18); }
+.method-slide .method-sources__col.ori .src__icon { color: var(--pillar-orientation-ink);    background: rgba(217, 70, 239, 0.14); }
+.method-slide .method-sources__col.imp .src__icon { color: var(--pillar-implementation-ink); background: rgba(251, 191, 36, 0.20); }
+.method-slide .method-sources__col.lit .src__label { color: var(--pillar-literacy-ink); }
+.method-slide .method-sources__col.adv .src__label { color: var(--pillar-advocacy-ink); }
+.method-slide .method-sources__col.ori .src__label { color: var(--pillar-orientation-ink); }
+.method-slide .method-sources__col.imp .src__label { color: var(--pillar-implementation-ink); }
+
+/* Subtle entrance animation, staggered alongside the method-cards */
+section[data-deck-active].method-slide .method-sources__col {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .method-sources__col:nth-child(1) { animation-delay: 1.10s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(2) { animation-delay: 1.20s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(3) { animation-delay: 1.30s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(4) { animation-delay: 1.40s; }
+
 </style>
 <link rel="icon" type="image/png" href="assets/aide-favicon.png">
 <script src="slides/deck-stage.js"></script>
@@ -2812,7 +3143,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <img class="title-slide__lockup" src="assets/aide-institute-stacked-alt.png" alt="AI-Driven Enterprise Institute">
       <div class="title-slide__divider"></div>
       <div class="title-slide__sub">
-        The global standard for tracking corporate AI maturity at the company level across the S&amp;P 500 &mdash; measuring AI adoption beyond self-reporting, not aggregate data.
+        The Global Standard for Tracking Corporate AI Maturity
       </div>
     </div>
     <div class="title-slide__bottom">
@@ -2839,20 +3170,20 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           </div>
           <div class="about-stats">
             <div class="stat-block">
-              <div class="num">3,000+</div>
-              <div class="label">Companies tracked</div>
-            </div>
-            <div class="stat-block">
-              <div class="num">500</div>
-              <div class="label">S&amp;P 500 in cohort</div>
-            </div>
-            <div class="stat-block">
-              <div class="num">4</div>
-              <div class="label">Scoring pillars</div>
+              <div class="num">518,779</div>
+              <div class="label">Atomic source documents</div>
             </div>
             <div class="stat-block">
               <div class="num">271.9M</div>
-              <div class="label">Total data points</div>
+              <div class="label">Total words ingested</div>
+            </div>
+            <div class="stat-block">
+              <div class="num">155,616</div>
+              <div class="label">External web links</div>
+            </div>
+            <div class="stat-block">
+              <div class="num">10,563</div>
+              <div class="label">Executives classified</div>
             </div>
           </div>
         </div>
@@ -2885,31 +3216,27 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
     <div class="slide-body">
       <div>
         <div class="s-eyebrow">The Problem We Solve</div>
-        <div class="s-title">AI progress is being <span class="accent">overstated.</span></div>
+        <div class="s-title">AI progress is being <span class="accent">misread.</span></div>
         <div class="s-sub" style="font-size:22px;margin-top:14px">
-          Companies have a strong incentive to inflate their AI adoption. There is no objective, standardized way to benchmark how deeply AI is actually embedded in the enterprise economy.
+          Surveys inflate it. &ldquo;Pilots fail&rdquo; headlines deflate it. Neither narrative is anchored in observable behavior &mdash; so the truth disappears between the extremes.
         </div>
       </div>
       <div class="problem-grid">
         <div class="problem-card">
           <div class="problem-card__num">01</div>
-          <div class="problem-card__title">Self-reported surveys distort the picture.</div>
-          <div class="problem-card__body">Voluntary disclosure produces narrative, not reality. Organizations overstate readiness when investors are watching and understate it when disclosure feels risky.</div>
+          <div class="problem-card__title">Surveys inflate the picture.</div>
+          <div class="problem-card__body">Self-reported adoption claims, voluntary disclosures, and earnings-call rhetoric produce a story of AI progress that runs well ahead of what&rsquo;s actually been built.</div>
         </div>
         <div class="problem-card">
           <div class="problem-card__num">02</div>
-          <div class="problem-card__title">Press releases drive the AI conversation.</div>
-          <div class="problem-card__body">PR-driven signals dominate the current landscape. The result is a distorted view of true AI transformation across industries, sectors, and individual companies.</div>
+          <div class="problem-card__title">Pilot-failure headlines deflate it.</div>
+          <div class="problem-card__body">Sweeping pilot-failure claims get repeated as fact &mdash; even when the underlying data is narrow, unreviewed, or stale. The &ldquo;AI bubble&rdquo; narrative grows on them.</div>
         </div>
         <div class="problem-card">
           <div class="problem-card__num">03</div>
-          <div class="problem-card__title">Earnings-call rhetoric outpaces reality.</div>
-          <div class="problem-card__body">Executives talk about AI faster than their organizations can deploy it. The gap between leadership advocacy and operational implementation is widening across the S&amp;P 500.</div>
+          <div class="problem-card__title">Neither is anchored in evidence.</div>
+          <div class="problem-card__body">Both narratives &mdash; runaway adoption and total failure &mdash; are built on opinion or thin survey data, not observable behavior. Without a verifiable measure, the truth gets lost between the extremes.</div>
         </div>
-      </div>
-      <div class="pull">
-        <div class="num">~50%</div>
-        <div class="copy">Talk outpaces build by roughly fifty percent across the S&amp;P 500 &mdash; advocacy scores nearly double implementation scores in the current cycle.</div>
       </div>
     </div>
     <div class="slide-footer">
@@ -2966,150 +3293,6 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
     </div>
   </section>
 
-  <!-- ───────────────────── 05 · METHODOLOGY: 4 PILLARS ───────────────────── -->
-  <section class="method-slide" data-label="Methodology">
-    <div class="slide-header">
-      <img class="logo" src="assets/aide-logo-horizontal.png" alt="AIDE">
-      <div class="eyebrow">Section 04<span class="dot"></span>Methodology v2.1</div>
-    </div>
-    <div class="slide-body">
-      <div>
-        <div class="s-eyebrow" style="margin-bottom:14px">Our Methodology</div>
-        <div class="s-title" style="font-size:60px">The four pillars of AI maturity.</div>
-        <div class="s-sub" style="font-size:20px;margin-top:14px">Two dimensions &mdash; Leadership (what executives know &amp; say) and Company (what the org prioritizes &amp; builds) &mdash; split into four scoring pillars.</div>
-      </div>
-      <div class="method-stack">
-        <div class="dimension-header">
-          <div><span class="dim-label">Leadership</span><span class="dim-tag">What executives know &amp; say</span></div>
-          <div><span class="dim-label">Company</span><span class="dim-tag">What the org prioritizes &amp; builds</span></div>
-        </div>
-        <div class="pillar-bar">
-          <div class="literacy"><div class="name">AI LITERACY</div><div class="verb">KNOW</div></div>
-          <div class="advocacy"><div class="name">AI ADVOCACY</div><div class="verb">SAY</div></div>
-          <div class="orientation"><div class="name">AI ORIENTATION</div><div class="verb">PRIORITIZE</div></div>
-          <div class="implementation"><div class="name">AI IMPLEMENTATION</div><div class="verb">BUILD</div></div>
-        </div>
-        <div class="method-grid">
-          <div class="method-card lit">
-            <div class="method-card__pillar">AI Literacy</div>
-            <div class="method-card__title">What executives know.</div>
-            <div class="method-card__desc">The share of C-suite and board members demonstrating AI literacy, scored from credentialed backgrounds, public statements, and earnings-call language.</div>
-          </div>
-          <div class="method-card adv">
-            <div class="method-card__pillar">AI Advocacy</div>
-            <div class="method-card__title">What executives say.</div>
-            <div class="method-card__desc">Volume and substance of AI-related leadership communication on LinkedIn, in interviews, in keynotes, and at industry events.</div>
-          </div>
-          <div class="method-card ori">
-            <div class="method-card__pillar">AI Orientation</div>
-            <div class="method-card__title">What the org prioritizes.</div>
-            <div class="method-card__desc">Strategic AI commitment across six channels &mdash; corporate LinkedIn posts, AI job ads, earnings calls, strategy, partnerships, and governance.</div>
-          </div>
-          <div class="method-card imp">
-            <div class="method-card__pillar">AI Implementation</div>
-            <div class="method-card__title">What the org builds.</div>
-            <div class="method-card__desc">Tangible AI deployment across six channels &mdash; products shipped, customer-facing AI, internal tools, patents, case studies, and website signals.</div>
-          </div>
-        </div>
-      </div>
-      <div class="method-cta">
-        <span class="arrow">&rarr;</span> View the full methodology at <strong>aideinstitute.com/methodology</strong>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <div class="tag">Tracking the AI that counts.</div>
-      <div class="src">Full methodology paper at aideinstitute.com/methodology · v2.1, May 2026</div>
-      <div class="url">aideinstitute.com</div>
-    </div>
-  </section>
-
-  <!-- ───────────────────── 07 · OUR DATA SOURCES ───────────────────── -->
-  <section class="data-slide" data-label="Data">
-    <div class="slide-header">
-      <img class="logo" src="assets/aide-logo-horizontal.png" alt="AIDE">
-      <div class="eyebrow">Section 05<span class="dot"></span>Our Data</div>
-    </div>
-    <div class="slide-body">
-      <div class="data-headline">
-        <div>
-          <div class="s-eyebrow">Our Data Sources</div>
-          <div class="s-title">Objective measurement at <span class="accent">scale.</span></div>
-        </div>
-      </div>
-      <div class="data-dimension-header">
-        <div>Leadership<span class="dim-tag">What executives know &amp; say</span></div>
-        <div>Company<span class="dim-tag">What the org prioritizes &amp; builds</span></div>
-      </div>
-      <div class="pillar-grid">
-        <div class="pillar-col lit">
-          <div class="pillar-col__name">Literacy</div>
-          <div class="pillar-col__verb">KNOW</div>
-          <div class="pillar-col__desc">Board &amp; top management AI experience, skills, and formation.</div>
-          <div class="pillar-col__sources">
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="src__label">Interviews</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><span class="src__label">Keynote Speeches</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg></span><span class="src__label">Panel Discussions</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></span><span class="src__label">Podcasts</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">White Papers</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span><span class="src__label">LinkedIn Profiles</span></div>
-          </div>
-        </div>
-        <div class="pillar-col adv">
-          <div class="pillar-col__name">Advocacy</div>
-          <div class="pillar-col__verb">SAY</div>
-          <div class="pillar-col__desc">Board &amp; top management public messaging on AI.</div>
-          <div class="pillar-col__sources">
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="src__label">Interviews</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><span class="src__label">Keynote Speeches</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg></span><span class="src__label">Panel Discussions</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></span><span class="src__label">Podcasts</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">White Papers</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="src__label">LinkedIn Posts</span></div>
-          </div>
-        </div>
-        <div class="pillar-col ori">
-          <div class="pillar-col__name">Orientation</div>
-          <div class="pillar-col__verb">PRIORITIZE</div>
-          <div class="pillar-col__desc">Strategy, partnerships, acquisitions, workforce, structure.</div>
-          <div class="pillar-col__sources">
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></span><span class="src__label">Analyst Reports</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="src__label">Earnings Calls</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span><span class="src__label">Job Postings</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="src__label">Press Releases</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span><span class="src__label">Videos</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg></span><span class="src__label">LinkedIn Company Posts</span></div>
-          </div>
-        </div>
-        <div class="pillar-col imp">
-          <div class="pillar-col__name">Implementation</div>
-          <div class="pillar-col__verb">BUILD</div>
-          <div class="pillar-col__desc">AI products, AI in operations, deployment evidence.</div>
-          <div class="pillar-col__sources">
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">Annual Reports</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span><span class="src__label">Case Studies</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg></span><span class="src__label">Patents USPTO</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="src__label">Press Releases</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span><span class="src__label">Videos</span></div>
-            <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg></span><span class="src__label">Website Content</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <div class="tag">Tracking the AI that counts.</div>
-      <div class="src">Hybrid pipeline: automated OSINT + structured AI Research Agents</div>
-      <div class="url">aideinstitute.com/methodology</div>
-    </div>
-  </section>
-
   <!-- ───────────────────── 06 · EVIDENCE BASE (WOW) ───────────────────── -->
   <section class="evidence-slide" data-label="Evidence Base">
     <div class="slide-header">
@@ -3120,6 +3303,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="evidence-headline">
         <div class="s-eyebrow">Data Coverage · 2026</div>
         <div class="s-title">The evidence base. <span class="accent">S&amp;P 500.</span></div>
+        <div class="evidence-scope">
+          <span class="evidence-scope__badge">2025 data</span>
+          <span class="evidence-scope__text">Full-year 2025 inputs across all four pillars &mdash; <strong>regular insights planned on a quarterly cadence through 2026 and beyond.</strong></span>
+        </div>
       </div>
       <div class="evidence-hero">
         <div class="evidence-hero__left">
@@ -3223,6 +3410,116 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
     </div>
   </section>
 
+  <!-- ───────────────────── 05 · METHODOLOGY: 4 PILLARS ───────────────────── -->
+  <section class="method-slide" data-label="Methodology">
+    <div class="slide-header">
+      <img class="logo" src="assets/aide-logo-horizontal.png" alt="AIDE">
+      <a class="method-cta" href="https://aideinstitute.com/methodology" target="_blank" rel="noopener">
+        <span class="arrow">&rarr;</span> View the full methodology at <strong>aideinstitute.com/methodology</strong>
+      </a>
+    </div>
+    <div class="slide-body">
+      <div>
+        <div class="s-eyebrow" style="margin-bottom:14px">Our Methodology</div>
+        <div class="s-title" style="font-size:60px">The four pillars of AI maturity.</div>
+        <div class="s-sub" style="font-size:20px;margin-top:14px">Two dimensions &mdash; Leadership (what executives know &amp; say) and Company (what the org prioritizes &amp; builds) &mdash; split into four scoring pillars.</div>
+      </div>
+      <div class="method-stack">
+        <div class="dimension-header">
+          <div><span class="dim-label">Leadership</span><span class="dim-tag">What executives know &amp; say</span></div>
+          <div><span class="dim-label">Company</span><span class="dim-tag">What the org prioritizes &amp; builds</span></div>
+        </div>
+        <div class="pillar-bar">
+          <div class="literacy"><div class="name">AI LITERACY</div><div class="verb">KNOW</div></div>
+          <div class="advocacy"><div class="name">AI ADVOCACY</div><div class="verb">SAY</div></div>
+          <div class="orientation"><div class="name">AI ORIENTATION</div><div class="verb">PRIORITIZE</div></div>
+          <div class="implementation"><div class="name">AI IMPLEMENTATION</div><div class="verb">BUILD</div></div>
+        </div>
+        <div class="method-grid">
+          <div class="method-card lit">
+            <div class="method-card__pillar">AI Literacy</div>
+            <div class="method-card__title">What executives know.</div>
+            <div class="method-card__desc">The share of C-suite and board members demonstrating AI literacy, scored from credentialed backgrounds, public statements, and earnings-call language.</div>
+          </div>
+          <div class="method-card adv">
+            <div class="method-card__pillar">AI Advocacy</div>
+            <div class="method-card__title">What executives say.</div>
+            <div class="method-card__desc">Volume and substance of AI-related leadership communication on LinkedIn, in interviews, in keynotes, and at industry events.</div>
+          </div>
+          <div class="method-card ori">
+            <div class="method-card__pillar">AI Orientation</div>
+            <div class="method-card__title">What the org prioritizes.</div>
+            <div class="method-card__desc">Strategic AI commitment across six channels &mdash; corporate LinkedIn posts, AI job ads, earnings calls, strategy, partnerships, and governance.</div>
+          </div>
+          <div class="method-card imp">
+            <div class="method-card__pillar">AI Implementation</div>
+            <div class="method-card__title">What the org builds.</div>
+            <div class="method-card__desc">Tangible AI deployment across six channels &mdash; products shipped, customer-facing AI, internal tools, patents, case studies, and website signals.</div>
+          </div>
+        </div>
+        <div class="method-sources">
+          <div class="method-sources__col lit">
+            <div class="method-sources__head">Data sources</div>
+            <div class="method-sources__list">
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="src__label">Interviews</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><span class="src__label">Keynote Speeches</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg></span><span class="src__label">Panel Discussions</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></span><span class="src__label">Podcasts</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">White Papers</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span><span class="src__label">LinkedIn Profiles</span></div>
+            </div>
+          </div>
+          <div class="method-sources__col adv">
+            <div class="method-sources__head">Data sources</div>
+            <div class="method-sources__list">
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><span class="src__label">Interviews</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><span class="src__label">Keynote Speeches</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg></span><span class="src__label">Panel Discussions</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></svg></span><span class="src__label">Podcasts</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">White Papers</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><span class="src__label">LinkedIn Posts</span></div>
+            </div>
+          </div>
+          <div class="method-sources__col ori">
+            <div class="method-sources__head">Data sources</div>
+            <div class="method-sources__list">
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></span><span class="src__label">Analyst Reports</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span><span class="src__label">Earnings Calls</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span><span class="src__label">Job Postings</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="src__label">Press Releases</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span><span class="src__label">Videos</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg></span><span class="src__label">LinkedIn Company Posts</span></div>
+            </div>
+          </div>
+          <div class="method-sources__col imp">
+            <div class="method-sources__head">Data sources</div>
+            <div class="method-sources__list">
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span><span class="src__label">Annual Reports</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span class="src__label">Articles</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg></span><span class="src__label">Case Studies</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/></svg></span><span class="src__label">Patents USPTO</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="src__label">Press Releases</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span><span class="src__label">Publications</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span><span class="src__label">Videos</span></div>
+              <div class="src"><span class="src__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg></span><span class="src__label">Website Content</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <div class="tag">Tracking the AI that counts.</div>
+      <div class="src">Full methodology paper at aideinstitute.com/methodology · v2.1, May 2026</div>
+      <div class="url">aideinstitute.com</div>
+    </div>
+  </section>
+
   <!-- ───────────────────── 07a · SECTION DIVIDER · THE RESULTS ───────────────────── -->
   <section class="dark divider-slide" data-label="The Results">
     <div class="divider-slide__center">
@@ -3230,48 +3527,23 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="divider-slide__bar"></div>
       <div class="divider-slide__title">The <span class="accent">Results.</span></div>
       <div class="divider-slide__sub">Sector-by-sector breakdown of the AIDE Index across the S&amp;P 500.</div>
+
+      <ul class="divider-slide__obs">
+        <li><strong>AI maturity is highly uneven.</strong> Information Technology sits in a class of its own &mdash; joined by Financials, Communication Services, and Health Care above the Trailblazer threshold. Materials, Energy, and Real Estate trail across the board.</li>
+        <li><strong>Leadership outruns operations.</strong> For most sectors, executive voice on AI still outpaces what the organization has actually shipped.</li>
+        <li><strong>The middle is crowded.</strong> Industrials, Consumer Discretionary, and Consumer Staples cluster tightly &mdash; the gap to Trailblazer status is small for many, but real.</li>
+      </ul>
+
+      <div class="divider-slide__method">
+        <span class="divider-slide__method-badge">A note on the method</span>
+        Each sector that follows is ranked <strong>within itself</strong> &mdash; against its direct S&amp;P 500 peers, not the full 500. Sector economics differ enough (a Real Estate firm is not a Software firm) that apples-to-apples cross-sector ranking distorts the picture. Within-sector scoring keeps each company compared to the right cohort.
+        <span class="divider-slide__method-callout"><strong>When sectors are compared to each other</strong> &mdash; Trailblazer groupings, the matrix view on the next slide, and any other cross-sector statement &mdash; we use AIDE Index scores <strong>normalized against the entire S&amp;P 500</strong>, so every sector is measured on the same scale.</span>
+      </div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
       <div class="url">aideinstitute.com</div>
       <div class="src">Source: AIDE Institute &middot; 2026 AIDE Index S&amp;P 500</div>
-    </div>
-  </section>
-
-  <!-- ───────────────────── 07 · SECTOR OVERVIEW (high level) ───────────────────── -->
-  <section class="sector-overview-slide" data-label="Sectors · Overview">
-    <div class="slide-header">
-      <img class="logo" src="assets/aide-logo-horizontal.png" alt="AIDE">
-      <div class="eyebrow">AIDE Index<span class="dot"></span>S&amp;P 500 by GICS Sector · 2026-Q2</div>
-    </div>
-    <div class="slide-body">
-      <div>
-        <div class="s-eyebrow" style="margin-bottom:14px">High-Level Sector View</div>
-        <div class="s-title">Information Technology leads. Materials trails by 42 points.</div>
-        <div class="s-sub" style="font-size:20px;margin-top:14px">Sector median AIDE Index, cohort-normalized 0&ndash;100, decomposed into Leadership (Know + Say) and Company (Prioritize + Build).</div>
-      </div>
-      <div class="stack-rows">
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-it" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg><span class="sector-name">Information Technology</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:32.92"></div><div class="stack-row__seg company" style="flex:30.30"></div><div class="stack-row__seg" style="flex:36.78;background:transparent"></div></div><div class="stack-row__total">64</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-comm-services" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg><span class="sector-name">Communication Services</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:25.02"></div><div class="stack-row__seg company" style="flex:25.51"></div><div class="stack-row__seg" style="flex:49.46;background:transparent"></div></div><div class="stack-row__total">49</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-financials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg><span class="sector-name">Financials</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:20.14"></div><div class="stack-row__seg company" style="flex:25.00"></div><div class="stack-row__seg" style="flex:54.86;background:transparent"></div></div><div class="stack-row__total">46</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-health-care" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg><span class="sector-name">Health Care</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:19.06"></div><div class="stack-row__seg company" style="flex:23.39"></div><div class="stack-row__seg" style="flex:57.55;background:transparent"></div></div><div class="stack-row__total">43</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-industrials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg><span class="sector-name">Industrials</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:16.75"></div><div class="stack-row__seg company" style="flex:22.50"></div><div class="stack-row__seg" style="flex:60.75;background:transparent"></div></div><div class="stack-row__total">41</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-cons-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="sector-name">Consumer Discretionary</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:17.00"></div><div class="stack-row__seg company" style="flex:21.61"></div><div class="stack-row__seg" style="flex:61.39;background:transparent"></div></div><div class="stack-row__total">39</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-cons-staples" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="sector-name">Consumer Staples</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:16.63"></div><div class="stack-row__seg company" style="flex:20.00"></div><div class="stack-row__seg" style="flex:63.37;background:transparent"></div></div><div class="stack-row__total">36</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-utilities" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="sector-name">Utilities</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:11.33"></div><div class="stack-row__seg company" style="flex:19.05"></div><div class="stack-row__seg" style="flex:69.62;background:transparent"></div></div><div class="stack-row__total">29</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-energy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg><span class="sector-name">Energy</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:9.98"></div><div class="stack-row__seg company" style="flex:16.79"></div><div class="stack-row__seg" style="flex:73.23;background:transparent"></div></div><div class="stack-row__total">26</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-real-estate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="sector-name">Real Estate</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:10.12"></div><div class="stack-row__seg company" style="flex:15.60"></div><div class="stack-row__seg" style="flex:74.29;background:transparent"></div></div><div class="stack-row__total">25</div></div>
-        <div class="stack-row"><div class="stack-row__label"><svg class="sector-icon sec-materials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 5-3"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg><span class="sector-name">Materials</span></div><div class="stack-row__bar"><div class="stack-row__seg leadership" style="flex:7.09"></div><div class="stack-row__seg company" style="flex:16.81"></div><div class="stack-row__seg" style="flex:76.09;background:transparent"></div></div><div class="stack-row__total">22</div></div>
-      </div>
-      <div class="stack-legend">
-        <div class="legend-item" style="color:var(--pillar-advocacy-ink)"><div class="dot" style="background:var(--pillar-advocacy)"></div>Leadership (Know + Say)</div>
-        <div class="legend-item" style="color:var(--pillar-implementation-ink)"><div class="dot" style="background:var(--pillar-implementation)"></div>Company (Prioritize + Build)</div>
-      </div>
-    </div>
-    <div class="slide-footer">
-      <div class="tag">Tracking the AI that counts.</div>
-      <div class="src">Source: AIDE Index S&amp;P 500 · 2026-Q2 · cohort-normalized sector medians (Methodology §5.1)</div>
-      <div class="url">aideinstitute.com</div>
     </div>
   </section>
 
@@ -3287,7 +3559,21 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="matrix-headline">
         <div class="s-eyebrow">The AIDE Matrix<br>Sector View</div>
         <div class="s-title">Leadership<br><span class="accent">vs. Company.</span></div>
-        <div class="s-sub" style="font-size:20px;margin-top:14px">Each GICS sector plotted by its median cohort-normalized Leadership and Company scores. Bubble area &propto; number of S&amp;P 500 constituents; quadrant dividers are the cohort medians.</div>
+        <div class="matrix-intro">Each bubble is one sector. Position shows how its leaders talk about AI (horizontal) vs. what their companies actually build (vertical). Bigger bubbles = more S&amp;P 500 companies in that sector.</div>
+
+        <ul class="matrix-takeaways">
+          <li><strong>Information Technology is in a class of its own.</strong> No other sector is even close on both leadership voice and operational AI.</li>
+          <li><strong>Financials, Communication Services, and Health Care punch above expectations.</strong> All three clear the Trailblazer threshold on both axes &mdash; stronger than many would assume.</li>
+          <li><strong>The middle pack clusters tight.</strong> Industrials, Consumer Discretionary, and Consumer Staples sit near the dividers &mdash; small distance to Trailblazer status, but not there yet.</li>
+          <li><strong>Heavy industries lag.</strong> Materials, Energy, and Real Estate are quiet on leadership <em>and</em> light on operations.</li>
+        </ul>
+
+        <div class="matrix-archetypes">
+          <div class="matrix-arch matrix-arch--trailblazers"><span class="dot"></span><strong>Trailblazers</strong> &mdash; talking <em>and</em> shipping</div>
+          <div class="matrix-arch matrix-arch--stealth"><span class="dot"></span><strong>Stealth Adopters</strong> &mdash; shipping quietly, leaders not yet vocal</div>
+          <div class="matrix-arch matrix-arch--visionaries"><span class="dot"></span><strong>Visionaries</strong> &mdash; leaders talking, organization not yet building</div>
+          <div class="matrix-arch matrix-arch--emerging"><span class="dot"></span><strong>Emerging</strong> &mdash; quiet on AI, light on AI</div>
+        </div>
       </div>
     </div>
     <div class="slide-footer">
@@ -3304,10 +3590,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 01 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-it" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg><span class="sector-name">Information Technology</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-it" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Information Technology · n = 70</div>
-        <div class="s-title">The pacesetter.</div>
-        <div class="s-sub">Information Technology leads the cohort by a wide margin — the only sector deep in the AI Trailblazers quadrant. <em>43% of the 70 IT companies are AI Trailblazers</em>; software and semiconductors anchor the top.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-it" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Information Technology</div>
+        <div class="s-title">Doing as much as saying.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Tech leading is not the surprise &mdash; the surprise is that the data shows real <em>execution</em>, not just press cycles. Microsoft, Salesforce, ServiceNow, Adobe, and Palo Alto Networks are patenting, hiring AI roles, and shipping production deployments at a pace no other sector matches. The &ldquo;it&rsquo;s all hype&rsquo;&rsquo; counter-narrative does not survive contact with the evidence base.</div>
         <div class="score-card">
           <div class="score-card__num">64</div>
           <div class="score-card__meta">
@@ -3324,17 +3610,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:44%"></div></div><div class="pillar-bar-row__val">44</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:53%"></div></div><div class="pillar-bar-row__val">53</div></div>
         </div>
-        <div class="takeaway">Tech is the only sector with both median Leadership (65.8) and median Company (60.6) above the cohort dividers — the AIDE-frontier of the S&amp;P 500.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Microsoft</div><div class="leader__sub">Systems Software</div></div><div class="leader__score">94</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Salesforce</div><div class="leader__sub">Application Software</div></div><div class="leader__score">89</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">ServiceNow</div><div class="leader__sub">Systems Software</div></div><div class="leader__score">85</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Adobe Inc.</div><div class="leader__sub">Application Software</div></div><div class="leader__score">83</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">Palo Alto Networks</div><div class="leader__sub">Systems Software</div></div><div class="leader__score">82</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 70</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">10%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">43%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3342,6 +3628,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">7%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Worth flagging within IT: Apple lands as a Stealth Adopter (55) &mdash; quietly executing without leadership voice. Sandisk (45) and Gartner (36) sit in Emerging despite their tech orientation &mdash; both worth a closer look against the four-pillar definition.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3359,10 +3646,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 02 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-comm-services" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg><span class="sector-name">Communication Services</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-comm-services" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Communication Services · n = 20</div>
-        <div class="s-title">Two giants, then a long tail.</div>
-        <div class="s-sub">Alphabet and Meta sit at 92–97 on the within-sector index — the rest of the 20-company cohort sits well below. The sector median lands just above the cohort midpoint <em>despite the two outliers</em>.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-comm-services" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Communication Services</div>
+        <div class="s-title">Big builders, quiet talkers.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">The headline isn&rsquo;t &ldquo;two giants and a long tail.&rdquo; The real signal is the <em>pillar split</em>: Advocacy and Implementation are running well ahead of Literacy and Orientation across this sector. Companies are talking about AI in public and shipping product, but executive-level literacy and stated strategic priorities haven&rsquo;t caught up.</div>
         <div class="score-card">
           <div class="score-card__num">49</div>
           <div class="score-card__meta">
@@ -3379,17 +3666,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:27%"></div></div><div class="pillar-bar-row__val">27</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:42%"></div></div><div class="pillar-bar-row__val">42</div></div>
         </div>
-        <div class="takeaway">Two AI-native platforms hold up an otherwise traditional telco-and-media sector. Median is brittle; remove Alphabet and Meta and the sector collapses.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
-          <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Alphabet Inc.</div><div class="leader__sub">Interactive Media &amp; Services</div></div><div class="leader__score">97</div></div>
-          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Meta Platforms</div><div class="leader__sub">Interactive Media &amp; Services</div></div><div class="leader__score">92</div></div>
+          <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Alphabet Inc.</div><div class="leader__sub">Internet Media</div></div><div class="leader__score">97</div></div>
+          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Meta Platforms</div><div class="leader__sub">Internet Media</div></div><div class="leader__score">92</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Verizon</div><div class="leader__sub">Telecom</div></div><div class="leader__score">60</div></div>
-          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Netflix</div><div class="leader__sub">Movies &amp; Entertainment</div></div><div class="leader__score">60</div></div>
+          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Netflix</div><div class="leader__sub">Entertainment</div></div><div class="leader__score">60</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">T-Mobile US</div><div class="leader__sub">Wireless</div></div><div class="leader__score">56</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 20</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">10%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">40%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3397,6 +3684,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">10%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Alphabet and Meta read as tech-forward but sit here by GICS, not by accident. Among the telcos, T-Mobile and Verizon land notably ahead of AT&amp;T; Comcast surfaces as a Stealth Adopter; Fox sits at the bottom of the sector.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3414,10 +3702,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 03 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-financials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg><span class="sector-name">Financials</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-financials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Financials · n = 76</div>
-        <div class="s-title">Payments lead. Banks follow.</div>
-        <div class="s-sub">Payment networks (Block, Mastercard, Visa, Nasdaq) take the top four spots within the sector. <em>53% of the 76 Financials are AI Trailblazers or Stealth Adopters</em> — measurable operational integration.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-financials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Financials</div>
+        <div class="s-title">Payments lead. Banks follow.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Financials outperforms its reputation as an AI laggard &mdash; this sector is genuinely <em>building</em>, not just talking. Payment networks (Block, Mastercard, Visa, Nasdaq) take the top four spots within sector; large banks follow close behind. The ~20-point gap between the leading and lagging pillars is real but not alarming once you account for the regulatory environment.</div>
         <div class="score-card">
           <div class="score-card__num">46</div>
           <div class="score-card__meta">
@@ -3434,17 +3722,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:47%"></div></div><div class="pillar-bar-row__val">47</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:64%"></div></div><div class="pillar-bar-row__val">64</div></div>
         </div>
-        <div class="takeaway">Payment networks have moved AI from pilot to production. Median Company score (50.0) clears the cohort divider — Leadership (40.3) does not.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Block, Inc.</div><div class="leader__sub">Payments</div></div><div class="leader__score">89</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Mastercard</div><div class="leader__sub">Payments</div></div><div class="leader__score">86</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Visa Inc.</div><div class="leader__sub">Payments</div></div><div class="leader__score">84</div></div>
-          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Nasdaq, Inc.</div><div class="leader__sub">Financial Exchanges &amp; Data</div></div><div class="leader__score">84</div></div>
+          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Nasdaq, Inc.</div><div class="leader__sub">Exchanges &amp; Data</div></div><div class="leader__score">84</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">JPMorgan Chase</div><div class="leader__sub">Banking</div></div><div class="leader__score">79</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 76</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">12%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">41%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3452,6 +3740,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">9%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">The narrative that financial services is structurally slow on AI doesn&rsquo;t hold up against the evidence base. Payment infrastructure has moved AI from pilot to production at a pace closer to Tech than to Industrials.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3469,10 +3758,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 04 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-health-care" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg><span class="sector-name">Health Care</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-health-care" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Health Care · n = 59</div>
-        <div class="s-title">Pharma sets the pace.</div>
-        <div class="s-sub">Johnson &amp; Johnson tops the sector, followed by three medical-device and life-sciences names. <em>41% are AI Trailblazers</em> — but the long tail of providers and biotechs drags the median.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-health-care" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Health Care</div>
+        <div class="s-title">Pharma sets the pace.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Johnson &amp; Johnson tops the sector, followed by three medical-device and life-sciences names &mdash; a clean pacer line at the top. The long tail of providers, biotechs, and managed-care lifers drags the median: many score on Advocacy and Orientation without shipping observable Implementation evidence. Within 2 points of the Trailblazer quadrant overall.</div>
         <div class="score-card">
           <div class="score-card__num">43</div>
           <div class="score-card__meta">
@@ -3489,17 +3778,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:54%"></div></div><div class="pillar-bar-row__val">54</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:56%"></div></div><div class="pillar-bar-row__val">56</div></div>
         </div>
-        <div class="takeaway">Med-device leaders have the cleanest evidence base. Pharma still leans on Advocacy more than Implementation. Within 2 points of the Trailblazer quadrant.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Johnson &amp; Johnson</div><div class="leader__sub">Pharmaceuticals</div></div><div class="leader__score">87</div></div>
-          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">GE HealthCare</div><div class="leader__sub">Health Care Equipment</div></div><div class="leader__score">84</div></div>
-          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Medtronic</div><div class="leader__sub">Health Care Equipment</div></div><div class="leader__score">81</div></div>
-          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">IQVIA</div><div class="leader__sub">Life Sciences Tools &amp; Services</div></div><div class="leader__score">81</div></div>
+          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">GE HealthCare</div><div class="leader__sub">Med Devices</div></div><div class="leader__score">84</div></div>
+          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Medtronic</div><div class="leader__sub">Med Devices</div></div><div class="leader__score">81</div></div>
+          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">IQVIA</div><div class="leader__sub">Life Sciences</div></div><div class="leader__score">81</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">UnitedHealth Group</div><div class="leader__sub">Managed Care</div></div><div class="leader__score">78</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 59</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">12%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">41%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3507,6 +3796,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">10%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">The story is the gap between large pharma + med-device leaders and the long tail of smaller biotechs and providers. Regulatory and clinical validation cycles keep operational deployment behind the narrative.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3524,10 +3814,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 05 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-industrials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg><span class="sector-name">Industrials</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-industrials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Industrials · n = 80</div>
-        <div class="s-title">Defense and automation lead.</div>
-        <div class="s-sub">Axon, Rockwell, Uber, and Johnson Controls top the 80-company sector. <em>42% Trailblazers, 41% Emerging</em> — the largest sector in the index is also the most bifurcated.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-industrials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Industrials</div>
+        <div class="s-title">Axon, Rockwell, Uber up front.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Axon Enterprise &mdash; the public-safety technology company behind Taser and body-worn cameras &mdash; is the clear standout, in part because its product line has been AI-native for years. Rockwell Automation, Uber, Johnson Controls, and Lockheed Martin round out the top of an 80-company sector. The Emerging Adopter cluster at the bottom is dominated by legacy machinery, rail, and construction-engineering names where AI hiring and patenting are structurally lower.</div>
         <div class="score-card">
           <div class="score-card__num">41</div>
           <div class="score-card__meta">
@@ -3544,17 +3834,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:50%"></div></div><div class="pillar-bar-row__val">50</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:61%"></div></div><div class="pillar-bar-row__val">61</div></div>
         </div>
-        <div class="takeaway">Axon's 95 within-sector score leads the largest cohort. Defense, electrical, and building-systems names show real AI footprint; legacy machinery does not.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Axon Enterprise</div><div class="leader__sub">Aerospace &amp; Defense</div></div><div class="leader__score">95</div></div>
-          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Rockwell Automation</div><div class="leader__sub">Electrical Components &amp; Equipment</div></div><div class="leader__score">87</div></div>
-          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Uber</div><div class="leader__sub">Passenger Ground Transportation</div></div><div class="leader__score">85</div></div>
+          <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Rockwell Automation</div><div class="leader__sub">Electrical Equip.</div></div><div class="leader__score">87</div></div>
+          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Uber</div><div class="leader__sub">Mobility</div></div><div class="leader__score">85</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Johnson Controls</div><div class="leader__sub">Building Products</div></div><div class="leader__score">84</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">Lockheed Martin</div><div class="leader__sub">Aerospace &amp; Defense</div></div><div class="leader__score">83</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 80</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">9%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">42%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3562,6 +3852,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">8%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Industrials is more bifurcated than any other sector &mdash; the gap between the top five and the Emerging cluster is wider here than the within-sector spread anywhere else in the index.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3579,10 +3870,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 06 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-cons-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="sector-name">Consumer Discretionary</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-cons-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Consumer Discretionary · n = 48</div>
-        <div class="s-title">Pioneers and laggards.</div>
-        <div class="s-sub">Amazon dominates the sector with a 99 within-sector AIDE score. Marketplaces, food-delivery, and travel platforms anchor the top — the <em>vast majority of the 48 names sit at the median or below</em>.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-cons-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Consumer Discretionary</div>
+        <div class="s-title">Amazon, and then everyone else.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Amazon scores a near-perfect 99 within-sector &mdash; remove it and the sector median drops noticeably. eBay, DoorDash, Expedia, and Tesla anchor a credible top five, but the long tail of homebuilders, automotive retailers, and apparel makers shows limited AI footprint. The competitive window is still wide open for the rest of the sector to catch up.</div>
         <div class="score-card">
           <div class="score-card__num">39</div>
           <div class="score-card__meta">
@@ -3599,17 +3890,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:53%"></div></div><div class="pillar-bar-row__val">53</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:41%"></div></div><div class="pillar-bar-row__val">41</div></div>
         </div>
-        <div class="takeaway">Without Amazon, the sector median would drop noticeably. The long tail of retailers and automakers shows limited AI footprint.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Amazon</div><div class="leader__sub">Broadline Retail</div></div><div class="leader__score">99</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">eBay Inc.</div><div class="leader__sub">Broadline Retail</div></div><div class="leader__score">87</div></div>
-          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">DoorDash</div><div class="leader__sub">Specialized Consumer Services</div></div><div class="leader__score">81</div></div>
-          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Expedia Group</div><div class="leader__sub">Hotels, Resorts &amp; Cruise Lines</div></div><div class="leader__score">80</div></div>
+          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">DoorDash</div><div class="leader__sub">Consumer Services</div></div><div class="leader__score">81</div></div>
+          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Expedia Group</div><div class="leader__sub">Hotels &amp; Travel</div></div><div class="leader__score">80</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">Tesla, Inc.</div><div class="leader__sub">Automakers</div></div><div class="leader__score">78</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 48</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">8%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">44%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3617,6 +3908,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">6%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">&ldquo;Outlier effect&rdquo; warning: Amazon&rsquo;s dominance distorts the sector median upward. Looking at the median minus Amazon gives a more accurate picture of where typical Consumer Discretionary names actually sit.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3634,10 +3926,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 07 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-cons-staples" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="sector-name">Consumer Staples</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-cons-staples" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Consumer Staples · n = 37</div>
-        <div class="s-title">Walmart in a league of its own.</div>
-        <div class="s-sub">Walmart leads the sector by ~20 points within-sector. The mass-retail / personal-care top of the sector lifts the median; <em>41% of the 37 names remain Emerging Adopters</em>.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-cons-staples" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Consumer Staples</div>
+        <div class="s-title">Walmart in a league of its own.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Walmart scores 98 within-sector &mdash; 20 points clear of Target at 78. That gap is one of the widest leader-to-second positions in the entire index, and the cleanest visible example of a single company moving its peer group&rsquo;s reference frame. P&amp;G, PepsiCo, and CVS Health round out the top five; 41% of the 37 names remain Emerging Adopters.</div>
         <div class="score-card">
           <div class="score-card__num">36</div>
           <div class="score-card__meta">
@@ -3654,17 +3946,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:67%"></div></div><div class="pillar-bar-row__val">67</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:38%"></div></div><div class="pillar-bar-row__val">38</div></div>
         </div>
-        <div class="takeaway">A handful of mass-retailers and CPG leaders pull the median up. Walmart's 98 within-sector score is one of the widest leader-to-pack gaps in the index.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Walmart</div><div class="leader__sub">Mass Retail</div></div><div class="leader__score">98</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Target Corporation</div><div class="leader__sub">Mass Retail</div></div><div class="leader__score">78</div></div>
-          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Procter &amp; Gamble</div><div class="leader__sub">Personal Care Products</div></div><div class="leader__score">74</div></div>
+          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Procter &amp; Gamble</div><div class="leader__sub">Personal Care</div></div><div class="leader__score">74</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">PepsiCo</div><div class="leader__sub">Beverages</div></div><div class="leader__score">73</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">CVS Health</div><div class="leader__sub">Pharmacy</div></div><div class="leader__score">69</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 37</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">8%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">43%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3672,6 +3964,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">8%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">The Walmart-to-Target gap is the headline. Both run consumer-staples retail at similar scale, but Walmart&rsquo;s AI footprint &mdash; hiring, patents, customer-facing deployments &mdash; sits in a different tier entirely.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3689,10 +3982,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 08 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-utilities" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span class="sector-name">Utilities</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-utilities" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Utilities · n = 31</div>
-        <div class="s-title">Quiet operators on the grid.</div>
-        <div class="s-sub">AES, Duke, PG&amp;E and Exelon top the 31-company sector. <em>Stealth Adopter share is the highest in the cohort at 19%</em> — utilities are deploying AI faster than they are talking about it.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-utilities" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Utilities</div>
+        <div class="s-title">Quiet operators on the grid.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">AES, Duke, PG&amp;E, Exelon, and Entergy top the 31-company sector &mdash; led by power producers and electric utilities investing in grid intelligence and load forecasting. Stealth Adopter share is the highest in the cohort, which means utilities are deploying AI faster than they are talking about it. Median Company score (38) outpaces median Leadership score (23) sector-wide.</div>
         <div class="score-card">
           <div class="score-card__num">29</div>
           <div class="score-card__meta">
@@ -3709,17 +4002,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:55%"></div></div><div class="pillar-bar-row__val">55</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:55%"></div></div><div class="pillar-bar-row__val">55</div></div>
         </div>
-        <div class="takeaway">Stealth Adopters at scale. The sector's median Company score (38.1) outpaces its Leadership score (22.7) — operations are ahead of the boardroom.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">AES Corporation</div><div class="leader__sub">IPPs</div></div><div class="leader__score">95</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Duke Energy</div><div class="leader__sub">Electric Utilities</div></div><div class="leader__score">83</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">PG&amp;E Corporation</div><div class="leader__sub">Multi-Utilities</div></div><div class="leader__score">77</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Exelon</div><div class="leader__sub">Electric Utilities</div></div><div class="leader__score">73</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">Entergy</div><div class="leader__sub">Electric Utilities</div></div><div class="leader__score">71</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 31</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">19%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">32%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3727,6 +4020,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">19%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Stealth-Adopter sector: operations are ahead of the boardroom. Grid management and load forecasting are where AI shows up first, well before executive AI narratives catch up.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3744,10 +4038,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 09 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-energy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg><span class="sector-name">Energy</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-energy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Energy · n = 22</div>
-        <div class="s-title">Services, not the majors.</div>
-        <div class="s-sub">Oilfield-service names take 3 of the top 4 spots within sector — Schlumberger, Baker Hughes, Halliburton. The integrated majors trail their own service providers. <em>Schlumberger posts the widest within-sector lead in the index</em>.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-energy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2a2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Energy</div>
+        <div class="s-title">The Stealth Adopter sector.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Energy contains the <em>highest share of Stealth Adopters in the entire S&amp;P 500</em>: companies that are quietly building AI capability while their leadership stays publicly quiet about it. Oilfield-services names &mdash; Schlumberger, Baker Hughes, Halliburton &mdash; dominate the top of the sector. The integrated majors trail their own service providers, with Chevron (76) and ExxonMobil (62) landing close enough together that their relative positioning will be a talking point.</div>
         <div class="score-card">
           <div class="score-card__num">26</div>
           <div class="score-card__meta">
@@ -3764,17 +4058,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:55%"></div></div><div class="pillar-bar-row__val">55</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:37%"></div></div><div class="pillar-bar-row__val">37</div></div>
         </div>
-        <div class="takeaway">Oilfield services dominate the sector. The integrated majors are visible AI talkers but produce less observable build evidence than their own suppliers.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Schlumberger</div><div class="leader__sub">Oilfield Services</div></div><div class="leader__score">99</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Baker Hughes</div><div class="leader__sub">Oilfield Services</div></div><div class="leader__score">88</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Halliburton</div><div class="leader__sub">Oilfield Services</div></div><div class="leader__score">82</div></div>
-          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Chevron Corporation</div><div class="leader__sub">Integrated Oil &amp; Gas</div></div><div class="leader__score">76</div></div>
+          <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Chevron Corporation</div><div class="leader__sub">Oil &amp; Gas</div></div><div class="leader__score">76</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">ExxonMobil</div><div class="leader__sub">Oil &amp; Gas</div></div><div class="leader__score">62</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 22</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">9%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">41%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3782,6 +4076,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">9%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Energy companies are doing the work without talking about it. Chevron sits 14 points above ExxonMobil within sector &mdash; a meaningful gap given the two are often discussed interchangeably.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3799,10 +4094,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 10 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-real-estate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="sector-name">Real Estate</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-real-estate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Real Estate · n = 31</div>
-        <div class="s-title">Data-center REITs at the top.</div>
-        <div class="s-sub">Equinix and Digital Realty top the sector — the literal landlords of the AI build-out. <em>Real Estate sits near the cohort floor on Leadership</em>, but the data-center sub-sector is a notable counterweight.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-real-estate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Real Estate</div>
+        <div class="s-title">Data-center REITs at the top.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Equinix and Digital Realty &mdash; the literal landlords of the AI build-out &mdash; top the 31-company sector. The structural caveat matters: many Real Estate companies (residential REITs, hotel REITs, infrastructure trusts) won&rsquo;t patent, won&rsquo;t hire AI engineers, and won&rsquo;t deploy enterprise AI by design. Low scores here reflect business model, not negligence &mdash; some names can only ever score on Literacy and Advocacy, never on Orientation or Implementation.</div>
         <div class="score-card">
           <div class="score-card__num">25</div>
           <div class="score-card__meta">
@@ -3819,17 +4114,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:47%"></div></div><div class="pillar-bar-row__val">47</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:56%"></div></div><div class="pillar-bar-row__val">56</div></div>
         </div>
-        <div class="takeaway">Data-center REITs are an asymmetric play: profiting from the AI build-out without being AI builders themselves. The rest of the sector is deep in Emerging.</div>
       </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Equinix</div><div class="leader__sub">Data Center REITs</div></div><div class="leader__score">96</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Digital Realty</div><div class="leader__sub">Data Center REITs</div></div><div class="leader__score">93</div></div>
-          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Iron Mountain</div><div class="leader__sub">Other Specialized REITs</div></div><div class="leader__score">89</div></div>
+          <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">Iron Mountain</div><div class="leader__sub">Specialty REITs</div></div><div class="leader__score">89</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">CBRE Group</div><div class="leader__sub">Real Estate Services</div></div><div class="leader__score">80</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">CoStar Group</div><div class="leader__sub">Real Estate Services</div></div><div class="leader__score">73</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 31</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">16%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">39%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3837,6 +4132,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">13%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        <div class="takeaway">Host Hotels &amp; Resorts is a striking outlier &mdash; lands as an AI Visionary at 51, well above the sector floor. The data-center REITs are profiting from the AI build-out without becoming AI builders themselves &mdash; an asymmetric position worth watching.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3854,10 +4150,10 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
       <div class="eyebrow">Sector 11 / 11<span class="dot"></span><span class="eyebrow-sector"><svg class="sector-icon eyebrow-icon sec-materials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 5-3"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg><span class="sector-name">Materials</span></span></div>
     </div>
     <div class="slide-body">
-      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-materials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 5-3"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Materials · n = 26</div>
-        <div class="s-title">Specialty chemicals carry the sector.</div>
-        <div class="s-sub">Ecolab, Dow, and IFF lead a thin 26-company sector. <em>The sector sits at the bottom of cohort-norm rankings</em> but the Trailblazer share within-sector still reaches 42%.</div></div></div>
+      <div class="sector-head"><div class="sector-head__mark"><svg class="sector-mark sec-materials" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 5-3"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></svg></div><div class="sector-head__text"><div class="s-eyebrow">Materials</div>
+        <div class="s-title">Trailblazers in a Tier-4 sector.</div></div></div>
       <div class="sector-left">
+        <div class="s-sub">Materials lands at the bottom of the cohort-normalized ranking, yet 42% of its 26 constituents register as Trailblazers within sector &mdash; a pattern that needs explanation. Two things are happening: the sector is thin (small N), and the methodology rewards <em>relative</em> within-sector performance, so a small group of specialty-chemicals leaders (Ecolab, Dow, IFF, Linde, Avery Dennison) lifts the within-sector distribution even while the sector as a whole trails. Commodity metals, mining, and packaging names show almost no AI footprint and pull the cohort-norm average down.</div>
         <div class="score-card">
           <div class="score-card__num">22</div>
           <div class="score-card__meta">
@@ -3874,17 +4170,17 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Orientation<span class="pillar-bar-row__verb">PRIORITIZE</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar ori" style="width:60%"></div></div><div class="pillar-bar-row__val">60</div></div>
           <div class="pillar-bar-row"><div class="pillar-bar-row__label">Implementation<span class="pillar-bar-row__verb">BUILD</span></div><div class="pillar-bar-row__bg"><div class="pillar-bar-row__bar imp" style="width:47%"></div></div><div class="pillar-bar-row__val">47</div></div>
         </div>
-        <div class="takeaway">Specialty chemicals — Ecolab, Dow, IFF — carry the sector. Commodity metals and mining names show almost no AI footprint in the cohort.</div>
-      </div>
+        </div>
       <div class="sector-right">
-        <div class="panel-label">Top 4 · within-sector AIDE Index</div>
+        <div class="panel-label">Top 5 · within-sector AIDE Index</div>
         <div class="leaders">
           <div class="leader"><div class="leader__num">01</div><div><div class="leader__name">Ecolab</div><div class="leader__sub">Specialty Chemicals</div></div><div class="leader__score">93</div></div>
           <div class="leader"><div class="leader__num">02</div><div><div class="leader__name">Dow Inc.</div><div class="leader__sub">Commodity Chemicals</div></div><div class="leader__score">82</div></div>
           <div class="leader"><div class="leader__num">03</div><div><div class="leader__name">International Flavors &amp; Fragrances</div><div class="leader__sub">Specialty Chemicals</div></div><div class="leader__score">77</div></div>
           <div class="leader"><div class="leader__num">04</div><div><div class="leader__name">Linde plc</div><div class="leader__sub">Industrial Gases</div></div><div class="leader__score">75</div></div>
+          <div class="leader"><div class="leader__num">05</div><div><div class="leader__name">Avery Dennison</div><div class="leader__sub">Packaging</div></div><div class="leader__score">73</div></div>
         </div>
-        <div class="panel-label">Archetype distribution · n = 26</div>
+        <div class="panel-label">Archetype distribution</div>
         <div class="archetypes">
           <div class="arch stealth"><div class="arch__pct">8%</div><div class="arch__name">Stealth Adopters</div></div>
           <div class="arch trailblazers"><div class="arch__pct">42%</div><div class="arch__name">AI Trailblazers</div></div>
@@ -3892,6 +4188,16 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="arch visionaries"><div class="arch__pct">8%</div><div class="arch__name">AI Visionaries</div></div>
         </div>
       </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+          <div class="takeaway">The high within-sector Trailblazer share alongside the low cohort-norm rank is a methodology artifact, not a contradiction. Specialty chemicals carries the sector; commodity producers are largely absent from the AI conversation.</div>
     </div>
     <div class="slide-footer">
       <div class="tag">Tracking the AI that counts.</div>
@@ -3994,7 +4300,7 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
           <div class="person__photo-wrap"><img src="assets/team/felipe-scherer.jpg" alt="Felipe Ost Scherer"></div>
           <div class="person__bar"></div>
           <div>
-            <div class="person__role">Co-Founder</div>
+            <div class="person__role">Co-Founder &amp; Chief Data Scientist</div>
             <div class="person__name">Felipe Ost Scherer</div>
           </div>
           <div class="person__bio">20+ years in innovation management. Co-Founder of InnoScience. Leads the AIDE Institute's research program and global expansion.</div>
@@ -4017,33 +4323,37 @@ section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__imag
     </div>
   </section>
 
-  <!-- ───────────────────── 21 · CONTACT ───────────────────── -->
-  <section class="contact-slide" data-label="Contact">
+  <!-- ───────────────────── 21 · CONTACT / CTA ───────────────────── -->
+  <section class="contact-slide" data-label="Next Steps">
     <div class="slide-header">
       <img class="logo" src="assets/aide-logo-mono-white.png" alt="AIDE">
-      <div class="eyebrow">Section 08<span class="dot"></span>Get in Touch</div>
+      <div class="eyebrow">Section 08<span class="dot"></span>Next Steps</div>
     </div>
     <div class="slide-body">
       <div class="contact-lockup-wrap">
         <img class="contact-lockup" src="assets/aide-institute-stacked-alt.png" alt="AI-Driven Enterprise Institute">
       </div>
       <div class="contact-title-wrap">
-        <div class="s-eyebrow">Engage with the AIDE Institute</div>
-        <div class="contact-title">Get in <span class="accent">touch.</span></div>
+        <div class="s-eyebrow">How do I put this to work?</div>
+        <div class="contact-title">Take it <span class="accent">deeper.</span></div>
         <div class="contact-bar"></div>
+        <div class="contact-lede">The Index is the starting point. The next step is an <strong>AIDE Assessment</strong> — a confidential, organization-specific read on the same five pillars, with the diagnostics and benchmarks needed to act.</div>
       </div>
       <div class="contact-grid">
+        <div class="contact-card cta">
+          <div class="label">Start Here</div>
+          <div class="value">Request an AIDE Assessment</div>
+          <div class="sub">assessments@aideinstitute.com</div>
+        </div>
         <div class="contact-card">
           <div class="label">General Inquiries</div>
           <div class="value">hello@aideinstitute.com</div>
+          <div class="sub">Partnerships, commissioned research, media briefings</div>
         </div>
         <div class="contact-card">
-          <div class="label">Press &amp; Media</div>
-          <div class="value">press@aideinstitute.com</div>
-        </div>
-        <div class="contact-card">
-          <div class="label">Website</div>
+          <div class="label">Learn More</div>
           <div class="value">aideinstitute.com</div>
+          <div class="sub">Methodology, team, and current research</div>
         </div>
       </div>
       <div class="contact-foot">

@@ -82,23 +82,23 @@
 .problem-slide .problem-card {
   background: var(--color-light-gray);
   border-radius: 16px;
-  padding: 40px;
+  padding: 40px 38px;
   border-top: 4px solid var(--color-fuchsia);
-  display: flex; flex-direction: column; gap: 16px;
+  display: flex; flex-direction: column; gap: 18px;
 }
 .problem-slide .problem-card__num {
   font-family: var(--font-display);
-  font-size: 18px; font-weight: 700;
+  font-size: 20px; font-weight: 700;
   color: var(--color-fuchsia); letter-spacing: 4px;
 }
 .problem-slide .problem-card__title {
   font-family: var(--font-display);
-  font-size: 30px; font-weight: 700;
+  font-size: 34px; font-weight: 700;
   color: var(--color-navy); line-height: 1.15; letter-spacing: -0.4px;
 }
 .problem-slide .problem-card__body {
   font-family: var(--font-primary);
-  font-size: 16px; line-height: 1.6; color: var(--color-ink);
+  font-size: 20px; line-height: 1.55; color: var(--color-ink);
 }
 .problem-slide .pull {
   background: var(--color-navy); color: var(--color-white);
@@ -140,6 +140,17 @@
 .solution-slide .compare__head.aide {
   background: var(--color-navy);
   color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+/* Fuchsia accent bar across the top of the AIDE header — anchors the
+   right column as the visual focal point. */
+.solution-slide .compare__head.aide::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--color-fuchsia);
 }
 .solution-slide .compare__head .label {
   font-family: var(--font-display);
@@ -156,13 +167,29 @@
   border-top: 1px solid var(--border-muted);
 }
 .solution-slide .compare__col.trad .compare__row { color: var(--color-mid-gray); }
+/* AIDE column: stronger fuchsia tint, brighter row dividers, and a
+   subtle fuchsia accent on the inner left edge so the column reads as
+   the active / preferred option at a glance. */
 .solution-slide .compare__col.aide {
-  background: rgba(230,0,255,0.04);
+  background: rgba(230, 0, 255, 0.10);
+  box-shadow: inset 3px 0 0 0 var(--color-fuchsia);
 }
 .solution-slide .compare__col.aide .compare__row {
   color: var(--color-navy);
   font-weight: 700;
-  border-top: 1px solid rgba(230,0,255,0.18);
+  border-top: 1px solid rgba(230, 0, 255, 0.32);
+}
+/* First-letter / leading accent on each AIDE row — small fuchsia pip
+   that pulls the eye across the column. */
+.solution-slide .compare__col.aide .compare__row::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--color-fuchsia);
+  border-radius: 50%;
+  margin-right: 14px;
+  vertical-align: middle;
+  transform: translateY(-2px);
 }
 .solution-slide .solution-footnote {
   background: var(--color-light-gray);
@@ -310,14 +337,24 @@
 .sector-slide .slide-body {
   display: grid;
   grid-template-columns: 1.05fr 1fr;
-  grid-template-rows: auto 1fr;
-  gap: 32px 56px;
-  padding: 24px 96px 56px;
+  grid-template-rows: auto 1fr auto;  /* head | columns | takeaway */
+  gap: 24px 56px;
+  padding: 20px 96px 32px;
 }
-.sector-slide .sector-head { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 14px; }
-.sector-slide .sector-head .s-eyebrow { color: var(--color-violet); }
-.sector-slide .sector-head .s-title { font-size: 80px; line-height: 1; letter-spacing: -2px; }
-.sector-slide .sector-head .s-sub { font-size: 22px; max-width: 1200px; }
+.sector-slide .sector-head { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+.sector-slide .sector-head .s-eyebrow { color: var(--color-violet); padding-bottom: 6px; }
+.sector-slide .sector-head .s-title { font-size: 60px; line-height: 1; letter-spacing: -1.5px; }
+/* s-sub now lives at the top of .sector-left (left column). Constrain
+   to the column's width and use the lighter paragraph style. */
+.sector-slide .sector-left .s-sub {
+  font-family: var(--font-primary);
+  font-size: 17px; line-height: 1.5;
+  color: var(--color-ink);
+  max-width: none;
+}
+.sector-slide .sector-left .s-sub em {
+  font-style: normal; color: var(--color-fuchsia); font-weight: 700;
+}
 .sector-slide .sector-head .s-sub em { font-style: normal; color: var(--color-fuchsia); font-weight: 700; }
 
 .sector-slide .sector-left { display: flex; flex-direction: column; gap: 22px; min-height: 0; }
@@ -396,50 +433,51 @@
 }
 
 .sector-slide .takeaway {
+  grid-column: 1 / -1;            /* span both columns at the bottom */
   background: var(--color-light-gray);
   border-left: 5px solid var(--color-fuchsia);
-  border-radius: 4px;
-  padding: 20px 24px;
-  font-family: var(--font-display);
-  font-size: 22px; font-weight: 700;
-  line-height: 1.25; letter-spacing: -0.3px;
+  border-radius: 8px;
+  padding: 16px 22px;
+  font-family: var(--font-primary);
+  font-size: 16px; font-weight: 400;
+  line-height: 1.5; letter-spacing: 0;
   color: var(--color-navy);
-  margin-top: auto;
 }
 
-.sector-slide .sector-right { display: flex; flex-direction: column; gap: 18px; min-height: 0; }
+.sector-slide .sector-right { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
 .sector-slide .panel-label {
   font-family: var(--font-primary);
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
   color: var(--color-violet);
 }
 .sector-slide .leaders { display: flex; flex-direction: column; gap: 0; }
 .sector-slide .leader {
   display: grid;
-  grid-template-columns: 56px 1fr auto;
-  gap: 20px; align-items: center;
-  padding: 16px 0;
+  grid-template-columns: 46px 1fr auto;
+  gap: 18px; align-items: center;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border-muted);
 }
 .sector-slide .leader:last-child { border-bottom: none; }
 .sector-slide .leader__num {
   font-family: var(--font-display);
-  font-size: 36px; font-weight: 700; color: var(--color-fuchsia);
+  font-size: 30px; font-weight: 700; color: var(--color-fuchsia);
   line-height: 1; font-feature-settings: "tnum";
 }
 .sector-slide .leader__name {
   font-family: var(--font-display);
-  font-size: 22px; font-weight: 700; color: var(--color-navy);
+  font-size: 19px; font-weight: 700; color: var(--color-navy);
   letter-spacing: -0.2px;
+  line-height: 1.1;
 }
 .sector-slide .leader__sub {
-  font-family: var(--font-primary); font-size: 13px;
+  font-family: var(--font-primary); font-size: 12px;
   color: var(--color-mid-gray); margin-top: 2px; letter-spacing: 0.3px;
 }
 .sector-slide .leader__score {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 700; color: var(--color-navy);
+  font-size: 24px; font-weight: 700; color: var(--color-navy);
   font-feature-settings: "tnum";
 }
 
@@ -452,25 +490,25 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 6px;
+  margin-top: 2px;
 }
 .sector-slide .arch {
   border: 1px solid;
-  border-radius: 10px;
-  padding: 14px 16px;
-  display: flex; flex-direction: column; gap: 6px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 4px;
   position: relative;
 }
 .sector-slide .arch__pct {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 700;
+  font-size: 24px; font-weight: 700;
   line-height: 1; letter-spacing: -0.5px;
 }
 .sector-slide .arch__name {
   font-family: var(--font-primary);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.8px; text-transform: uppercase;
 }
 /* Quadrant background + accent — drawn from AIDE Matrix palette */
 .sector-slide .arch.stealth {
@@ -620,32 +658,43 @@
 .contact-slide > * { position: relative; z-index: 1; }
 .contact-slide .slide-header .eyebrow { color: rgba(255,255,255,0.55); }
 .contact-slide .slide-body {
-  justify-content: center; gap: 48px;
-  padding: 32px 120px 56px;
+  justify-content: center; gap: 32px;
+  padding: 24px 120px 40px;
 }
 .contact-slide .contact-lockup-wrap {
   display: flex; justify-content: center;
 }
 .contact-slide .contact-lockup {
   display: block;
-  height: 160px; width: auto; max-width: 90%;
+  height: 108px; width: auto; max-width: 90%;
   filter: brightness(0) invert(1);
 }
 .contact-slide .contact-title-wrap {
-  display: flex; flex-direction: column; gap: 28px;
-  padding: 56px 0;
+  display: flex; flex-direction: column; gap: 22px;
+  padding: 24px 0 8px;
   text-align: center;
   align-items: center;
 }
 .contact-slide .s-eyebrow { color: rgba(255,255,255,0.7); }
 .contact-slide .contact-title {
   font-family: var(--font-display);
-  font-size: 132px; font-weight: 700; line-height: 0.95;
-  letter-spacing: -3.5px; color: var(--color-white);
+  font-size: 108px; font-weight: 700; line-height: 0.95;
+  letter-spacing: -3px; color: var(--color-white);
   max-width: 1400px;
 }
 .contact-slide .contact-title .accent { color: var(--color-fuchsia); }
 .contact-slide .contact-bar { width: 120px; height: 6px; background: var(--color-fuchsia); }
+.contact-slide .contact-lede {
+  margin-top: 6px;
+  max-width: 1100px;
+  font-family: var(--font-primary);
+  font-size: 22px; font-weight: 400; line-height: 1.45;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+}
+.contact-slide .contact-lede strong {
+  color: var(--color-white); font-weight: 700;
+}
 .contact-slide .contact-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
   margin-top: 8px;
@@ -655,7 +704,11 @@
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: 14px;
   padding: 32px 36px;
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.contact-slide .contact-card.cta {
+  background: linear-gradient(140deg, rgba(230,0,255,0.20) 0%, rgba(124,58,237,0.18) 100%);
+  border-color: rgba(230,0,255,0.55);
 }
 .contact-slide .contact-card .label {
   font-family: var(--font-primary);
@@ -663,10 +716,20 @@
   letter-spacing: 3px; text-transform: uppercase;
   color: rgba(255,255,255,0.65);
 }
+.contact-slide .contact-card.cta .label {
+  color: var(--color-fuchsia);
+}
 .contact-slide .contact-card .value {
   font-family: var(--font-display);
   font-size: 28px; font-weight: 700;
   color: var(--color-white); letter-spacing: -0.3px;
+  line-height: 1.15;
+}
+.contact-slide .contact-card .sub {
+  font-family: var(--font-primary);
+  font-size: 14px; font-weight: 400; line-height: 1.45;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.1px;
 }
 /* Same two-section pattern as standard slide footers:
    left = slogan + url stacked, then source/note, then slide number. */
@@ -718,26 +781,34 @@
   font-feature-settings: "tnum";
 }
 
-/* ────────────── Methodology CTA ────────────── */
-.method-cta {
-  margin-top: 20px;
-  padding: 18px 28px;
+/* ────────────── Methodology CTA — compact pill in the top-right of
+   the slide-header. The methodology slide-header swaps its eyebrow for
+   this CTA so the link sits in the very corner of the slide. ────────── */
+.method-slide .slide-header .method-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
   background: var(--color-light-gray);
   border-left: 4px solid var(--color-fuchsia);
   border-radius: 8px;
   font-family: var(--font-primary);
-  font-size: 18px;
+  font-size: 14px; font-weight: 700;
   color: var(--color-navy);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  text-decoration: none;
+  letter-spacing: 0.2px;
+  transition: background 140ms ease, transform 140ms ease;
 }
-.method-cta .arrow {
+.method-slide .slide-header .method-cta:hover {
+  background: rgba(230, 0, 255, 0.10);
+}
+.method-slide .slide-header .method-cta .arrow {
   color: var(--color-fuchsia);
   font-weight: 900;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 1;
 }
-.method-cta strong {
+.method-slide .slide-header .method-cta strong {
   font-weight: 700;
   color: var(--color-fuchsia);
 }
@@ -750,6 +821,43 @@
 .evidence-slide .slide-body { gap: 36px; }
 .evidence-slide .evidence-headline { display: flex; flex-direction: column; gap: 14px; }
 .evidence-slide .evidence-headline .s-title { font-size: 76px; }
+/* Temporal scope + roadmap: surfaced upfront so the reader knows the
+   dataset window (2025) and the publishing cadence (quarterly through
+   2026 and beyond). */
+.evidence-slide .evidence-scope {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  padding: 12px 18px;
+  background: rgba(124, 58, 237, 0.08);
+  border-left: 4px solid var(--color-violet);
+  border-radius: 8px;
+  align-self: flex-start;
+  max-width: 1280px;
+}
+.evidence-slide .evidence-scope__badge {
+  font-family: var(--font-primary);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-violet);
+  padding: 6px 12px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.evidence-slide .evidence-scope__text {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.45;
+  color: var(--color-navy);
+}
+.evidence-slide .evidence-scope__text strong {
+  font-weight: 700;
+  color: var(--color-fuchsia);
+}
+section[data-deck-active].evidence-slide .evidence-scope {
+  animation: aide-fade-up 0.55s 0.4s var(--aide-ease) both;
+}
 
 .evidence-slide .evidence-hero {
   display: grid;
@@ -1275,20 +1383,20 @@ section[data-deck-active].contact-slide .contact-foot {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
-  gap: 40px;
+  gap: 28px;
 }
 .sector-slide .sector-head__text {
-  display: flex; flex-direction: column; gap: 14px;
+  display: flex; flex-direction: column; gap: 10px;
   min-width: 0;
 }
 .sector-slide .sector-head__mark {
   display: flex; align-items: center; justify-content: center;
-  width: 140px; height: 140px;
-  border-radius: 22px;
+  width: 104px; height: 104px;
+  border-radius: 18px;
   background: rgba(0, 0, 0, 0.04);
 }
 .sector-slide .sector-mark {
-  width: 78px; height: 78px;
+  width: 58px; height: 58px;
   display: block;
 }
 /* Per-sector soft tint backgrounds for the mark + matching svg color */
@@ -1340,8 +1448,93 @@ section[data-deck-active].contact-slide .contact-foot {
   padding-bottom: 32px;
   justify-content: center;
 }
-.matrix-slide .matrix-headline { display: flex; flex-direction: column; gap: 8px; }
-.matrix-slide .matrix-headline .s-title { font-size: 60px; }
+.matrix-slide .matrix-headline { display: flex; flex-direction: column; gap: 10px; }
+.matrix-slide .matrix-headline .s-title { font-size: 48px; }
+
+/* Plain-language intro replacing the academic "n=X / cohort-normalized" framing. */
+.matrix-slide .matrix-intro {
+  font-family: var(--font-primary);
+  font-size: 15px; line-height: 1.5;
+  color: var(--color-mid-gray);
+  margin-top: 4px;
+  max-width: 520px;
+}
+
+/* Plain-language takeaways — 4 short bullets with a fuchsia tick. */
+.matrix-slide .matrix-takeaways {
+  list-style: none; margin: 12px 0 0 0; padding: 0;
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: 560px;
+}
+.matrix-slide .matrix-takeaways li {
+  font-family: var(--font-primary);
+  font-size: 14px; line-height: 1.45;
+  color: var(--color-navy);
+  padding-left: 18px;
+  position: relative;
+}
+.matrix-slide .matrix-takeaways li::before {
+  content: '';
+  position: absolute; left: 0; top: 8px;
+  width: 8px; height: 2px;
+  background: var(--color-fuchsia);
+}
+.matrix-slide .matrix-takeaways li strong {
+  font-weight: 700;
+  color: var(--color-fuchsia);
+}
+.matrix-slide .matrix-takeaways li em { font-style: italic; color: var(--color-fuchsia); font-weight: 700; }
+
+/* Archetype legend — 4 compact rows naming each quadrant in plain language. */
+.matrix-slide .matrix-archetypes {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--color-light-gray);
+  border-radius: 8px;
+  display: flex; flex-direction: column; gap: 6px;
+  max-width: 560px;
+}
+.matrix-slide .matrix-arch {
+  display: flex; align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-primary);
+  font-size: 12px; line-height: 1.4;
+  color: var(--color-navy);
+}
+.matrix-slide .matrix-arch .dot {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transform: translateY(1px);
+}
+.matrix-slide .matrix-arch strong {
+  font-weight: 700;
+  font-size: 13px;
+}
+.matrix-slide .matrix-arch--trailblazers .dot { background: var(--pillar-literacy);       }
+.matrix-slide .matrix-arch--trailblazers strong { color: var(--pillar-literacy-ink); }
+.matrix-slide .matrix-arch--stealth .dot      { background: var(--color-blue);            }
+.matrix-slide .matrix-arch--stealth strong    { color: var(--color-blue); }
+.matrix-slide .matrix-arch--visionaries .dot  { background: var(--pillar-implementation); }
+.matrix-slide .matrix-arch--visionaries strong { color: var(--pillar-implementation-ink); }
+.matrix-slide .matrix-arch--emerging .dot     { background: var(--status-down);           }
+.matrix-slide .matrix-arch--emerging strong   { color: var(--status-down); }
+
+/* Staggered entrance for the new content */
+section[data-deck-active].matrix-slide .matrix-intro {
+  animation: aide-fade-up 0.55s 0.45s var(--aide-ease) both;
+}
+section[data-deck-active].matrix-slide .matrix-takeaways li {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(1) { animation-delay: 0.65s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(2) { animation-delay: 0.75s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(3) { animation-delay: 0.85s; }
+section[data-deck-active].matrix-slide .matrix-takeaways li:nth-child(4) { animation-delay: 0.95s; }
+section[data-deck-active].matrix-slide .matrix-archetypes {
+  animation: aide-fade-up 0.55s 1.10s var(--aide-ease) both;
+}
 
 /* Right-pane full-bleed image — 65% wide, extends to the top and
    right edges of the slide; bottom stops above the footer. */
@@ -1405,16 +1598,89 @@ section[data-deck-active].sector-slide .sector-head__mark {
 }
 .divider-slide .divider-slide__title {
   font-family: var(--font-display);
-  font-size: 220px; font-weight: 700;
-  line-height: 0.92; letter-spacing: -5px;
+  font-size: 156px; font-weight: 700;
+  line-height: 0.92; letter-spacing: -4px;
   color: var(--color-white);
 }
 .divider-slide .divider-slide__title .accent { color: var(--color-fuchsia); }
 .divider-slide .divider-slide__sub {
   font-family: var(--font-primary);
-  font-size: 32px; line-height: 1.35;
+  font-size: 24px; line-height: 1.35;
   color: rgba(255,255,255,0.78);
   max-width: 1200px;
+}
+
+/* Observations list — 3 short S&P 500–wide takeaways that orient the
+   viewer before sector-by-sector slides begin. */
+.divider-slide .divider-slide__obs {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-direction: column; gap: 14px;
+  max-width: 1300px;
+  margin-top: 18px;
+}
+.divider-slide .divider-slide__obs li {
+  font-family: var(--font-primary);
+  font-size: 22px; line-height: 1.45;
+  color: rgba(255,255,255,0.92);
+  padding-left: 22px;
+  position: relative;
+}
+.divider-slide .divider-slide__obs li::before {
+  content: '';
+  position: absolute; left: 0; top: 12px;
+  width: 10px; height: 2px;
+  background: var(--color-fuchsia);
+}
+.divider-slide .divider-slide__obs li strong {
+  font-weight: 700; color: var(--color-white);
+}
+
+/* Methodology note — explains the within-sector ranking choice and why
+   apples-to-apples cross-sector comparisons would distort the picture. */
+.divider-slide .divider-slide__method {
+  font-family: var(--font-primary);
+  font-size: 16px; line-height: 1.55;
+  color: rgba(255,255,255,0.72);
+  max-width: 1300px;
+  padding: 14px 20px;
+  background: rgba(124, 58, 237, 0.18);
+  border-left: 4px solid var(--color-violet);
+  border-radius: 6px;
+  margin-top: 18px;
+}
+.divider-slide .divider-slide__method strong { color: var(--color-white); font-weight: 700; }
+.divider-slide .divider-slide__method-callout {
+  display: block;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(255,255,255,0.18);
+  color: rgba(255,255,255,0.85);
+}
+.divider-slide .divider-slide__method-callout strong { color: var(--color-fuchsia); }
+.divider-slide .divider-slide__method-badge {
+  display: inline-block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-violet);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* Tighten the center column's vertical gap now that there's more content */
+.divider-slide .divider-slide__center { gap: 22px; padding: 64px 96px; }
+
+/* Staggered entrance for the new elements */
+section[data-deck-active].divider-slide .divider-slide__obs li {
+  animation: aide-fade-up 0.5s var(--aide-ease) both;
+}
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(1) { animation-delay: 0.7s; }
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(2) { animation-delay: 0.8s; }
+section[data-deck-active].divider-slide .divider-slide__obs li:nth-child(3) { animation-delay: 0.9s; }
+section[data-deck-active].divider-slide .divider-slide__method {
+  animation: aide-fade-up 0.55s 1.05s var(--aide-ease) both;
 }
 
 /* Entrance choreography */
@@ -1466,3 +1732,68 @@ section[data-deck-active].divider-slide .divider-slide__sub {
 section[data-deck-active].sector-matrix-slide--fullbleed .matrix-fullbleed__image {
   animation: aide-scale-in 0.6s 0.15s var(--aide-ease) both;
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   Methodology slide — integrated data-sources row
+   Sits below the method-grid, mirrors the 4-column pillar structure,
+   and shows the 8 small icon + label items for each pillar so the
+   whole methodology + sources view lives on one slide.
+   ════════════════════════════════════════════════════════════════════ */
+.method-slide .method-sources {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.method-slide .method-sources__col {
+  background: var(--color-light-gray);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.method-slide .method-sources__head {
+  font-family: var(--font-primary);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--color-mid-gray);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-muted);
+}
+.method-slide .method-sources__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+.method-slide .method-sources .src {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 12px; font-weight: 700;
+  line-height: 1.15;
+}
+.method-slide .method-sources .src__icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.method-slide .method-sources .src__icon svg {
+  width: 12px; height: 12px;
+  display: block;
+}
+/* Per-pillar tint + label color, matching the pillar bar above */
+.method-slide .method-sources__col.lit .src__icon { color: var(--pillar-literacy-ink);       background: rgba(74, 222, 128, 0.18); }
+.method-slide .method-sources__col.adv .src__icon { color: var(--pillar-advocacy-ink);       background: rgba(167, 139, 250, 0.18); }
+.method-slide .method-sources__col.ori .src__icon { color: var(--pillar-orientation-ink);    background: rgba(217, 70, 239, 0.14); }
+.method-slide .method-sources__col.imp .src__icon { color: var(--pillar-implementation-ink); background: rgba(251, 191, 36, 0.20); }
+.method-slide .method-sources__col.lit .src__label { color: var(--pillar-literacy-ink); }
+.method-slide .method-sources__col.adv .src__label { color: var(--pillar-advocacy-ink); }
+.method-slide .method-sources__col.ori .src__label { color: var(--pillar-orientation-ink); }
+.method-slide .method-sources__col.imp .src__label { color: var(--pillar-implementation-ink); }
+
+/* Subtle entrance animation, staggered alongside the method-cards */
+section[data-deck-active].method-slide .method-sources__col {
+  animation: aide-fade-up 0.55s var(--aide-ease) both;
+}
+section[data-deck-active].method-slide .method-sources__col:nth-child(1) { animation-delay: 1.10s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(2) { animation-delay: 1.20s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(3) { animation-delay: 1.30s; }
+section[data-deck-active].method-slide .method-sources__col:nth-child(4) { animation-delay: 1.40s; }
